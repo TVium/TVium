@@ -10,10 +10,10 @@ TVium is to TV what Chromium is to the other digital devices.
 * Open to any contribution 
 * Aiming for the easiest support by the main TV OEMs and operators
 
-## TVium 1 coming soon 
+## TVium 1 is coming soon 
 - [x] Live configurable feature toggling per User Agent and per Cheat code
 - [x] GDPR and CNIL Compliant Consent Management per broadcaster and its partners  
 
-## TVium 2 grooming
+## TVium 2 is grooming
 - [ ] Live audience measurement per consenting user and in aggregate
 - [ ] Live ads measurement per spot per quartile
