@@ -12,8 +12,12 @@ TVium is to TV what Chromium is to the other digital devices.
 
 ## TVium 1 is coming soon 
 - [x] Live configurable feature toggling per User Agent and per Cheat code
-- [x] GDPR and CNIL Compliant consent management per broadcaster and its partners  
+- [x] Consent management per broadcaster compliant with GDPR, CNIL and data partnerships 
 
 ## TVium 2 is grooming
 - [ ] Live audience measurement per consenting user and in aggregate
 - [ ] Live ads measurement per spot per quartile
+
+## TVvium backlog
+- [ ] Linear adressable TV aka TV Segmentée compliant with DVB-TA signals and guaranteed by HbbTV-TA Profile 2
+- [ ] Support on TVs connected to DVB through a set top box  
