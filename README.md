@@ -16,7 +16,8 @@ TVium is to TV what Chromium is to the other digital devices.
 
 ## TVium 2 is grooming
 - [ ] Live audience measurement per consenting user and in aggregate
-- [ ] Live ads measurement per spot per quartile
+- [ ] Live ads measurement per spot per quartile  
+- [ ] Contextual bridges to external apps
 
 ## TVvium backlog
 - [ ] Linear adressable TV aka TV Segmentée compliant with DVB-TA signals and guaranteed by HbbTV-TA Profile 2
