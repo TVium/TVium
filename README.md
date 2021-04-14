@@ -1,8 +1,9 @@
 # TVium
 TVium is to TV what Chromium is to the other digital devices. 
-* Based on HbbTV, the best product of Web and Broadcast standards 
+* Building on HbbTV, the best product of Web and Broadcast standards 
 * Uncompromising on personal data, compliant by design with GDPR and local rules like CNIL's 
-* Adjusting broadly by broadcast native pure players
+* TV first : a channel is to TVium what a tab is to Chromium  
+* Adjusting broadly by broadcast native pure players  
 * Developing a shared layer for common features
 * Differentiable by each customizing its TVia by configuration and integration
 * Cient-side yet defining a common API to be served by each broadcaster
