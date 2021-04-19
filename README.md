@@ -1,5 +1,5 @@
 # TVium
-TVium is to TV what Chromium is to the other digital devices. 
+TVium is to Connected TV what Chromium is to Connected PCs
 * Building on HbbTV, the best product of Web and Broadcast standards 
 * Uncompromising on personal data, compliant by design with GDPR and local rules like CNIL's 
 * TV first : a channel is to TVium what a tab is to Chromium  
