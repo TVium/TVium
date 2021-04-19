@@ -1,8 +1,8 @@
 # TVium
 TVium is to Connected TVs what Chromium is to Connected PCs
+* Channels unified, as Connected PCs are unified by Sites and Connected Mobile Phones are unified by Apps
 * Building on HbbTV, the best product of Web and Broadcast standards 
 * Uncompromising on personal data, compliant by design with GDPR and local rules like CNIL's 
-* TV first : a channel is to TVium what a tab is to Chromium  
 * Adjusting broadly by broadcast native pure players  
 * Developing a shared layer for common features
 * Differentiable by each customizing its TVia by configuration and integration
