@@ -20,6 +20,9 @@ TVium is to Connected TVs what Chromium is to Connected PCs
 - [ ] Live ads measurement per spot per quartile  
 - [ ] Contextual bridges to external apps
 
-## TVvium backlog
+## TVium backlog
 - [ ] Linear adressable TV aka TV Segmentée compliant with DVB-TA signals and guaranteed by HbbTV-TA Profile 2
 - [ ] Support on TVs connected to DVB through a set top box  
+- [ ] Broadband Channel Template : an easy to use HTML template to play a DASH based channel  
+- [ ] Instant Pairing : an easy way for users to tell who they are to the channel caster
+- [ ] Contextual Bridge Template : an L-shaped zone appearing besides the cast at the end of periods to zap to another channel or shift to channel's programs on demand 
