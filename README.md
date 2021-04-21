@@ -13,11 +13,19 @@ TVium is to Connected TVs what Chromium is to Connected PCs
 
 ## TVium is broadcast driven connected TV, neither like connected PCs nor like connected mobile
 
-| Device  | Purpose | Units                | Access  | Structure | Prime Discovery | Second discovery |    
+| Device  | Purpose | Units                | Base Access  | Structure | Prime Discovery | Second discovery |    
 | --------| ------- |----------------------|---------|---------|-----------------|------------|
-| PC      | Business| Site/Page/Article    | Browser | Portal  | Links           | Search     |
-| Mobile  | Casual  | App/Feed/Card        | OS      | Home Apps    | Store           | Feed       |
+| PC      | Business| Site/Page/Article    | Chromium | Portal  | Links           | Search     |
+| Mobile  | Casual  | App/Feed/Card        | iOS or Android     | Home Apps    | Store           | Feed       |
 | TV      | Event   | Channel/Program/Episode  | Prime channel | EPG    | LR - Zapping     | ?       |
+
+## TVium is open source toolkit, neither like a pure spec nor like a complete product
+
+| Product | To support by device OEMs | To use by Channels Broadcasters | To monetize by ISVs | 
+|---------|---------------------------|---------------------------------|--------------------|
+| Spec    | Many units to test | Hard on (many) differences    | one shot custom dev |
+| Complete | One unit to integrate | Just to use but risk of lockin | binary cost intensive competitions |
+| TVium | One unit to integrate | Just to configure without lockin | continuous value added services |
 
 ## TVium 1 is coming soon 
 - [x] Live configurable feature toggling per User Agent and per Cheat code
