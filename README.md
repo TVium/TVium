@@ -17,7 +17,7 @@ TVium is to Connected TVs what Chromium is to Connected PCs
 | --------| ------- |----------------------|---------|---------|-----------------|------------|
 | PC      | Business| Site/Page/Article    | Chromium | Portal  | Links           | Search     |
 | Mobile  | Casual  | App/Feed/Card        | iOS or Android     | Home Apps    | Store           | Feed       |
-| TV      | Event   | Channel/Program/Episode  | Prime channel | EPG    | LR - Zapping     | ?       |
+| TV      | Event   | Channel/Program/Episode  | Prime channel | EPG    | Remote Zapping     | ?       |
 
 ## TVium is open source toolkit, neither like a pure spec nor like a complete product
 
