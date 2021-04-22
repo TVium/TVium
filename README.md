@@ -11,7 +11,7 @@ TVium is to Connected TVs what Chromium is to Connected PCs
 * Open to any **contribution** 
 * Aiming for the easiest **support** by the main TV OEMs and operators and the easiest **service** by broadcasters
 
-## TVium is broadcast driven connected TV, neither like connected PCs nor like connected mobile
+## TVium is broadcast driven connected TVs, neither like connected PCs nor like connected mobiles
 
 | Device  | Purpose | Units                | Base Access  | Structure | Prime Discovery | Second discovery |    
 | --------| ------- |----------------------|---------|---------|-----------------|------------|
