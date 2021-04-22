@@ -7,7 +7,7 @@ TVium is to Connected TVs what Chromium is to Connected PCs
 * Developing a **standardized** layer for common features
 * Differentiable by each customizing its **TVia** by configuration and integration
 * Siding on a **client** yet defining a common API to be served by each broadcaster
-* Biasing more towards **frequency** than gross when releasing
+* Biasing more towards **frequency** vs **depth** when releasing
 * Open to any **contribution** 
 * Aiming for the easiest **support** by the main TV OEMs and operators and the easiest **service** by broadcasters
 
