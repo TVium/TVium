@@ -21,11 +21,11 @@ TVium is to Connected TVs what Chromium is to Connected PCs
 
 ## TVium is open source toolkit, neither like a pure spec nor like a complete product
 
-| Product | To support by device OEMs | To use by Channels Broadcasters | To monetize by ISVs | 
+| Product | For device OEMs | For channels broadcasters | For service providers | 
 |---------|---------------------------|---------------------------------|--------------------|
 | Spec    | Many units to test | Hard on (many) differences    | one shot custom dev |
 | Complete | One unit to integrate | Just to use but risk of lockin | binary cost intensive competitions |
-| TVium | One unit to integrate | Just to configure without lockin | continuous value added services |
+| TVium | One unit to support | Just to configure without lockin | continuous value added services |
 
 ## TVium 1 is coming soon 
 - [x] Live configurable feature toggling per User Agent and per Cheat code
