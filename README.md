@@ -1,5 +1,5 @@
 # TVium
-TVium is to Connected TVs what Chromium is to Connected PCs
+TVium is to Connected TVs what Chromium is to Connected PCs, the native shared toolkit for the right product of TV and the Internet
 * Unified by **channels**, as Connected PCs are unified by **sites** and Connected Mobile Phones are unified by **apps**
 * Building on **HbbTV**, the best product of Web and Broadcast base standards
 * Uncompromising on **personal data**, compliant by design with GDPR and local rules like CNIL's 
