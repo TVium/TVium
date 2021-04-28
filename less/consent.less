@@ -1,0 +1,300 @@
+@import "../config/less/config.less";
+@import "mixin.less";
+
+.consent-section{
+  width: 100%;
+  height: 100%;
+  font-size: 15px;
+  &__banner{
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    &__message{
+        .messageBannerDown();
+    }
+    &__message--error{
+        .messageBannerDown();
+    }
+    &__left{
+        background: @default-bkg-Fallback;
+        background: @default-bkg-opacity-medium;
+        float:left;
+        width:865px;
+        height:@default-screen-height - 26px;
+        padding-left: @default-overscan-left;
+        padding-top: 26px;
+        &__message_down{
+            .messageDown();
+            &__link--reset{
+                .linkReset();
+            }
+            &__link--reset:hover, &__link--reset:active, &__link--reset:focus{
+                color:@default-color-focus;
+            }
+        }
+        &__logo{
+            width:159px;
+            height:58px;
+            margin-top:25px;
+            /*background: url(../../assets/consent/tf1_logo_new.png) no-repeat;*/
+            background: url("@{root-images}@{logo}") no-repeat;
+        }
+        &__title{
+            font-size: 42px;
+            padding: 65px 0 0 32px;
+        }
+        &__message{
+            font-size: 20px;
+            padding: 21px 17px 0px 41px;
+            line-height: 25px;
+        }
+    }
+    &__right{
+        background: @default-bkg-Fallback;
+        background: @default-bkg-opacity-maximum;
+        float:right;
+        width:283px;
+        height:@default-screen-height;
+        padding-right: 72px;
+        &__title{
+           padding: 126px 0 65px 0px;
+           font-size: 33px;
+           text-align:center;
+           background:url('../../assets/consent/arrow_down.png') no-repeat;
+           background-position-x: center;
+           background-position-y: 85%;
+        }
+        &__title:hover, &__title:active, &__title:focus{
+            color: @default-color-focus;
+            background:url('../../assets/consent/arrow_down_focus.png') no-repeat;
+            background-position-x: center;
+            background-position-y: 85%;
+        }
+        &__controls-container{
+            &__button{
+                .button(270px,43px,18px);
+                margin-left: 15px;
+                margin-bottom: 18px;
+            }
+            &__button:hover, &__button:active, &__button:focus{
+                border: 2px solid @default-color-focus;
+                color:@default-color-focus;
+            }
+        }
+    }
+  }
+
+  &__page{
+    opacity: 1.0;
+    background: #000000;
+    background: @default-bkg-opacity-medium;
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    &__back-button{
+        font-size: 28px;
+        display: block;
+        position: absolute;
+        top: 42px;
+        left: 70px;
+        color:@default-color;
+        background:none;
+        border:none;
+        &.focused{
+            .buttonFocus();
+            top:41px;
+        }
+    }
+    &__title{
+        margin-top: 40px;
+        margin-left: 270px;
+    }
+    &__title_dx{
+       position: absolute;
+       right: 115px;
+       top: 110px;
+       padding: 0px 0 40px 0px;
+       font-size: 33px;
+       text-align:center;
+       background:url('../../assets/consent/arrow_down.png') no-repeat;
+       background-position-x: center;
+       background-position-y: 85%;
+    }
+    &__title_dx:hover, &__title_dx:active, &__title_dx:focus{
+        color: @default-color-focus;
+        background:url('../../assets/consent/arrow_down_focus.png') no-repeat;
+        background-position-x: center;
+        background-position-y: 85%;
+    }
+    &__contain{
+        width: 86%;
+        margin-left:90px;
+        padding-left:10px;
+        padding-top:10px;
+        background: @default-bkg-Fallback;
+        background: @default-bkg-opacity-maximum;
+        overflow:hidden;
+        &__headertext{
+            float:left;
+            width:70%;
+            padding: 5px 5px 0 5px;
+            font-size:17px;
+            line-height:24px;
+        }
+        &__text{
+          float:left;
+          width:70%;
+          padding: 0px 5px 0 5px;
+          margin-top:25px;
+          font-size:17px;
+          line-height:24px;
+        }
+        &__politique--upper{
+          margin-bottom: 30px;
+          text-transform: uppercase;
+          text-align:center;
+        }
+        &__politique--body{
+          width: 840px;
+          height: 400px;
+          overflow-y: scroll;
+          padding: 5px;
+          margin:0 auto;
+          &.focused{
+            padding: 4px;
+            border-right: 0px;
+            color:@default-color;
+          }
+        }
+        &__partenaires--txt{
+          width: 840px;
+          margin:0 auto;
+          padding-left:85px;
+        }
+        &__partenaires{
+            width: 840px;
+            height: 400px;
+            overflow-y: scroll;
+            padding: 5px;
+            margin:0 auto;
+            &__partners{
+                &__partner_item{
+                    border-bottom:solid 1px #FFF;
+                    padding-bottom:30px;
+                    &__name{
+                        font-weight:bold;
+                        text-transform:uppercase;
+                        margin-top: 30px;
+                    }
+                    span{
+                        text-decoration:underline;
+                    }
+                    ul{
+                        list-style:none;
+                        padding:0 0 0 10px;
+                    }
+                    &__link{
+                        a{
+                            text-decoration:none;
+                            display:block;
+                            color:@default-color-focus;
+                        }
+                    }
+                }
+            }
+        }
+        &__partenaires--body{
+          width: 840px;
+          height: 400px;
+          overflow-y: scroll;
+          padding: 5px 5px 5px 85px;
+          margin:0 auto;
+          &.focused{
+            border-right: 0px;
+          }
+        }
+        &__buttons-container,&__buttons-container-all{
+            float:left;
+            font-size:17px;
+            line-height: 24px;
+            text-align:center;
+            margin-top:25px;
+            &__button{
+                .button(140px,43px,16px);
+                margin-left: 15px;
+                margin-bottom: 18px;
+                &.focused{
+                    .buttonFocus();
+                    font-weight:bold;
+                }
+                &.active{
+                    color: @default-color-focus;
+                    background:rgba(255,255,255, 0.8);
+                }
+            }
+        }
+        &__buttons-container-all{
+            margin-top:110px;
+        }
+        &__buttons-container--centered{
+            clear:both;
+            width:70%;
+            text-align:center;
+             &__button{
+                .button(250px,auto,16px);
+                font-weight:normal;
+                padding:5px 0;
+                &.focused{
+                    .buttonFocus();
+                    background:none;
+                    font-weight:bold;
+                }
+             }
+        }
+        &__message_down{
+            .messageDown();
+            width:70%;
+            &__link--reset{
+                .linkReset();
+                &.focused{
+                    background:none;
+                    color:@default-color-focus;
+                }
+            }
+            &__link--reset:hover, &__link--reset:active, &__link--reset:focus{
+                color:@default-color-focus;
+            }
+            &__link--partner{
+                display: inline-block;
+                width: 40%;
+                text-align: center;
+                padding-top: 12px;
+                font-size: 20px;
+                margin-left:50px;
+                color:@default-color;
+                &.focused,&.active{
+                    background:none;
+                    color:@default-color-focus;
+                }
+                &.active{
+                    background:none;
+                    color:@default-color-focus;
+                }
+            }
+        }
+    }
+  }
+
+  .consent-section__page__title_dx.focused{
+      color: @default-color-focus;
+      background:url('../../assets/consent/arrow_down_focus.png') no-repeat;
+      background-position-x: center;
+      background-position-y: 85%;
+      border:none;
+      padding: 0px 0 40px 0px;
+  }
+}

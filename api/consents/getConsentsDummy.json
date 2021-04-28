@@ -1,0 +1,27 @@
+{
+"tvId": "148e0ec2-a270-440a-9648-dc2307f2146e",
+"toRequest": 9999999999999999,
+"consents": [
+{
+"purposeName": "TRACKING",
+"consentText": "J\u0027accepte que mes données personnelles soient traitées par XX (et ses filiales), à des fins d\u0027audience.",
+"modificationText": "Je m\u0027oppose à ce que mes données personnelles soient traitées par XX (et ses filiales), à des fins d\u0027audience.",
+"purposeId": 1,
+"consentStatus": true
+},
+{
+"purposeName": "PERSONALIZATION",
+"consentText": "J\u0027accepte que mes données personnelles soient traitées par XX (et ses filiales), pour me proposer des contenus / services pertinents au regard de mes centres d\u0027intérêts.",
+"modificationText": "Je m\u0027oppose à ce que mes données personnelles soient traitées par XX (et ses filiales), pour me proposer des contenus / services pertinents au regard de mes centres d\u0027intérêts.",
+"purposeId": 2,
+"consentStatus": true
+},
+{
+"purposeName": "TARGETED_ADVERTISING",
+"consentText": "J\u0027accepte que mes données personnelles soient traitées par XX (et ses filiales), pour me proposer des publicités pertinentes au regard de mes centres d\u0027intérêts.",
+"modificationText": "Je m\u0027oppose à ce que mes données personnelles soient traitées par XX (et ses filiales), pour me proposer des publicités pertinentes au regard de mes centres d\u0027intérêts.",
+"purposeId": 3,
+"consentStatus": true
+}
+]
+}

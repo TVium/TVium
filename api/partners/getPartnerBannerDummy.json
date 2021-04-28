@@ -1,0 +1,14 @@
+{
+  "PARTNERS":
+      {
+        "SALTO": {
+          "NAME": "Partner_name",
+          "URL_POLITIQUE": "https://www.xx.fr/politique-de-confidentialite/politique-de-traitement-des-donnees-personnelles",
+          "CONSENTS": [
+            {
+              "CONSENSNAME": "Publicité personnalisée"
+            }
+          ]
+        }
+      }
+}

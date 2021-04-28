@@ -1,0 +1,42 @@
+.button(@width,@height,@fontsize){
+    width: @width;
+    height: @height;
+    background: none;
+    color: @default-color;
+    font-size:@fontsize;
+    border: @default-border;
+}
+
+.buttonFocus(){
+    color:@default-color-focus;
+    border:solid 2px @default-color-focus;
+}
+
+.messageBannerDown(){
+    position:absolute;
+    bottom:36px;
+    left: 0;
+    width: 100%;
+    padding: @default-overscan-bottom @default-overscan-left;
+    height: 3.6em;
+    line-height: 1.2em;
+    overflow: hidden;
+    display: inline-block;
+    color:@default-color;
+    background: @default-bkg-Fallback;
+    background: @default-bkg-opacity-maximum;
+}
+
+.messageDown(){
+    border-top: solid 1px #FFF;
+    margin-top: 52px;
+}
+
+.linkReset(){
+    display: inline-block;
+    float:left;
+    width: 49%;
+    text-align: center;
+    padding-top: 12px;
+    font-size: 20px;
+}

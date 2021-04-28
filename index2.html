@@ -1,0 +1,64 @@
+<!DOCTYPE html PUBLIC "-//HbbTV//1.1.1//EN" "http://www.hbbtv.org/dtd/HbbTV-1.1.1.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <title></title>
+    <meta http-equiv="Content-Type" content="application/vnd.hbbtv.xhtml+xml; charset=UTF-8"/>
+    <meta name=""/>
+
+    <!-- Stylesheets -->
+    <link type="text/css" rel="stylesheet" href="dist/css/main.css"/>
+    <link type="text/css" rel="stylesheet" href="dist/css/consent.css"/>
+    <link type="text/css" rel="stylesheet" href="dist/css/player.css"/>
+
+    <!-- Anti-clickjacking script -->
+    <script type="text/javascript">
+        if (top !== self) top.location.replace(self.location.href);
+    </script>
+
+    <!-- Libs -->
+    <script src="lib/json3.min.js"></script>
+    <script src="lib/jquery.min.js"></script>
+    <script src="lib/konami.js"></script>
+
+    <!-- JS Configs -->
+    <!--<script src="js/keycodes.js"></script>
+    <script src="js/constants.js"></script>
+    <script src="js/utilities.js"></script>
+    <script src="js/components/channel.js"></script>
+    <script src="js/requests/requestPlatform.js"></script>-->
+
+    <!-- JS Main -->
+    <!--<script src="js/main.js"></script>-->
+
+    <!-- JS Managers -->
+    <!--<script src="js/managers/configurationManager.js"></script>
+    <script src="js/managers/featuresManager.js"></script>
+    <script src="js/managers/logManager.js"></script>
+    <script src="js/managers/konamiManager.js"></script>
+    <script src="js/managers/serviceManager.js"></script>
+    <script src="js/managers/consentManager.js"></script>
+    <script src="js/managers/storageManager.js"></script>
+    <script src="js/managers/labelsManager.js"></script>-->
+
+    <!-- JS Components -->
+    <!--<script src="js/components/consent/consentsDirectValidationOverlayComponent.js"></script>
+    <script src="js/components/consent/consentsConfirmationOverlayComponent.js"></script>
+    <script src="js/components/consent/consentsParametersOverlayComponent.js"></script>
+    <script src="js/components/consent/consentsPrivacyPolicyComponent.js"></script>
+    <script src="js/components/consent/consentsPartenairesComponent.js"></script>
+    <script src="js/components/consent/consentsErrorComponent.js"></script>-->
+
+    <!-- Minified JS -->
+    <script src="dist/js/scripts.min.js"></script>
+</head>
+
+<body>
+<object id="video" type="video/broadcast" class="fullscreen video-broadcast"></object>
+<div class="tvium-container">
+    <div class="consent-section"></div>
+</div>
+<div id="applicationContainer" class="application-container">
+    <object type="application/oipfApplicationManager" id="appMan"></object>
+</div>
+</body>
+</html>
