@@ -1,6 +1,6 @@
 # TVium
-TVium is to Connected TVs what Chromium is to Connected PCs, the native shared toolkit for the right product of TV and the Internet
-* Unified by **channels**, as Connected PCs are unified by **sites** and Connected Mobile Phones are unified by **apps**
+TVium is to Connected TVs what Chromium/Wordpress are to Connected PCs, a TV native shared **framework** for the right product of TV and the Internet
+* Unified by **TV streams**, as Connected PCs are unified by **sites** and Connected Mobile Phones are unified by **apps**
 * Building on **HbbTV**, the best product of Web and Broadcast base standards
 * Uncompromising on **personal data**, compliant by design with GDPR and local rules like CNIL's 
 * Adjusting broadly by **broadcast native** pure players  
@@ -17,9 +17,9 @@ TVium is to Connected TVs what Chromium is to Connected PCs, the native shared t
 | --------| ------- |----------------------|---------|---------|-----------------|------------|
 | PC      | Business| Site/Page/Article    | Chromium | Portal  | Links           | Search     |
 | Mobile  | Casual  | App/Feed/Card        | iOS or Android     | Home Apps    | Store           | Feed       |
-| TV      | Event   | Channel/Program/Episode  | Prime channel | EPG    | Remote Zapping     | ?       |
+| TV      | Event   | Stream/Program/Episode  | Prime stream | EPG    | Remote Zapping     | ?       |
 
-## TVium is open source toolkit, neither like a pure spec nor like a complete product
+## TVium is open source framework, neither like a pure spec nor like a complete product
 
 | Product | For device OEMs | For channels broadcasters | For service providers | 
 |---------|---------------------------|---------------------------------|--------------------|
@@ -27,18 +27,42 @@ TVium is to Connected TVs what Chromium is to Connected PCs, the native shared t
 | Complete | One unit to integrate | Just to use but risk of lockin | binary cost intensive competitions |
 | TVium | One unit to support | Just to configure without lockin | continuous value added services |
 
+## TVium is handling the boilerplate of any connected TV stream lifecycle
+1. When the device is catching the URL broadcasted on the stream number or argued within a createApplication() call, a static whitelist.html is loaded
+2. If whitelist.html checks in the user agent in the white list, it loads an indexN.html, saving the ressources for non compatible devices
+3. The indexN.html is a TV stream boilerplate head up with references to the configurable stylesheets and the scripts that are bundled and minified when possible
+4. The indexN.html declares an element for the live stream, a container for TVium visual features, a container for the streamer special features and the standard HbbTV object to use HbbTV APIs
+5. On load, main.js runs to activate the configuration of features compliant with the User Agent
+6. Each feature is the product of a feature.js that may be served through by a TVium defined API, react to an event from the stream or the user and display audiovisuals in its declared HTML container
+7. When the user zap out the TV stream, the app is killed
+
+## TVium can be used just by configuration
+All the configuration is done in the config folder
+For a basic stream, the streamer MUST : 
+1. Edit the logo of its publisher
+The streamer MAY also : 
+1. Style its stream by editing main.less
+2. Choose the features to activate by editing features.js
+3. Localize the labels in its language by editing 
+
+## TVium can be customized by special features
+To add a special feature, the streamer MUST :
+1. Declare a STREAMER_NAME_FEATURE_NAME.js to indexN.html
+2. Declare a <div> in its special div container with an id prefixed by STREAMER_NAME
+3. Add a node for its feature in features.js to configure activation
+
 ## TVium 1 is coming soon 
-- [x] Live configurable feature toggling per User Agent and per Cheat code
-- [x] Consent management per broadcaster compliant with GDPR, CNIL and data partnerships 
+- [x] **Whitelising** per upfront static file
+- [x] **Features Picking** per User Agent and per Cheat code
+- [x] **Consent Management** compliant with GDPR, CNIL and data partnerships 
 
 ## TVium 2 is grooming
-- [ ] Live audience measurement per consenting user and in aggregate
-- [ ] Live ads measurement per spot per quartile  
-- [ ] Contextual bridges to external apps
+- [ ] **Live Audience Measurement** per consenting user and in aggregate
+- [ ] **Live Ads Measurement** per spot per quartile  
+- [ ] **ContextuaL Bridge** on stream period start or end
 
 ## TVium backlog
-- [ ] Linear adressable TV aka TV Segmentée compliant with DVB-TA signals and guaranteed by HbbTV-TA Profile 2
-- [ ] Support on TVs connected to DVB through a set top box  
-- [ ] Broadband Channel Template : an easy to use HTML template to play a DASH based channel  
-- [ ] Instant Pairing : an easy way for users to tell who they are to the channel caster
-- [ ] Contextual Bridge Template : an L-shaped zone appearing besides the cast at the end of periods to zap to another channel or shift to channel's programs on demand 
+- [ ] **Linear Spot Overlay** aka TV Segmentée compliant with DVB-TA signals and guaranteed by HbbTV-TA Profile 2 
+- [ ] **Broadband Stream** for non broadcasted streams 
+- [ ] **Visual Templates** for layout configuration
+- [ ] **Upfront Pairing** for rich presence based usages
