@@ -28,6 +28,7 @@ TVium is to Connected TVs what Chromium/Wordpress are to Connected PCs, a TV nat
 | TVium | One unit to support | Just to configure without lockin | continuous value added services |
 
 ## TVium is handling the boilerplate of any connected TV stream lifecycle
+TVium is standardizing the basics needed to run a TV stream :
 1. When the device is catching the URL broadcasted on the stream number or argued within a createApplication() call, a static whitelist.html is loaded
 2. If whitelist.html checks in the user agent in the white list, it loads an indexN.html, saving the ressources for non compatible devices
 3. The indexN.html is a TV stream boilerplate head up with references to the configurable stylesheets and the scripts that are bundled and minified when possible
