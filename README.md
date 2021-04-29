@@ -38,9 +38,10 @@ TVium is standardizing the basics needed to run a TV stream :
 7. When the user zap out the TV stream, the app is killed
 
 ## TVium can be used just by configuration
-All the configuration is done in the config folder
+All the configuration is done in the config folder 
 For a basic stream, the streamer MUST : 
-1. Edit the logo of its publisher
+1. Edit the logo of its publisher in the assets folder
+
 The streamer MAY also : 
 1. Style its stream by editing main.less
 2. Choose the features to activate by editing features.js
