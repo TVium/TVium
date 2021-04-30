@@ -16,7 +16,7 @@ var ConsentsPrivacyPolicyComponent = function (resetKeyboardEventsPrev, register
 
         $('.consent-section').empty();
 
-        $('.consent-section').load('templates/consent/consent__consents-privacy-policy.html', function () {
+        $('.consent-section').load('features/consent/templates/consent__consents-privacy-policy.html', function () {
 
             self.registerKeyboardEvents();
             self.setLabels();

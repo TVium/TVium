@@ -1,4 +1,4 @@
-var RequestPlatform =function () {
+var ConsentRequests =function () {
 
     var self = this;
 
@@ -7,7 +7,7 @@ var RequestPlatform =function () {
 
     this.getConsentGET=function (onSuccess,onFail) {
 
-        var serviceName="RequestPlatform.getConsent()";
+        var serviceName="ConsentRequests.getConsent()";
         logManager.log(serviceName);
         var urlManaged=configManager.getConfigurations().API_ENDPOINT + "consents";
         if(configManager.getConfigurations().DUMMY_API == true){
@@ -44,7 +44,7 @@ var RequestPlatform =function () {
     };
 
     this.getConsentPOST=function (onSuccess,onFail,jsonConsent,retryAttempt) {
-        var serviceName="RequestPlatform.getConsentPOST()";
+        var serviceName="ConsentRequests.getConsentPOST()";
         logManager.log(serviceName);
         if(!retryAttempt){
             retryAttempt = 0; //init at first call

@@ -1,4 +1,4 @@
-@import "../config/less/config.less";
+@import "../../../config/less/config.less";
 @import "mixin.less";
 
 .consent-section{
@@ -38,7 +38,6 @@
             width:159px;
             height:58px;
             margin-top:25px;
-            /*background: url(../../assets/consent/tf1_logo_new.png) no-repeat;*/
             background: url("@{root-images}@{logo}") no-repeat;
         }
         &__title{
@@ -62,13 +61,13 @@
            padding: 126px 0 65px 0px;
            font-size: 33px;
            text-align:center;
-           background:url('../../assets/consent/arrow_down.png') no-repeat;
+           background:url('../../features/consent/assets/arrow_down.png') no-repeat;
            background-position-x: center;
            background-position-y: 85%;
         }
         &__title:hover, &__title:active, &__title:focus{
             color: @default-color-focus;
-            background:url('../../assets/consent/arrow_down_focus.png') no-repeat;
+            background:url('../../features/consent/assets/arrow_down_focus.png') no-repeat;
             background-position-x: center;
             background-position-y: 85%;
         }
@@ -120,13 +119,13 @@
        padding: 0px 0 40px 0px;
        font-size: 33px;
        text-align:center;
-       background:url('../../assets/consent/arrow_down.png') no-repeat;
+       background:url('../../features/consent/assets/arrow_down.png') no-repeat;
        background-position-x: center;
        background-position-y: 85%;
     }
     &__title_dx:hover, &__title_dx:active, &__title_dx:focus{
         color: @default-color-focus;
-        background:url('../../assets/consent/arrow_down_focus.png') no-repeat;
+        background:url('../../features/consent/assets/arrow_down_focus.png') no-repeat;
         background-position-x: center;
         background-position-y: 85%;
     }
@@ -291,7 +290,7 @@
 
   .consent-section__page__title_dx.focused{
       color: @default-color-focus;
-      background:url('../../assets/consent/arrow_down_focus.png') no-repeat;
+      background:url('../../features/consent/assets/arrow_down_focus.png') no-repeat;
       background-position-x: center;
       background-position-y: 85%;
       border:none;

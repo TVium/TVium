@@ -5,7 +5,7 @@ var ConsentsErrorComponent = function (resetKeyboardEventsPrev, registerKeyboard
     var timeDisplay = Constants.CONSENT_BANNER_DISPLAY_TIME;
 
     this.showConsentError = function (timeDisplayConfig) {
-        activeContext = self;//in case of set consent error prevent register listener of this error popup to overlap on the salto banner one
+        activeContext = self;//in case of set consent error prevent register listener of this error popup to overlap on other timed/stream event triggered features (which want to have an own key listener)
         if (timeDisplayConfig != null) {
             timeDisplay = timeDisplayConfig;
         }
@@ -15,7 +15,7 @@ var ConsentsErrorComponent = function (resetKeyboardEventsPrev, registerKeyboard
         }
 
         $('.consent-section').empty();
-        $('.consent-section').load('templates/consent/consent__consents-error.html', function () {
+        $('.consent-section').load('features/consent/templates/consent__consents-error.html', function () {
             self.registerKeyboardEvents();
             self.setLabels();
             $('.consent-section__banner').show(0);

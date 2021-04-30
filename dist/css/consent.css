@@ -68,8 +68,7 @@
   width: 159px;
   height: 58px;
   margin-top: 25px;
-  /*background: url(../../assets/consent/tf1_logo_new.png) no-repeat;*/
-  background: url("../../assets/logo.png") no-repeat;
+  background: url("../../config/assets/publisher.png") no-repeat;
 }
 .consent-section__banner__left__title {
   font-size: 42px;
@@ -92,7 +91,7 @@
   padding: 126px 0 65px 0px;
   font-size: 33px;
   text-align: center;
-  background: url('../../assets/consent/arrow_down.png') no-repeat;
+  background: url('../../features/consent/assets/arrow_down.png') no-repeat;
   background-position-x: center;
   background-position-y: 85%;
 }
@@ -100,7 +99,7 @@
 .consent-section__banner__right__title:active,
 .consent-section__banner__right__title:focus {
   color: #005A9A;
-  background: url('../../assets/consent/arrow_down_focus.png') no-repeat;
+  background: url('../../features/consent/assets/arrow_down_focus.png') no-repeat;
   background-position-x: center;
   background-position-y: 85%;
 }
@@ -121,7 +120,7 @@
   color: #005A9A;
 }
 .consent-section__page {
-  opacity: 1.0;
+  opacity: 1;
   background: #000000;
   background: rgba(0, 0, 0, 0.6);
   position: absolute;
@@ -156,7 +155,7 @@
   padding: 0px 0 40px 0px;
   font-size: 33px;
   text-align: center;
-  background: url('../../assets/consent/arrow_down.png') no-repeat;
+  background: url('../../features/consent/assets/arrow_down.png') no-repeat;
   background-position-x: center;
   background-position-y: 85%;
 }
@@ -164,7 +163,7 @@
 .consent-section__page__title_dx:active,
 .consent-section__page__title_dx:focus {
   color: #005A9A;
-  background: url('../../assets/consent/arrow_down_focus.png') no-repeat;
+  background: url('../../features/consent/assets/arrow_down_focus.png') no-repeat;
   background-position-x: center;
   background-position-y: 85%;
 }
@@ -348,7 +347,7 @@
 }
 .consent-section .consent-section__page__title_dx.focused {
   color: #005A9A;
-  background: url('../../assets/consent/arrow_down_focus.png') no-repeat;
+  background: url('../../features/consent/assets/arrow_down_focus.png') no-repeat;
   background-position-x: center;
   background-position-y: 85%;
   border: none;

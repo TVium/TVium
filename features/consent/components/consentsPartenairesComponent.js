@@ -19,7 +19,7 @@ var ConsentsPartnerComponent = function (resetKeyboardEventsPrev, registerKeyboa
 
         $('.consent-section').empty();
 
-        $('.consent-section').load('templates/consent/consent__consents-partenaires.html', function () {
+        $('.consent-section').load('features/consent/templates/consent__consents-partenaires.html', function () {
 
             self.registerKeyboardEvents();
             self.setLabels();
@@ -63,7 +63,7 @@ var ConsentsPartnerComponent = function (resetKeyboardEventsPrev, registerKeyboa
             '<span>' + labelsManager.getLabel("CONSENT_PARTENAIRES_FINALITE") + '</span>' +
             '<ul>';
         for (var x = 0; x < partnerData.CONSENTS.length; x++) {
-            partnerItem += '<li>' + partnerData.CONSENTS[x].CONSENSNAME + '</li>';
+            partnerItem += '<li>' + partnerData.CONSENTS[x].CONSENTNAME + '</li>';
         }
         partnerItem += '</ul>' +
             '<div class="consent-section__page__contain__partenaires__partners__partner_item__link">' + labelsManager.getLabel("CONSENT_PARTENAIRES_SITE") +

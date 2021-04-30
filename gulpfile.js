@@ -21,19 +21,19 @@ var targetJSDir = distributionDir + '/js';
 
 //Build & Run scripts
 function lint() {
-    return gulp.src(originJSDir + '/**/*.js')
+    return gulp.src([originJSDir + '/**/*.js', 'features/consent/**/*.js'])
         .pipe(jshint())
         .pipe(jshint.reporter('default'));
 }
 
 function lessCss() {
-    return gulp.src(originStylesheetDir + '/**/*.less')
+    return gulp.src([originStylesheetDir + '/**/*.less', 'features/consent/' + originStylesheetDir + '/**/*.less'])
         .pipe(less({style: 'compressed'}).on('error', gutil.log))
         .pipe(gulp.dest(targetStylesheetDir));
 }
 
 function scripts() {
-    return gulp.src(originJSDir + '/**/*.js')
+    return gulp.src([originJSDir + '/**/*.js', 'features/consent/**/*.js'])
         .pipe(concat('scripts.js'))
         .pipe(gulp.dest(targetJSDir))
         .pipe(rename('scripts.min.js'))
@@ -42,7 +42,7 @@ function scripts() {
 }
 
 function watch(done) {
-    gulp.watch(originStylesheetDir + '/**/*.less', lessCss);
+    gulp.watch([originStylesheetDir + '/**/*.less', "features/consent/" + originStylesheetDir + '/**/*.less'], lessCss);
     done();
 }
 

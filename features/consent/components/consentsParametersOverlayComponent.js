@@ -27,7 +27,7 @@ var ConsentsParametersOverlayComponent = function (resetKeyboardEventsPrev, regi
             resetKeyboardEventsPrev();
         }
 
-        $('.consent-section').load('templates/consent/consent__consents-parameters-overlay.html', function () {
+        $('.consent-section').load('features/consent/templates/consent__consents-parameters-overlay.html', function () {
             try {
                 self.registerKeyboardEvents();
 

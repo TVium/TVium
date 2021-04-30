@@ -10,7 +10,7 @@ var featuresManager = null;
 var keyset = null;
 var trackingConsent = null;
 var yellowButtonEnabled = false;
-var activeContext = null;//used to avoid concurrenvy conflict between different features (example: partnerBanner and consentOverlay)
+var activeContext = null;//used to avoid concurrenvy conflict between different features (wanting to access key listener - one of them could be a consentOverlay)
 
 window.onload = function () {
     try {

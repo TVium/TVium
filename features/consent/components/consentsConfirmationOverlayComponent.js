@@ -11,7 +11,7 @@ var ConsentsConfirmationOverlayComponent = function(resetKeyboardEventsPrev, reg
             resetKeyboardEventsPrev();
         }
 
-        $('.consent-section').load('templates/consent/consent__consents-confirmation-overlay.html', function () {
+        $('.consent-section').load('features/consent/templates/consent__consents-confirmation-overlay.html', function () {
 
             setLabels();
 

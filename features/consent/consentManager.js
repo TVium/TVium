@@ -286,7 +286,7 @@ var ConsentManager = function (resetKeyboardEventsPrev, registerKeyboardEventsPr
     });
 
     this.loadConsentData = function (onDataLoaded, completeFunction) {
-        var request = new RequestPlatform();
+        var request = new ConsentRequests();
         request.getConsentGET(function (json) {
                 consentModel = json;
                 storageManager.setCookie(configManager.getConfigurations().MODEL_COOKIE_NAME, JSON.stringify(consentModel));
@@ -327,7 +327,7 @@ var ConsentManager = function (resetKeyboardEventsPrev, registerKeyboardEventsPr
                 }
             }
 
-            var request = new RequestPlatform();
+            var request = new ConsentRequests();
 
             request.getConsentPOST(function (json) {
                     storageManager.setCookie(configManager.getConfigurations().MODEL_COOKIE_NAME, JSON.stringify(consentManager.getModel()));

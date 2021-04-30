@@ -25,7 +25,7 @@ var ConsentsDirectValidationOverlayComponent = function (resetKeyboardEventsPrev
             resetKeyboardEventsPrev();
         }
 
-        $('.consent-section').load('templates/consent/consent__consents-direct-validation-overlay.html', function () {
+        $('.consent-section').load('features/consent/templates/consent__consents-direct-validation-overlay.html', function () {
 
             self.registerKeyboardEvents();
 
