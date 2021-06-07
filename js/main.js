@@ -2,6 +2,8 @@ var app = null;
 var logManager = null;
 var konamiManager = null;
 var serviceManager = null;
+var mediaSyncManager = null;
+var traceManager = null;
 var consentManager = null;
 var configManager = null;
 var storageManager = null;
@@ -10,6 +12,7 @@ var featuresManager = null;
 var keyset = null;
 var trackingConsent = null;
 var yellowButtonEnabled = false;
+var advManager = null;
 var activeContext = null;//used to avoid concurrenvy conflict between different features (wanting to access key listener - one of them could be a consentOverlay)
 
 window.onload = function () {
@@ -41,9 +44,21 @@ window.onload = function () {
                     serviceManager = new ServiceManager();
                     serviceManager.initialize();
 
+                    //Initialize the class to manage the media synchroniser (in order to get the broadcast timeline)
+                    mediaSyncManager = new MediaSyncManager();
+                    if (featuresManager.getFeature("PTSMethod")) {
+                        mediaSyncManager.init();
+                    }
+
                     //Initialize the class to manage editorial labels
                     labelsManager = new LabelsManager();
                     labelsManager.init();
+
+                    //Initialize the class to manage the trace services
+                    traceManager = new TraceManager();
+                    if (featuresManager.getFeature("periodicHeartbeat")) {
+                        traceManager.startHeartbeat();
+                    }
 
                     //Initialize the class to manage cookies and other storage
                     storageManager = new StorageManager();
@@ -59,6 +74,8 @@ window.onload = function () {
                         consentManager.loadConsentData(function (timeDisplayConsentDirectValidationOverlay) {
                             consentManager.consentsDirectValidationOverlayComponent.showConsentDirectValidationOverlay(timeDisplayConsentDirectValidationOverlay);
                         }, function (consentOverlayDisplaying) {
+                            advManager = new AdvManager();
+                            advManager.initStreamEventsMethod();
                         });
                     }, configManager.getConfigurations().TIME_BEFORE_CONSENT_CALL);
 

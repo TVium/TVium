@@ -21,7 +21,7 @@ var targetJSDir = distributionDir + '/js';
 
 //Build & Run scripts
 function lint() {
-    return gulp.src([originJSDir + '/**/*.js', 'features/consent/**/*.js'])
+    return gulp.src([originJSDir + '/**/*.js', 'features/consent/**/*.js' , 'features/tracing/**/*.js', 'features/ads/**/*.js'])
         .pipe(jshint())
         .pipe(jshint.reporter('default'));
 }
@@ -33,7 +33,7 @@ function lessCss() {
 }
 
 function scripts() {
-    return gulp.src([originJSDir + '/**/*.js', 'features/consent/**/*.js'])
+    return gulp.src([originJSDir + '/**/*.js', 'features/consent/**/*.js' , 'features/tracing/**/*.js', 'features/ads/**/*.js'])
         .pipe(concat('scripts.js'))
         .pipe(gulp.dest(targetJSDir))
         .pipe(rename('scripts.min.js'))

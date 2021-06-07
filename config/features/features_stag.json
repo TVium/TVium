@@ -7,7 +7,12 @@
 			"others": ""
 		  },
 		  "features": {
-			"bindToCurrentChannel": false
+			"bindToCurrentChannel": false,
+			"periodicHeartbeat": true,
+			"linearAdTracking": false,
+			"PTSMethod": false,
+			"PTSCheckIntervalFineTuning": 0,
+			"ptsSpotModeSwitchInDurationFineTuning": 360
 		  }
 		},
 		{
@@ -17,7 +22,12 @@
 			"others": ""
 		  },
 		  "features": {
-			"bindToCurrentChannel": false
+			"bindToCurrentChannel": false,
+			"periodicHeartbeat": true,
+			"linearAdTracking": false,
+			"PTSMethod": false,
+			"PTSCheckIntervalFineTuning": 0,
+			"ptsSpotModeSwitchInDurationFineTuning": 360
 		  }
 		},
 		{
@@ -27,7 +37,12 @@
 			"others": ""
 		  },
 		  "features": {
-			"bindToCurrentChannel": true
+			"bindToCurrentChannel": true,
+			"periodicHeartbeat": true,
+			"linearAdTracking": false,
+			"PTSMethod": false,
+			"PTSCheckIntervalFineTuning": 0,
+			"ptsSpotModeSwitchInDurationFineTuning": 360
 		  }
 		},
 		{
@@ -37,7 +52,12 @@
 			"others": ""
 		  },
 		  "features": {
-			"bindToCurrentChannel": true
+			"bindToCurrentChannel": true,
+			"periodicHeartbeat": true,
+			"linearAdTracking": false,
+			"PTSMethod": false,
+			"PTSCheckIntervalFineTuning": 0,
+			"ptsSpotModeSwitchInDurationFineTuning": 360
 		  }
 		},
 		{
@@ -47,7 +67,12 @@
 			"others": ""
 		  },
 		  "features": {
-			"bindToCurrentChannel": true
+			"bindToCurrentChannel": true,
+			"periodicHeartbeat": true,
+			"linearAdTracking": false,
+			"PTSMethod": false,
+			"PTSCheckIntervalFineTuning": 0,
+			"ptsSpotModeSwitchInDurationFineTuning": 360
 		  }
 		},
 		{
@@ -57,7 +82,12 @@
 			"others": ""
 		  },
 		  "features": {
-			"bindToCurrentChannel": true
+			"bindToCurrentChannel": true,
+			"periodicHeartbeat": true,
+			"linearAdTracking": false,
+			"PTSMethod": false,
+			"PTSCheckIntervalFineTuning": 0,
+			"ptsSpotModeSwitchInDurationFineTuning": 360
 		  }
 		},
 		{
@@ -67,7 +97,12 @@
 			"others": ""
 		  },
 		  "features": {
-			"bindToCurrentChannel": true
+			"bindToCurrentChannel": true,
+			"periodicHeartbeat": true,
+			"linearAdTracking": false,
+			"PTSMethod": false,
+			"PTSCheckIntervalFineTuning": 0,
+			"ptsSpotModeSwitchInDurationFineTuning": 360
 		  }
 		},
 		{
@@ -77,7 +112,12 @@
 			"others": ""
 		  },
 		  "features": {
-			"bindToCurrentChannel": true
+			"bindToCurrentChannel": true,
+			"periodicHeartbeat": true,
+			"linearAdTracking": false,
+			"PTSMethod": false,
+			"PTSCheckIntervalFineTuning": 0,
+			"ptsSpotModeSwitchInDurationFineTuning": 360
 		  }
 		},
 		{
@@ -87,7 +127,12 @@
 			"others": ""
 		  },
 		  "features": {
-			"bindToCurrentChannel": true
+			"bindToCurrentChannel": true,
+			"periodicHeartbeat": true,
+			"linearAdTracking": false,
+			"PTSMethod": false,
+			"PTSCheckIntervalFineTuning": 0,
+			"ptsSpotModeSwitchInDurationFineTuning": 360
 		  }
 		},
 		{
@@ -97,7 +142,12 @@
 			"others": ""
 		  },
 		  "features": {
-			"bindToCurrentChannel": true
+			"bindToCurrentChannel": true,
+			"periodicHeartbeat": true,
+			"linearAdTracking": false,
+			"PTSMethod": false,
+			"PTSCheckIntervalFineTuning": 0,
+			"ptsSpotModeSwitchInDurationFineTuning": 360
 		  }
 		},
 		{
@@ -107,7 +157,12 @@
 			"others": ""
 		  },
 		  "features": {
-			"bindToCurrentChannel": true
+			"bindToCurrentChannel": true,
+			"periodicHeartbeat": true,
+			"linearAdTracking": false,
+			"PTSMethod": false,
+			"PTSCheckIntervalFineTuning": 0,
+			"ptsSpotModeSwitchInDurationFineTuning": 360
 		  }
 		},
 		{
@@ -117,7 +172,12 @@
 			"others": ""
 		  },
 		  "features": {
-			"bindToCurrentChannel": false
+			"bindToCurrentChannel": false,
+			"periodicHeartbeat": true,
+			"linearAdTracking": false,
+			"PTSMethod": false,
+			"PTSCheckIntervalFineTuning": 0,
+			"ptsSpotModeSwitchInDurationFineTuning": 360
 		  }
 		},
 		{
@@ -127,7 +187,12 @@
 			"others": ""
 		  },
 		  "features": {
-			"bindToCurrentChannel": true
+			"bindToCurrentChannel": true,
+			"periodicHeartbeat": true,
+			"linearAdTracking": false,
+			"PTSMethod": false,
+			"PTSCheckIntervalFineTuning": 0,
+			"ptsSpotModeSwitchInDurationFineTuning": 360
 		  }
 		},
 		{
@@ -137,7 +202,12 @@
 			"others": ""
 		  },
 		  "features": {
-			"bindToCurrentChannel": true
+			"bindToCurrentChannel": true,
+			"periodicHeartbeat": true,
+			"linearAdTracking": false,
+			"PTSMethod": false,
+			"PTSCheckIntervalFineTuning": 0,
+			"ptsSpotModeSwitchInDurationFineTuning": 360
 		  }
 		},
 		{
@@ -147,7 +217,12 @@
 			"others": ""
 		  },
 		  "features": {
-			"bindToCurrentChannel": true
+			"bindToCurrentChannel": true,
+			"periodicHeartbeat": true,
+			"linearAdTracking": false,
+			"PTSMethod": false,
+			"PTSCheckIntervalFineTuning": 0,
+			"ptsSpotModeSwitchInDurationFineTuning": 360
 		  }
 		},
 		{
@@ -157,7 +232,12 @@
 			"others": ""
 		  },
 		  "features": {
-			"bindToCurrentChannel": true
+			"bindToCurrentChannel": true,
+			"periodicHeartbeat": true,
+			"linearAdTracking": false,
+			"PTSMethod": false,
+			"PTSCheckIntervalFineTuning": 0,
+			"ptsSpotModeSwitchInDurationFineTuning": 360
 		  }
 		},
 		{
@@ -167,7 +247,12 @@
 			"others": ""
 		  },
 		  "features": {
-			"bindToCurrentChannel": true
+			"bindToCurrentChannel": true,
+			"periodicHeartbeat": true,
+			"linearAdTracking": false,
+			"PTSMethod": false,
+			"PTSCheckIntervalFineTuning": 0,
+			"ptsSpotModeSwitchInDurationFineTuning": 360
 		  }
 		},
 		{
@@ -177,7 +262,12 @@
 			"others": ""
 		  },
 		  "features": {
-			"bindToCurrentChannel": true
+			"bindToCurrentChannel": true,
+			"periodicHeartbeat": true,
+			"linearAdTracking": false,
+			"PTSMethod": false,
+			"PTSCheckIntervalFineTuning": 0,
+			"ptsSpotModeSwitchInDurationFineTuning": 360
 		  }
 		},
 		{
@@ -187,7 +277,12 @@
 			"others": ""
 		  },
 		  "features": {
-			"bindToCurrentChannel": true
+			"bindToCurrentChannel": true,
+			"periodicHeartbeat": true,
+			"linearAdTracking": false,
+			"PTSMethod": false,
+			"PTSCheckIntervalFineTuning": 0,
+			"ptsSpotModeSwitchInDurationFineTuning": 360
 		  }
 		},
 		{
@@ -197,7 +292,12 @@
 			"others": ""
 		  },
 		  "features": {
-			"bindToCurrentChannel": true
+			"bindToCurrentChannel": true,
+			"periodicHeartbeat": true,
+			"linearAdTracking": false,
+			"PTSMethod": false,
+			"PTSCheckIntervalFineTuning": 0,
+			"ptsSpotModeSwitchInDurationFineTuning": 360
 		  }
 		},
 		{
@@ -207,7 +307,12 @@
 			"others": ""
 		  },
 		  "features": {
-			"bindToCurrentChannel": true
+			"bindToCurrentChannel": true,
+			"periodicHeartbeat": true,
+			"linearAdTracking": false,
+			"PTSMethod": false,
+			"PTSCheckIntervalFineTuning": 0,
+			"ptsSpotModeSwitchInDurationFineTuning": 360
 		  }
 		},
 		{
@@ -217,7 +322,12 @@
 			"others": ""
 		  },
 		  "features": {
-			"bindToCurrentChannel": true
+			"bindToCurrentChannel": true,
+			"periodicHeartbeat": true,
+			"linearAdTracking": false,
+			"PTSMethod": false,
+			"PTSCheckIntervalFineTuning": 0,
+			"ptsSpotModeSwitchInDurationFineTuning": 360
 		  }
 		},
 		{
@@ -227,7 +337,12 @@
 			"others": ""
 		  },
 		  "features": {
-			"bindToCurrentChannel": true
+			"bindToCurrentChannel": true,
+			"periodicHeartbeat": true,
+			"linearAdTracking": false,
+			"PTSMethod": false,
+			"PTSCheckIntervalFineTuning": 0,
+			"ptsSpotModeSwitchInDurationFineTuning": 360
 		  }
 		},
 		{
@@ -237,7 +352,12 @@
 			"others": ""
 		  },
 		  "features": {
-			"bindToCurrentChannel": true
+			"bindToCurrentChannel": true,
+			"periodicHeartbeat": true,
+			"linearAdTracking": false,
+			"PTSMethod": false,
+			"PTSCheckIntervalFineTuning": 0,
+			"ptsSpotModeSwitchInDurationFineTuning": 360
 		  }
 		},
 		{
@@ -247,7 +367,12 @@
 			"others": ""
 		  },
 		  "features": {
-			"bindToCurrentChannel": false
+			"bindToCurrentChannel": false,
+			"periodicHeartbeat": true,
+			"linearAdTracking": false,
+			"PTSMethod": false,
+			"PTSCheckIntervalFineTuning": 0,
+			"ptsSpotModeSwitchInDurationFineTuning": 360
 		  }
 		},
 		{
@@ -257,7 +382,12 @@
 			"others": ""
 		  },
 		  "features": {
-			"bindToCurrentChannel": true
+			"bindToCurrentChannel": true,
+			"periodicHeartbeat": true,
+			"linearAdTracking": false,
+			"PTSMethod": false,
+			"PTSCheckIntervalFineTuning": 0,
+			"ptsSpotModeSwitchInDurationFineTuning": 360
 		  }
 		},
 		{
@@ -267,7 +397,12 @@
 			"others": ""
 		  },
 		  "features": {
-			"bindToCurrentChannel": false
+			"bindToCurrentChannel": false,
+			"periodicHeartbeat": true,
+			"linearAdTracking": false,
+			"PTSMethod": false,
+			"PTSCheckIntervalFineTuning": 0,
+			"ptsSpotModeSwitchInDurationFineTuning": 360
 		  }
 		},
 		{
@@ -277,7 +412,12 @@
 			"others": ""
 		  },
 		  "features": {
-			"bindToCurrentChannel": true
+			"bindToCurrentChannel": true,
+			"periodicHeartbeat": true,
+			"linearAdTracking": false,
+			"PTSMethod": false,
+			"PTSCheckIntervalFineTuning": 0,
+			"ptsSpotModeSwitchInDurationFineTuning": 360
 		  }
 		},
 		{
@@ -287,7 +427,12 @@
 			"others": ""
 		  },
 		  "features": {
-			"bindToCurrentChannel": true
+			"bindToCurrentChannel": true,
+			"periodicHeartbeat": true,
+			"linearAdTracking": false,
+			"PTSMethod": false,
+			"PTSCheckIntervalFineTuning": 0,
+			"ptsSpotModeSwitchInDurationFineTuning": 360
 		  }
 		},
 		{
@@ -297,7 +442,12 @@
 			"others": ""
 		  },
 		  "features": {
-			"bindToCurrentChannel": true
+			"bindToCurrentChannel": true,
+			"periodicHeartbeat": true,
+			"linearAdTracking": false,
+			"PTSMethod": false,
+			"PTSCheckIntervalFineTuning": 0,
+			"ptsSpotModeSwitchInDurationFineTuning": 360
 		  }
 		},
 		{
@@ -307,7 +457,12 @@
 			"others": ""
 		  },
 		  "features": {
-			"bindToCurrentChannel": true
+			"bindToCurrentChannel": true,
+			"periodicHeartbeat": true,
+			"linearAdTracking": false,
+			"PTSMethod": false,
+			"PTSCheckIntervalFineTuning": 0,
+			"ptsSpotModeSwitchInDurationFineTuning": 360
 		  }
 		},
 		{
@@ -317,7 +472,12 @@
 			"others": ""
 		  },
 		  "features": {
-			"bindToCurrentChannel": true
+			"bindToCurrentChannel": true,
+			"periodicHeartbeat": true,
+			"linearAdTracking": false,
+			"PTSMethod": false,
+			"PTSCheckIntervalFineTuning": 0,
+			"ptsSpotModeSwitchInDurationFineTuning": 360
 		  }
 		},
 		{
@@ -327,7 +487,12 @@
 			"others": ""
 		  },
 		  "features": {
-			"bindToCurrentChannel": true
+			"bindToCurrentChannel": true,
+			"periodicHeartbeat": true,
+			"linearAdTracking": false,
+			"PTSMethod": false,
+			"PTSCheckIntervalFineTuning": 0,
+			"ptsSpotModeSwitchInDurationFineTuning": 360
 		  }
 		},
 		{
@@ -337,7 +502,12 @@
 			"others": ""
 		  },
 		  "features": {
-			"bindToCurrentChannel": true
+			"bindToCurrentChannel": true,
+			"periodicHeartbeat": true,
+			"linearAdTracking": false,
+			"PTSMethod": false,
+			"PTSCheckIntervalFineTuning": 0,
+			"ptsSpotModeSwitchInDurationFineTuning": 360
 		  }
 		},
 		{
@@ -347,7 +517,12 @@
 			"others": ""
 		  },
 		  "features": {
-			"bindToCurrentChannel": true
+			"bindToCurrentChannel": true,
+			"periodicHeartbeat": true,
+			"linearAdTracking": false,
+			"PTSMethod": false,
+			"PTSCheckIntervalFineTuning": 0,
+			"ptsSpotModeSwitchInDurationFineTuning": 360
 		  }
 		},
 		{
@@ -357,7 +532,12 @@
 			"others": ""
 		  },
 		  "features": {
-			"bindToCurrentChannel": true
+			"bindToCurrentChannel": true,
+			"periodicHeartbeat": true,
+			"linearAdTracking": false,
+			"PTSMethod": false,
+			"PTSCheckIntervalFineTuning": 0,
+			"ptsSpotModeSwitchInDurationFineTuning": 360
 		  }
 		},
 		{
@@ -367,7 +547,12 @@
 			"others": ""
 		  },
 		  "features": {
-			"bindToCurrentChannel": true
+			"bindToCurrentChannel": true,
+			"periodicHeartbeat": true,
+			"linearAdTracking": false,
+			"PTSMethod": false,
+			"PTSCheckIntervalFineTuning": 0,
+			"ptsSpotModeSwitchInDurationFineTuning": 360
 		  }
 		},
 		{
@@ -377,7 +562,12 @@
 			"others": ""
 		  },
 		  "features": {
-			"bindToCurrentChannel": true
+			"bindToCurrentChannel": true,
+			"periodicHeartbeat": true,
+			"linearAdTracking": false,
+			"PTSMethod": false,
+			"PTSCheckIntervalFineTuning": 0,
+			"ptsSpotModeSwitchInDurationFineTuning": 360
 		  }
 		},
 		{
@@ -387,7 +577,12 @@
 			"others": ""
 		  },
 		  "features": {
-			"bindToCurrentChannel": true
+			"bindToCurrentChannel": true,
+			"periodicHeartbeat": true,
+			"linearAdTracking": false,
+			"PTSMethod": false,
+			"PTSCheckIntervalFineTuning": 0,
+			"ptsSpotModeSwitchInDurationFineTuning": 360
 		  }
 		},
 		{
@@ -397,7 +592,12 @@
 			"others": ""
 		  },
 		  "features": {
-			"bindToCurrentChannel": false
+			"bindToCurrentChannel": false,
+			"periodicHeartbeat": true,
+			"linearAdTracking": false,
+			"PTSMethod": false,
+			"PTSCheckIntervalFineTuning": 0,
+			"ptsSpotModeSwitchInDurationFineTuning": 360
 		  }
 		},
 		{
@@ -407,7 +607,12 @@
 			"others": ""
 		  },
 		  "features": {
-			"bindToCurrentChannel": true
+			"bindToCurrentChannel": true,
+			"periodicHeartbeat": true,
+			"linearAdTracking": false,
+			"PTSMethod": false,
+			"PTSCheckIntervalFineTuning": 0,
+			"ptsSpotModeSwitchInDurationFineTuning": 360
 		  }
 		},
 		{
@@ -417,7 +622,12 @@
 			"others": ""
 		  },
 		  "features": {
-			"bindToCurrentChannel": true
+			"bindToCurrentChannel": true,
+			"periodicHeartbeat": true,
+			"linearAdTracking": false,
+			"PTSMethod": false,
+			"PTSCheckIntervalFineTuning": 0,
+			"ptsSpotModeSwitchInDurationFineTuning": 360
 		  }
 		},
 		{
@@ -427,7 +637,12 @@
 			"others": ""
 		  },
 		  "features": {
-			"bindToCurrentChannel": true
+			"bindToCurrentChannel": true,
+			"periodicHeartbeat": true,
+			"linearAdTracking": false,
+			"PTSMethod": false,
+			"PTSCheckIntervalFineTuning": 0,
+			"ptsSpotModeSwitchInDurationFineTuning": 360
 		  }
 		},
 		{
@@ -437,7 +652,12 @@
 			"others": ""
 		  },
 		  "features": {
-			"bindToCurrentChannel": true
+			"bindToCurrentChannel": true,
+			"periodicHeartbeat": true,
+			"linearAdTracking": false,
+			"PTSMethod": false,
+			"PTSCheckIntervalFineTuning": 0,
+			"ptsSpotModeSwitchInDurationFineTuning": 360
 		  }
 		},
 		{
@@ -447,7 +667,12 @@
 			"others": ""
 		  },
 		  "features": {
-			"bindToCurrentChannel": true
+			"bindToCurrentChannel": true,
+			"periodicHeartbeat": true,
+			"linearAdTracking": false,
+			"PTSMethod": false,
+			"PTSCheckIntervalFineTuning": 0,
+			"ptsSpotModeSwitchInDurationFineTuning": 360
 		  }
 		},
 		{
@@ -457,7 +682,12 @@
 			"others": ""
 		  },
 		  "features": {
-			"bindToCurrentChannel": true
+			"bindToCurrentChannel": true,
+			"periodicHeartbeat": true,
+			"linearAdTracking": false,
+			"PTSMethod": false,
+			"PTSCheckIntervalFineTuning": 0,
+			"ptsSpotModeSwitchInDurationFineTuning": 360
 		  }
 		},
 		{
@@ -467,7 +697,12 @@
 			"others": ""
 		  },
 		  "features": {
-			"bindToCurrentChannel": true
+			"bindToCurrentChannel": true,
+			"periodicHeartbeat": true,
+			"linearAdTracking": false,
+			"PTSMethod": false,
+			"PTSCheckIntervalFineTuning": 0,
+			"ptsSpotModeSwitchInDurationFineTuning": 360
 		  }
 		},
 		{
@@ -477,7 +712,12 @@
 			"others": ""
 		  },
 		  "features": {
-			"bindToCurrentChannel": true
+			"bindToCurrentChannel": true,
+			"periodicHeartbeat": true,
+			"linearAdTracking": false,
+			"PTSMethod": false,
+			"PTSCheckIntervalFineTuning": 0,
+			"ptsSpotModeSwitchInDurationFineTuning": 360
 		  }
 		},
 		{
@@ -487,7 +727,12 @@
 			"others": ""
 		  },
 		  "features": {
-			"bindToCurrentChannel": true
+			"bindToCurrentChannel": true,
+			"periodicHeartbeat": true,
+			"linearAdTracking": false,
+			"PTSMethod": false,
+			"PTSCheckIntervalFineTuning": 0,
+			"ptsSpotModeSwitchInDurationFineTuning": 360
 		  }
 		},
 		{
@@ -497,7 +742,12 @@
 			"others": ""
 		  },
 		  "features": {
-			"bindToCurrentChannel": true
+			"bindToCurrentChannel": true,
+			"periodicHeartbeat": true,
+			"linearAdTracking": false,
+			"PTSMethod": false,
+			"PTSCheckIntervalFineTuning": 0,
+			"ptsSpotModeSwitchInDurationFineTuning": 360
 		  }
 		},
 		{
@@ -507,7 +757,12 @@
 			"others": ""
 		  },
 		  "features": {
-			"bindToCurrentChannel": true
+			"bindToCurrentChannel": true,
+			"periodicHeartbeat": true,
+			"linearAdTracking": false,
+			"PTSMethod": false,
+			"PTSCheckIntervalFineTuning": 0,
+			"ptsSpotModeSwitchInDurationFineTuning": 360
 		  }
 		},
 		{
@@ -517,7 +772,12 @@
 			"others": ""
 		  },
 		  "features": {
-			"bindToCurrentChannel": true
+			"bindToCurrentChannel": true,
+			"periodicHeartbeat": true,
+			"linearAdTracking": false,
+			"PTSMethod": false,
+			"PTSCheckIntervalFineTuning": 0,
+			"ptsSpotModeSwitchInDurationFineTuning": 360
 		  }
 		},
 		{
@@ -527,7 +787,12 @@
 			"others": ""
 		  },
 		  "features": {
-			"bindToCurrentChannel": true
+			"bindToCurrentChannel": true,
+			"periodicHeartbeat": true,
+			"linearAdTracking": false,
+			"PTSMethod": false,
+			"PTSCheckIntervalFineTuning": 0,
+			"ptsSpotModeSwitchInDurationFineTuning": 360
 		  }
 		},
 		{
@@ -537,7 +802,12 @@
 			"others": ""
 		  },
 		  "features": {
-			"bindToCurrentChannel": true
+			"bindToCurrentChannel": true,
+			"periodicHeartbeat": true,
+			"linearAdTracking": false,
+			"PTSMethod": false,
+			"PTSCheckIntervalFineTuning": 0,
+			"ptsSpotModeSwitchInDurationFineTuning": 360
 		  }
 		},
 		{
@@ -547,7 +817,12 @@
 			"others": ""
 		  },
 		  "features": {
-			"bindToCurrentChannel": true
+			"bindToCurrentChannel": true,
+			"periodicHeartbeat": true,
+			"linearAdTracking": false,
+			"PTSMethod": false,
+			"PTSCheckIntervalFineTuning": 0,
+			"ptsSpotModeSwitchInDurationFineTuning": 360
 		  }
 		}
 	  ]

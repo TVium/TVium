@@ -35,6 +35,7 @@
     <script src="js/managers/logManager.js"></script>
     <script src="js/managers/konamiManager.js"></script>
     <script src="js/managers/serviceManager.js"></script>
+    <script src="js/managers/mediaSyncManager.js"></script>
     <script src="js/managers/storageManager.js"></script>
     <script src="js/managers/labelsManager.js"></script>
 
@@ -47,6 +48,14 @@
     <script src="features/consent/components/consentsPrivacyPolicyComponent.js"></script>
     <script src="features/consent/components/consentsPartenairesComponent.js"></script>
     <script src="features/consent/components/consentsErrorComponent.js"></script>
+    <script src="features/tracing/requests/traceRequests.js"></script>
+    <script src="features/tracing/traceManager.js"></script>
+
+    <script src="features/ads/advHashmap.js"></script>
+    <script src="features/ads/requests/advRequests.js"></script>
+    <script src="features/ads/advManager.js"></script>
+    <script src="features/ads/components/streamEventsHandlerComponent.js"></script>
+    <script src="features/ads/components/ptsHandlerComponent.js"></script>
 
     <!-- Minified JS -->
     <!--<script src="dist/js/scripts.min.js"></script>-->
@@ -59,6 +68,7 @@
 </div>
 <div id="applicationContainer" class="application-container">
     <object type="application/oipfApplicationManager" id="appMan"></object>
+    <object type="application/hbbtvMediaSynchroniser" id="msync"></object>
 </div>
 </body>
 </html>

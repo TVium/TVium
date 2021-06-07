@@ -33,6 +33,25 @@ if (!String.prototype.trim) {
     };
 }
 
+function escapeXml(unsafe) {
+    if (unsafe != null) {
+        return unsafe.replace(/[<>&'"]/g, function (c) {
+            switch (c) {
+                case '<':
+                    return '&lt;';
+                case '>':
+                    return '&gt;';
+                case '&':
+                    return '&amp;';
+                case '\'':
+                    return '&apos;';
+                case '"':
+                    return '&quot;';
+            }
+        });
+    }
+}
+
 if (!Object.keys) {
     Object.keys = (function () {
         'use strict';
