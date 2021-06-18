@@ -91,8 +91,8 @@ var ConsentsParametersOverlayComponent = function (resetKeyboardEventsPrev, regi
                     $('.consent-section__page__contain__buttons-container-all').after(consentDOMItemButton);
                 }
 
-                if(configManager.getConfigurations().CONSENT_PARAMETERS_DEFAULT_FOCUS){
-                    positionDefault = Number(configManager.getConfigurations().CONSENT_PARAMETERS_DEFAULT_FOCUS);
+                if(consent.getConfiguration().CONSENT_PARAMETERS_DEFAULT_FOCUS){
+                    positionDefault = Number(consent.getConfiguration().CONSENT_PARAMETERS_DEFAULT_FOCUS);
                 }
 
                 if (editMode != null && editMode == true) {

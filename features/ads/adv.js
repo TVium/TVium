@@ -1,4 +1,4 @@
-var AdvManager = function () {
+var Adv = function () {
     var self = this;
     var advHashmap = new AdvHashmap();
     var request = new AdvRequests();
@@ -11,6 +11,16 @@ var AdvManager = function () {
     this.ptsHandlerComponent = new PtsHandlerComponent();
 
     this.callAdServerRoundTripTime = 0;
+
+    var configuration = {};
+
+    function configure(config) {
+        configuration = config;
+    };
+
+    function getConfiguration() {
+        return configuration;
+    };
 
     function initStreamEventsMethod() {
         logManager.log('Stream Events Listening Method init...');
@@ -85,9 +95,9 @@ var AdvManager = function () {
                         var payloadEvent = JSON.parse(obj.text);
                         if (!payloadEvent.hasOwnProperty("event_type")) {
                             //single Stream Event management
-                            if (configManager.getConfigurations().AD_SUBSTITUTION_METHOD === "spot") {
+                            if (self.getConfiguration().AD_SUBSTITUTION_METHOD === "spot") {
                                 startEventProcess(obj.text);
-                            } else if (configManager.getConfigurations().AD_SUBSTITUTION_METHOD === "break") {
+                            } else if (self.getConfiguration().AD_SUBSTITUTION_METHOD === "break") {
                                 callAdServerProcess(obj.text, null);
                             } else {
                                 logManager.warning("onAdEventReceived - No SpotMode or BreakMode set in the configuration.");
@@ -140,7 +150,7 @@ var AdvManager = function () {
             }
             if (!advHashmap.getValue(payloadEvent.STARTdata.break_code)) {
                 //If this event's break_code is not in the dictionary yet, callAdServer is triggered.
-                if (configManager.getConfigurations().CALL_ADSERVER_FALLBACK_ON_STARTEVENT && configManager.getConfigurations().AD_SUBSTITUTION_METHOD === 'spot') {
+                if (self.getConfiguration().CALL_ADSERVER_FALLBACK_ON_STARTEVENT && self.getConfiguration().AD_SUBSTITUTION_METHOD === 'spot') {
                     logManager.log('startEventProcess - break_code not found in dictionary: triggering callAdServer.');
                     callAdServerProcess(objString, function () {
                         //Going back to the START tracking after the callAdServer fallback.
@@ -163,12 +173,12 @@ var AdvManager = function () {
                 logManager.warning('callAdServerProcess - linearAdTracking feature is not true');
                 return;
             }
-            if (consentManager.getModel() == null || consentManager.getModelConsents().TRACKING.consentStatus !== true) { //Check TRACKING user consent status (Mandatory)
+            if (consent && (consent.getModel() == null || consent.getModelConsents().TRACKING.consentStatus !== true)) { //Check TRACKING user consent status (Mandatory)
                 logManager.warning('callAdServerProcess - user consent not given to TRACKING');
                 return;
             }
             var payloadEvent = JSON.parse(objString);
-            if (Object.keys(dictionary).length !== 0 && configManager.getConfigurations().AD_SUBSTITUTION_METHOD === 'break') {
+            if (Object.keys(dictionary).length !== 0 && self.getConfiguration().AD_SUBSTITUTION_METHOD === 'break') {
                 logManager.warning("callAdServerProcess - Discarding Event: Break tracking already in progress.");
                 return;
             }
@@ -183,14 +193,14 @@ var AdvManager = function () {
             advHashmap.initialize(payloadEvent.LOADdata.break_code);
             // advID never received yet => we continue to manage the id
             advHashmap.setStatus(payloadEvent.LOADdata.break_code, advHashmap.lstStatus.LOADING);
-            if (consentManager.getModel() == null) {
+            if (consent && consent.getModel() == null) {
                 logManager.warning("callAdServerProcess - getWizadsData() the tvId is not retrived yet");
                 return;
             }
             if (payloadEvent.LOADdata.channel) { // workaround to force channel uppercase - quicker than fix it on BEN
                 payloadEvent.LOADdata.channel = payloadEvent.LOADdata.channel.toUpperCase();
             }
-            var tvID = consentManager.getModel().tvId;
+            var tvID = consent ? consent.getModel().tvId : "";
             var transactionID = tvID + (new Date()).getTime(); //random number
             var daiVersion = payloadEvent.LOADdata.dai_version;
             var channel = payloadEvent.LOADdata.channel;
@@ -198,8 +208,8 @@ var AdvManager = function () {
             var breakDay = payloadEvent.LOADdata.bday || "";
             var breakduration = payloadEvent.LOADdata.break_duration;
             var platform = configManager.getPlatform().brand.toLowerCase().trim();
-            var response_type = configManager.getConfigurations().AD_SUBSTITUTION_METHOD;
-            var url = configManager.getConfigurations().ADSERVER_URL;
+            var response_type = self.getConfiguration().AD_SUBSTITUTION_METHOD;
+            var url = self.getConfiguration().ADSERVER_URL;
             url += "?dai_version=" + daiVersion + "&transaction_id=" + transactionID + "&response_type=" + response_type + "&channel=" + channel + "&break_code=" + breakCode +
                 "&break_day=" + breakDay + "&break_duration=" + breakduration + "&advertising_id=" + tvID + "&platform=" + platform + "&context=live&current_spot=0";
             var roundTripStart = Date.now();
@@ -219,7 +229,7 @@ var AdvManager = function () {
                         resumeStartFallbackCallback();
                     }
 
-                    if (configManager.getConfigurations().AD_SUBSTITUTION_METHOD === 'break') {
+                    if (self.getConfiguration().AD_SUBSTITUTION_METHOD === 'break') {
                         breakTracking(payloadEvent);
                     }
                 }, function (error) {
@@ -248,7 +258,7 @@ var AdvManager = function () {
             logManager.warning('startEventProcess - spot duration in Stream Event payload (' + payloadEvent.STARTdata.duration + ') not matching the VAST duration for this spot (' + dictionary.spots[payloadEvent.STARTdata.sequence].duration + ')');
             return;
         }
-        switch (configManager.getConfigurations().AD_SUBSTITUTION_METHOD) { //Replacement mode switch
+        switch (self.getConfiguration().AD_SUBSTITUTION_METHOD) { //Replacement mode switch
             case "spot":
                 if (featuresManager.getFeature("PTSMethod")) {
                     self.ptsHandlerComponent.ptsStartEventTimeCheck(payloadEvent, startEventCoreProcess); //In spot mode the LOAD event is triggered as soon as it is received, and then Ad Starts are triggered using their PTS
@@ -367,7 +377,7 @@ var AdvManager = function () {
             return;
         }
         //not needed anymore - if Tracking consent status is not true, ad server call is not performed and this check will not be done
-        if (consentManager.getModel() == null || consentManager.getModelConsents().TRACKING.consentStatus !== true) { //Check TRACKING user consent status (Mandatory for all next steps)
+        if (consent && (consent.getModel() == null || consent.getModelConsents().TRACKING.consentStatus !== true)) { //Check TRACKING user consent status (Mandatory for all next steps)
             logManager.warning('startEventCoreProcess - user consent not given to TRACKING');
             removeSpotFromDictionary(payloadEvent.STARTdata.break_code, payloadEvent.STARTdata.sequence);
         } else { // check if linearAdTracking is true - mandatory to perform tracking
@@ -394,7 +404,7 @@ var AdvManager = function () {
             };
             if (dictionary.spots[sequenceCounter + 1] != null) {
                 //Recursive timeout to schedule the tracking of the all spots in the dictionary
-                window.setTimeout(breakTimerCallback, dictionary.spots[sequenceCounter].duration + configManager.getConfigurations().BLACK_FRAMES_DURATION_AFTER_SPOT);
+                window.setTimeout(breakTimerCallback, dictionary.spots[sequenceCounter].duration + self.getConfiguration().BLACK_FRAMES_DURATION_AFTER_SPOT);
             }
             startEventProcess(JSON.stringify(startPayload));
 
@@ -446,8 +456,10 @@ var AdvManager = function () {
     }
 
     function injectTrackingPixel(url, name, sequenceNumber) {
-        traceManager.injectTrackingPixel(url);
-        if (configManager.getConfigurations().VISIBLE_AD_TRACKING) {// ENABLE FOR DEBUG ONLY
+        if(trace){
+            trace.injectTrackingPixel(url);
+        }
+        if (self.getConfiguration().VISIBLE_AD_TRACKING) {// ENABLE FOR DEBUG ONLY
             switch (name) {
                 case 'impression':
                 case 'complete':
@@ -526,6 +538,8 @@ var AdvManager = function () {
     }
 
     return {
+        configure: configure,
+        getConfiguration: getConfiguration,
         initStreamEventsMethod: initStreamEventsMethod,
         onAdEventReceived: onAdEventReceived,
         callAdServerProcess: callAdServerProcess,

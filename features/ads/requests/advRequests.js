@@ -12,7 +12,7 @@ var AdvRequests =function () {
             contentType: "application/json",
             dataType: "json",
             url: urlManaged,
-            timeout: configManager.getConfigurations().GET_WIZADS_TIMEOUT,
+            timeout: adv.getConfiguration().GET_WIZADS_TIMEOUT,
             success: function (data, textStatus, jqXHR) {
                 logManager.log(serviceName + " - Response : OK");
                 onSuccess(data);

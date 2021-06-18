@@ -1,12 +1,21 @@
-var TraceManager=function () {
+var Trace=function () {
 
     var heartbeat=null;
     var request= new TraceRequests();
     var self=this;
+    var configuration = {};
+
+    this.configure = function (config) {
+        configuration = config;
+    };
+
+    this.getConfiguration = function () {
+        return configuration;
+    };
 
     //trace the heartbeat every X second
     this.startHeartbeat=function () {
-        if (configManager.getConfigurations().HEARTBEAT_TIME_INTERVAL!=-1){
+        if (self.getConfiguration().HEARTBEAT_TIME_INTERVAL!=-1){
             heartbeat=setInterval(function () {
                 try{
                     request.heartbeat();
@@ -14,7 +23,7 @@ var TraceManager=function () {
                     logManager.error(e.message);
                 }
 
-            },configManager.getConfigurations().HEARTBEAT_TIME_INTERVAL);
+            },self.getConfiguration().HEARTBEAT_TIME_INTERVAL);
         }
     };
 

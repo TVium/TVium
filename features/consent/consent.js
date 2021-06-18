@@ -1,4 +1,4 @@
-var ConsentManager = function (resetKeyboardEventsPrev, registerKeyboardEventsPrev) {
+var Consent = function (resetKeyboardEventsPrev, registerKeyboardEventsPrev) {
     var self = this;
     var consentModel = null;
 
@@ -9,8 +9,18 @@ var ConsentManager = function (resetKeyboardEventsPrev, registerKeyboardEventsPr
     this.consentsPartnerComponent = new ConsentsPartnerComponent(resetKeyboardEventsPrev, registerKeyboardEventsPrev);
     this.consentsErrorComponent = new ConsentsErrorComponent(resetKeyboardEventsPrev, registerKeyboardEventsPrev);
 
+    var configuration = {};
+
+    this.configure = function (config) {
+        configuration = config;
+    };
+
+    this.getConfiguration = function () {
+        return configuration;
+    };
+
     this.init = function () {
-        var appDataValue = storageManager.getCookie(configManager.getConfigurations().MODEL_COOKIE_NAME);
+        var appDataValue = storageManager.getCookie(Constants.MODEL_COOKIE_NAME);
         if (appDataValue != null) {
             consentModel = JSON.parse(appDataValue);
         }
@@ -289,7 +299,7 @@ var ConsentManager = function (resetKeyboardEventsPrev, registerKeyboardEventsPr
         var request = new ConsentRequests();
         request.getConsentGET(function (json) {
                 consentModel = json;
-                storageManager.setCookie(configManager.getConfigurations().MODEL_COOKIE_NAME, JSON.stringify(consentModel));
+                storageManager.setCookie(Constants.MODEL_COOKIE_NAME, JSON.stringify(consentModel));
                 var isEditable = true;
                 for (var i = 0; i < json.consents.length; i++) {
                     var e = i;
@@ -330,7 +340,7 @@ var ConsentManager = function (resetKeyboardEventsPrev, registerKeyboardEventsPr
             var request = new ConsentRequests();
 
             request.getConsentPOST(function (json) {
-                    storageManager.setCookie(configManager.getConfigurations().MODEL_COOKIE_NAME, JSON.stringify(consentManager.getModel()));
+                    storageManager.setCookie(Constants.MODEL_COOKIE_NAME, JSON.stringify(self.getModel()));
                     onDataSent(json.toAcknowledge);
                 },
                 function () {
@@ -346,7 +356,7 @@ var ConsentManager = function (resetKeyboardEventsPrev, registerKeyboardEventsPr
     this.parseModelForPost = function (originModel) {
         try {
             var parsedModel = {
-                tvId: consentManager.getModel().tvId,
+                tvId: self.getModel().tvId,
                 consents: []
             };
 

@@ -75,7 +75,7 @@ var featuresManager = null;
 var keyset = null;
 var trackingConsent = null;
 var yellowButtonEnabled = false;
-var advManager = null;
+var adv = null;
 var activeContext = null;//used to avoid concurrenvy conflict between different features (wanting to access key listener - one of them could be a consentOverlay)
 
 window.onload = function () {
@@ -137,7 +137,7 @@ window.onload = function () {
                         consentManager.loadConsentData(function (timeDisplayConsentDirectValidationOverlay) {
                             consentManager.consentsDirectValidationOverlayComponent.showConsentDirectValidationOverlay(timeDisplayConsentDirectValidationOverlay);
                         }, function (consentOverlayDisplaying) {
-                            advManager = new AdvManager();
+                            adv = new AdvManager();
                             advManager.initStreamEventsMethod();
                         });
                     }, configManager.getConfigurations().TIME_BEFORE_CONSENT_CALL);
@@ -2128,7 +2128,7 @@ var ConsentsPartnerComponent = function (resetKeyboardEventsPrev, registerKeyboa
             }
             $('#backButton').attr('pagefrom', previousPage);
 
-            var url = configManager.getConfigurations().API_ENDPOINT + "partners";
+            var url = configManager.getConfigurations().PARTNER_API_ENDPOINT;
             if(configManager.getConfigurations().DUMMY_API == true){
                 url += "/getPartnerBannerDummy.json";
             }
@@ -2521,7 +2521,7 @@ var ConsentRequests =function () {
 
         var serviceName="ConsentRequests.getConsent()";
         logManager.log(serviceName);
-        var urlManaged=configManager.getConfigurations().API_ENDPOINT + "consents";
+        var urlManaged=configManager.getConfigurations().CONSENT_API_ENDPOINT;
         if(configManager.getConfigurations().DUMMY_API == true){
             urlManaged += "/getConsentsDummy.json";
         }
@@ -2563,7 +2563,7 @@ var ConsentRequests =function () {
         }
         var jsonData=JSON.stringify(jsonConsent);
         logManager.log(serviceName + " payload: " + jsonData);
-        var urlManaged=configManager.getConfigurations().API_ENDPOINT + "consents";
+        var urlManaged=configManager.getConfigurations().CONSENT_API_ENDPOINT;
         if(configManager.getConfigurations().DUMMY_API == true){
             urlManaged += "/getConsentsDummy.json";
         }

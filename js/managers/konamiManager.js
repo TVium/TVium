@@ -5,8 +5,8 @@ var KonamiManager = function () {
             pattern: "" + KeyEvent.VK_YELLOW,
             code: function () {
                 if (yellowButtonEnabled === true) {
-                    consentManager.consentsParametersOverlayComponent.init(consentManager.getModel());
-                    consentManager.consentsParametersOverlayComponent.showConsentParametersOverlay(yellowButtonEnabled);
+                    consent.consentsParametersOverlayComponent.init(consent.getModel());
+                    consent.consentsParametersOverlayComponent.showConsentParametersOverlay(yellowButtonEnabled);
                 }
             }
         }/*,

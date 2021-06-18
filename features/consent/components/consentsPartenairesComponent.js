@@ -24,8 +24,8 @@ var ConsentsPartnerComponent = function (resetKeyboardEventsPrev, registerKeyboa
             self.registerKeyboardEvents();
             self.setLabels();
 
-            if(configManager.getConfigurations().CONSENT_PARTENAIRES_DEFAULT_FOCUS){
-                positionDefault = Number(configManager.getConfigurations().CONSENT_PARTENAIRES_DEFAULT_FOCUS);
+            if(consent.getConfiguration().CONSENT_PARTENAIRES_DEFAULT_FOCUS){
+                positionDefault = Number(consent.getConfiguration().CONSENT_PARTENAIRES_DEFAULT_FOCUS);
             }
             currentPosition = positionDefault;
 
@@ -38,8 +38,8 @@ var ConsentsPartnerComponent = function (resetKeyboardEventsPrev, registerKeyboa
             }
             $('#backButton').attr('pagefrom', previousPage);
 
-            var url = configManager.getConfigurations().API_ENDPOINT + "partners";
-            if(configManager.getConfigurations().DUMMY_API == true){
+            var url = consent.getConfiguration().PARTNER_API_ENDPOINT;
+            if(consent.getConfiguration().DUMMY_API == true){
                 url += "/getPartnerBannerDummy.json";
             }
             $.ajax({

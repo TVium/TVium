@@ -21,8 +21,8 @@ var ConsentsPrivacyPolicyComponent = function (resetKeyboardEventsPrev, register
             self.registerKeyboardEvents();
             self.setLabels();
 
-            if(configManager.getConfigurations().CONSENT_PRIVACY_DEFAULT_FOCUS){
-                positionDefault = Number(configManager.getConfigurations().CONSENT_PRIVACY_DEFAULT_FOCUS);
+            if(consent.getConfiguration().CONSENT_PRIVACY_DEFAULT_FOCUS){
+                positionDefault = Number(consent.getConfiguration().CONSENT_PRIVACY_DEFAULT_FOCUS);
             }
             currentPosition = positionDefault;
 

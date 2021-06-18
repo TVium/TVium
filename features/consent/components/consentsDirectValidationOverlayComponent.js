@@ -33,8 +33,8 @@ var ConsentsDirectValidationOverlayComponent = function (resetKeyboardEventsPrev
 
             $('.consent-section__banner').show(0, function () {
                 //$('#vospreferences').focus();
-                if(configManager.getConfigurations().CONSENT_DIRECT_DEFAULT_FOCUS){
-                    positionDefault = Number(configManager.getConfigurations().CONSENT_DIRECT_DEFAULT_FOCUS);
+                if(consent.getConfiguration().CONSENT_DIRECT_DEFAULT_FOCUS){
+                    positionDefault = Number(consent.getConfiguration().CONSENT_DIRECT_DEFAULT_FOCUS);
                 }
                 currentPosition = positionDefault;
 

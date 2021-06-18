@@ -3,21 +3,21 @@ var ConsentRequests =function () {
     var self = this;
 
     var getConsentGETRetries = 0;
-    var getConsentMaxRetries = configManager.getConfigurations().MAXIMUM_NUMBER_CONSENTS_RETRIES || 1;
+    var getConsentMaxRetries = consent.getConfiguration().MAXIMUM_NUMBER_CONSENTS_RETRIES || 1;
 
     this.getConsentGET=function (onSuccess,onFail) {
 
         var serviceName="ConsentRequests.getConsent()";
         logManager.log(serviceName);
-        var urlManaged=configManager.getConfigurations().API_ENDPOINT + "consents";
-        if(configManager.getConfigurations().DUMMY_API == true){
+        var urlManaged=consent.getConfiguration().CONSENT_API_ENDPOINT;
+        if(consent.getConfiguration().DUMMY_API == true){
             urlManaged += "/getConsentsDummy.json";
         }
         var ajaxCall;
         var tvIdData = "";
         var logJoiner = "";
-        if(consentManager.getModel() != null && consentManager.getModel().tvId != null){
-            tvIdData = "tvId=" + consentManager.getModel().tvId;
+        if(consent.getModel() != null && consent.getModel().tvId != null){
+            tvIdData = "tvId=" + consent.getModel().tvId;
             logJoiner = "?";
         }
         logManager.log(serviceName + " " + urlManaged + logJoiner + tvIdData);
@@ -25,7 +25,7 @@ var ConsentRequests =function () {
             type: "GET",
             url: urlManaged,
             data: tvIdData,
-            timeout: configManager.getConfigurations().GET_CONSENT_CALL_TIMEOUT,
+            timeout: consent.getConfiguration().GET_CONSENT_CALL_TIMEOUT,
             success: function(data, textStatus, jqXHR){
                 logManager.log(serviceName + " - Response : " + JSON.stringify(data, null, 4));
                 onSuccess(data);
@@ -51,8 +51,8 @@ var ConsentRequests =function () {
         }
         var jsonData=JSON.stringify(jsonConsent);
         logManager.log(serviceName + " payload: " + jsonData);
-        var urlManaged=configManager.getConfigurations().API_ENDPOINT + "consents";
-        if(configManager.getConfigurations().DUMMY_API == true){
+        var urlManaged=consent.getConfiguration().CONSENT_API_ENDPOINT;
+        if(consent.getConfiguration().DUMMY_API == true){
             urlManaged += "/getConsentsDummy.json";
         }
         $.ajax({
@@ -61,7 +61,7 @@ var ConsentRequests =function () {
             data:jsonData,
             contentType: "application/json",
             dataType: 'json',
-            timeout: configManager.getConfigurations().SET_CONSENT_CALL_TIMEOUT,
+            timeout: consent.getConfiguration().SET_CONSENT_CALL_TIMEOUT,
             success: function(data){
                 logManager.log("Response " + serviceName + ": " + JSON.stringify(data, null,4));
                 if(data.result=="OK"){

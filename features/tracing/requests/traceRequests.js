@@ -12,8 +12,8 @@ var TraceRequests =function () {
         if (serviceManager.getCurrentChannel()){
             channelString=serviceManager.getCurrentChannel().getChannelToString();
 
-            if (consentManager.getModel() != null && consentManager.getModel().tvId != null){
-                tvIdString = consentManager.getModel().tvId;
+            if (consent && consent.getModel() != null && consent.getModel().tvId != null){
+                tvIdString = consent.getModel().tvId;
             }
 
             var jsonData=JSON.stringify({
@@ -22,12 +22,12 @@ var TraceRequests =function () {
                 timestamp: new Date().getTime().toString()
             });
             logManager.log(serviceName + " - payload heartbeat: " + jsonData);
-            var urlManaged=configManager.getConfigurations().HEARTBEAT_URL;
+            var urlManaged=trace.getConfiguration().HEARTBEAT_URL;
             $.ajax({
                 type: "POST",
                 url: urlManaged,
                 data:jsonData,
-                timeout: configManager.getConfigurations().HEARTBEAT_TIME_INTERVAL,
+                timeout: trace.getConfiguration().HEARTBEAT_TIME_INTERVAL,
                 success: function(data){
                     logManager.log(serviceName + " - Response: " + JSON.stringify(data));
                 },

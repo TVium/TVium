@@ -48,10 +48,10 @@ var StreamEventsHandlerComponent = function (onFiredAdEvent) {
             }
             if (serviceManager.getCurrentChannel()) {
                 channelString = serviceManager.getCurrentChannel().getChannelToString();
-                if (configManager.getConfigurations().STREAM_EVENT_CONFIGURATION[channelString] == null) {
+                if (adv.getConfiguration().STREAM_EVENT_CONFIGURATION[channelString] == null) {
                     logManager.warning('getUrlStreamEventObj - No DVB STREAM EVENT CONFIGURATION for this channel (' + channelString + ')');
                 } else {
-                    urlStreamEventObj = "dvb://" + channelID + "." + configManager.getConfigurations().STREAM_EVENT_CONFIGURATION[channelString].DVB_OBJECT_CAROUSEL_COMPONENT_TAG.toString(16) + "/" + configManager.getConfigurations().STREAM_EVENT_CONFIGURATION[channelString].DVB_STREAM_EVENTS_OBJECT_NAME;
+                    urlStreamEventObj = "dvb://" + channelID + "." + adv.getConfiguration().STREAM_EVENT_CONFIGURATION[channelString].DVB_OBJECT_CAROUSEL_COMPONENT_TAG.toString(16) + "/" + adv.getConfiguration().STREAM_EVENT_CONFIGURATION[channelString].DVB_STREAM_EVENTS_OBJECT_NAME;
                 }
             }
             return urlStreamEventObj;
@@ -59,8 +59,8 @@ var StreamEventsHandlerComponent = function (onFiredAdEvent) {
             if (serviceManager.getCurrentChannel()) {
                 channelString = serviceManager.getCurrentChannel().getChannelToString();
             }
-            logManager.log(configManager.getConfigurations().STREAM_EVENT_CONFIGURATION[channelString].XML_STREAM_EVENTS_XML_DEFINITION);
-            return configManager.getConfigurations().STREAM_EVENT_CONFIGURATION[channelString].XML_STREAM_EVENTS_XML_DEFINITION;
+            logManager.log(adv.getConfiguration().STREAM_EVENT_CONFIGURATION[channelString].XML_STREAM_EVENTS_XML_DEFINITION);
+            return adv.getConfiguration().STREAM_EVENT_CONFIGURATION[channelString].XML_STREAM_EVENTS_XML_DEFINITION;
         }
     }
 };

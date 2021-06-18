@@ -3,8 +3,8 @@ var logManager = null;
 var konamiManager = null;
 var serviceManager = null;
 var mediaSyncManager = null;
-var traceManager = null;
-var consentManager = null;
+var trace = null;
+var consent = null;
 var configManager = null;
 var storageManager = null;
 var labelsManager = null;
@@ -12,7 +12,7 @@ var featuresManager = null;
 var keyset = null;
 var trackingConsent = null;
 var yellowButtonEnabled = false;
-var advManager = null;
+var adv = null;
 var activeContext = null;//used to avoid concurrenvy conflict between different features (wanting to access key listener - one of them could be a consentOverlay)
 
 window.onload = function () {
@@ -55,9 +55,13 @@ window.onload = function () {
                     labelsManager.init();
 
                     //Initialize the class to manage the trace services
-                    traceManager = new TraceManager();
+                    trace = new Trace();
+                    trace.configure({
+                        HEARTBEAT_URL: "",
+                        HEARTBEAT_TIME_INTERVAL: 10000
+                    });
                     if (featuresManager.getFeature("periodicHeartbeat")) {
-                        traceManager.startHeartbeat();
+                        trace.startHeartbeat();
                     }
 
                     //Initialize the class to manage cookies and other storage
@@ -66,18 +70,51 @@ window.onload = function () {
                     //Begin Consent flow
                     logManager.log("getConsent wait-time started");
                     //Initialize the consent manager
-                    consentManager = new ConsentManager(resetRemoteKeys, setRemoteKeys);
-                    consentManager.init();
+                    consent = new Consent(resetRemoteKeys, setRemoteKeys);
+                    consent.configure({
+                        CONSENT_API_ENDPOINT: "./api/consents",
+                        PARTNER_API_ENDPOINT: "./api/partners",
+                        DUMMY_API: true,
+                        GET_CONSENT_CALL_TIMEOUT: 30000,
+                        SET_CONSENT_CALL_TIMEOUT: 30000,
+                        TIME_BEFORE_CONSENT_CALL: 5000,
+                        MAXIMUM_NUMBER_CONSENTS_RETRIES: "1",
+                        CONSENT_DIRECT_DEFAULT_FOCUS : "-1",
+                        CONSENT_PARAMETERS_DEFAULT_FOCUS: "0",
+                        CONSENT_PRIVACY_DEFAULT_FOCUS: "-1",
+                        CONSENT_PARTENAIRES_DEFAULT_FOCUS: "0"
+                    });
+                    consent.init();
 
                     //Before call the getConsent (it's the call on the start of the app) I'm waiting for TIME_BEFORE_CONSENT_CALL seconds
                     setTimeout(function () {
-                        consentManager.loadConsentData(function (timeDisplayConsentDirectValidationOverlay) {
-                            consentManager.consentsDirectValidationOverlayComponent.showConsentDirectValidationOverlay(timeDisplayConsentDirectValidationOverlay);
+                        consent.loadConsentData(function (timeDisplayConsentDirectValidationOverlay) {
+                            consent.consentsDirectValidationOverlayComponent.showConsentDirectValidationOverlay(timeDisplayConsentDirectValidationOverlay);
                         }, function (consentOverlayDisplaying) {
-                            advManager = new AdvManager();
-                            advManager.initStreamEventsMethod();
+                            adv = new Adv();
+                            adv.configure({
+                                ADSERVER_URL: "",
+                                GET_WIZADS_TIMEOUT: 1000,
+                                PTS_CHECK_START_TIME: 400,
+                                PTS_CHECK_INTERVAL_TIME: 4,
+                                PTS_CHECK_TOLERANCE: 40,
+                                BLACK_FRAMES_DURATION_AFTER_SPOT: 360,
+                                VISIBLE_AD_TRACKING: false,
+                                AD_SUBSTITUTION_METHOD: "break",//or "spot"
+                                CALL_ADSERVER_FALLBACK_ON_STARTEVENT: true,
+                                STREAM_EVENT_CONFIGURATION: {
+                                    "399.5.2": { //example value
+                                        NAME: "name",
+                                        DVB_STREAM_EVENTS_OBJECT_NAME: "object_name",
+                                        DVB_OBJECT_CAROUSEL_COMPONENT_TAG: 100,//example value
+                                        CHANNEL_NAME: "channel_name",
+                                        XML_STREAM_EVENTS_XML_DEFINITION: "filepath/file.xml"
+                                    }
+                                }
+                            });
+                            adv.initStreamEventsMethod();
                         });
-                    }, configManager.getConfigurations().TIME_BEFORE_CONSENT_CALL);
+                    }, consent.getConfiguration().TIME_BEFORE_CONSENT_CALL);
 
                 });
 
