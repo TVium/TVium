@@ -2,7 +2,7 @@ var ConsentsErrorComponent = function (resetKeyboardEventsPrev, registerKeyboard
 
     var self = this;
     var keyDownTimeout = null;
-    var timeDisplay = Constants.CONSENT_BANNER_DISPLAY_TIME;
+    var timeDisplay = consent.getConfiguration().CONSENT_BANNER_DISPLAY_TIME;
 
     this.showConsentError = function (timeDisplayConfig) {
         activeContext = self;//in case of set consent error prevent register listener of this error popup to overlap on other timed/stream event triggered features (which want to have an own key listener)

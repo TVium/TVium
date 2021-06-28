@@ -9,7 +9,7 @@ var StorageManager = function () {
             expiration = " expires=" + new Date(parseInt(consentDate)).toUTCString() + ";";
         } else {
             var today = new Date();
-            var d = new Date(today.setMonth(today.getMonth() + configManager.getConfigurations().COOKIES_MONTHS_DURATION));
+            var d = new Date(today.setMonth(today.getMonth() + core.getConfiguration().COOKIES_MONTHS_DURATION));
             expiration = " expires=" + d.toUTCString() + ";";
             //set consent date cookie - only first time
             document.cookie = "consentDate" + "=" + escape(d.getTime()) + "; domain = " + domain + ";" + expiration + " path=/";

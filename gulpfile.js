@@ -4,7 +4,6 @@
 const gulp = require('gulp');
 
 //Libs imports
-const jshint = require('gulp-jshint');
 const less = require('gulp-less');
 const connect = require('gulp-connect');
 const gutil = require('gulp-util');
@@ -15,34 +14,66 @@ var uglify = require('gulp-uglify');
 //Paths
 var distributionDir = 'dist';
 var originStylesheetDir = 'less';
-var originJSDir = 'js';
 var targetStylesheetDir = distributionDir + '/css';
 var targetJSDir = distributionDir + '/js';
 
-//Build & Run scripts
-function lint() {
-    return gulp.src([originJSDir + '/**/*.js', 'features/consent/**/*.js' , 'features/tracing/**/*.js', 'features/ads/**/*.js'])
-        .pipe(jshint())
-        .pipe(jshint.reporter('default'));
-}
 
-function lessCss() {
-    return gulp.src([originStylesheetDir + '/**/*.less', 'features/consent/' + originStylesheetDir + '/**/*.less'])
+function lessApp() {
+    return gulp.src(originStylesheetDir + '/**/*.less')
         .pipe(less({style: 'compressed'}).on('error', gutil.log))
         .pipe(gulp.dest(targetStylesheetDir));
 }
+function lessConsent() {
+    return gulp.src('features/consent/less/**/*.less')
+        .pipe(less({style: 'compressed'}).on('error', gutil.log))
+        .pipe(gulp.dest('features/consent/dist'));
+}
+const lessCss = gulp.parallel(lessApp, lessConsent);
 
-function scripts() {
-    return gulp.src([originJSDir + '/**/*.js', 'features/consent/**/*.js' , 'features/tracing/**/*.js', 'features/ads/**/*.js'])
-        .pipe(concat('scripts.js'))
-        .pipe(gulp.dest(targetJSDir))
-        .pipe(rename('scripts.min.js'))
-        .pipe(uglify())
-        .pipe(gulp.dest(targetJSDir));
+function scriptsApp() {
+    return gulp.src('js/*.js').pipe(concat('scripts.js'))
+      .pipe(gulp.dest(targetJSDir))
+      .pipe(rename('scripts.min.js'))
+      .pipe(uglify())
+      .pipe(gulp.dest(targetJSDir));
 }
 
+function scriptsConsent() {
+    return gulp.src(['features/consent/**/*.js', '!features/consent/dist/**', '!features/consent/node_modules/**']).pipe(concat('scripts.js'))
+        .pipe(gulp.dest('features/consent/dist'))
+        .pipe(rename('scripts.min.js'))
+        .pipe(uglify())
+        .pipe(gulp.dest('features/consent/dist'));
+}
+
+function scriptsAds() {
+    return gulp.src(['features/ads/**/*.js', '!features/ads/dist/**', '!features/ads/node_modules/**']).pipe(concat('scripts.js'))
+        .pipe(gulp.dest('features/ads/dist'))
+        .pipe(rename('scripts.min.js'))
+        .pipe(uglify())
+        .pipe(gulp.dest('features/ads/dist'));
+}
+
+function scriptsTracing() {
+    return gulp.src(['features/tracing/**/*.js', '!features/tracing/dist/**', '!features/tracing/node_modules/**']).pipe(concat('scripts.js'))
+        .pipe(gulp.dest('features/tracing/dist'))
+        .pipe(rename('scripts.min.js'))
+        .pipe(uglify())
+        .pipe(gulp.dest('features/tracing/dist'));
+}
+
+function scriptsCore() {
+    return gulp.src(['features/core/**/*.js', '!features/core/dist/**', '!features/core/node_modules/**']).pipe(concat('scripts.js'))
+        .pipe(gulp.dest('features/core/dist'))
+        .pipe(rename('scripts.min.js'))
+        .pipe(uglify())
+        .pipe(gulp.dest('features/core/dist'));
+}
+
+const scripts = gulp.parallel(scriptsConsent, scriptsAds, scriptsTracing, scriptsCore, scriptsApp);
+
 function watch(done) {
-    gulp.watch([originStylesheetDir + '/**/*.less', "features/consent/" + originStylesheetDir + '/**/*.less'], lessCss);
+    gulp.watch([originStylesheetDir + '/**/*.less', 'features/consent/less/**/*.less'], lessCss);
     done();
 }
 
@@ -54,9 +85,8 @@ function webserver(done) {
 }
 
 //Default script
-const build = gulp.series(lint, lessCss, scripts, watch, webserver);
+const build = gulp.series(lessCss, scripts, watch, webserver);
 
-exports.lint = lint;
 exports.less = lessCss;
 exports.watch = watch;
 exports.webserver = webserver;

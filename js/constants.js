@@ -1,10 +1,3 @@
 var Constants = {
-    VERSION: "0.1.0",
-    CONFIG_FILE: "config/hbbtvConfig.json",
-    CONFIG_FILE_TIMEOUT: 30000,
-    LANG_FOLDER: "config/languages",
-    CONSENT_BANNER_DISPLAY_TIME: 10000,
-    CONSENT_CONFIRMATION_DISPLAY_TIME: 5000,
-    COOKIES_MONTHS_DURATION: 6,
-    MODEL_COOKIE_NAME: "appData"
+    VERSION: "0.1.0"
 };

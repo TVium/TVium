@@ -207,7 +207,7 @@ var Adv = function () {
             var breakCode = payloadEvent.LOADdata.break_code;
             var breakDay = payloadEvent.LOADdata.bday || "";
             var breakduration = payloadEvent.LOADdata.break_duration;
-            var platform = configManager.getPlatform().brand.toLowerCase().trim();
+            var platform = core.getPlatform().brand.toLowerCase().trim();
             var response_type = self.getConfiguration().AD_SUBSTITUTION_METHOD;
             var url = self.getConfiguration().ADSERVER_URL;
             url += "?dai_version=" + daiVersion + "&transaction_id=" + transactionID + "&response_type=" + response_type + "&channel=" + channel + "&break_code=" + breakCode +

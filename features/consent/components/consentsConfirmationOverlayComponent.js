@@ -1,5 +1,5 @@
 var ConsentsConfirmationOverlayComponent = function(resetKeyboardEventsPrev, registerKeyboardEventsPrev){
-    var timeDisplay = Constants.CONSENT_CONFIRMATION_DISPLAY_TIME;
+    var timeDisplay = consent.getConfiguration().CONSENT_CONFIRMATION_DISPLAY_TIME;
 
     this.showConsentConfirmationOverlay = function (timeDisplayConfig) {
 

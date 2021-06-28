@@ -5,7 +5,7 @@ var FeaturesManager = function () {
 
         $.ajax({
             type: "GET",
-            url: configManager.getConfigurations().FEATURES_FILE,
+            url: core.getConfiguration().FEATURES_FILE,
             contentType: "application/json",
             dataType: "json"
         }).done(function (data, textStatus, request) {

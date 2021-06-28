@@ -5,7 +5,7 @@ var LabelsManager = function () {
 
         $.ajax({
             type: "GET",
-            url: Constants.LANG_FOLDER + "/labels."+ configManager.getConfigurations().LANGUAGE + ".json",
+            url: core.getConfiguration().LANG_FOLDER + "/labels."+ core.getConfiguration().LANGUAGE + ".json",
             contentType: "application/json",
             dataType: "json"
         }).done(function (data, textStatus, request) {

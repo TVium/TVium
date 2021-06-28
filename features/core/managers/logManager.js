@@ -14,7 +14,7 @@ var LogManager = function () {
 
     //Standard logging
     function log(message) {
-        if (configManager != null && configManager.getConfigurations().ENABLE_LOGS == true) {
+        if (core.getConfiguration().ENABLE_LOGS == true) {
             var d = new Date(),
                 dformat = [d.getHours().padLeft(),
                     d.getMinutes().padLeft(),
@@ -38,7 +38,7 @@ var LogManager = function () {
 
     //Error logging
     function error(message) {
-        if (configManager != null && configManager.getConfigurations().ENABLE_LOGS == true) {
+        if (core.getConfiguration().ENABLE_LOGS == true) {
             var d = new Date(),
                 dformat = [d.getHours().padLeft(),
                     d.getMinutes().padLeft(),
@@ -51,7 +51,7 @@ var LogManager = function () {
 
     //Warning logging
     function warning(message) {
-        if (configManager && configManager.getConfigurations().ENABLE_LOGS == true) {
+        if (core.getConfiguration().ENABLE_LOGS == true) {
             var d = new Date(),
                 dformat = [d.getHours().padLeft(),
                     d.getMinutes().padLeft(),
