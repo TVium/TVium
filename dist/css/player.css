@@ -1,0 +1,18 @@
+.hidden {
+  display: none;
+}
+.video-broadcast {
+  background-color: transparent;
+  position: absolute;
+}
+.fullscreenVideoBroadbandContainer {
+  background-color: transparent !important;
+}
+.fullscreenVideoBroadband {
+  position: absolute;
+  top: 0px !important;
+  left: 0px !important;
+  width: 1280px !important;
+  height: 720px !important;
+  background-color: transparent !important;
+}

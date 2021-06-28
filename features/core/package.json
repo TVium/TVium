@@ -1,0 +1,24 @@
+{
+  "name": "tvium-core",
+  "version": "1.0.0",
+  "description": "NPM package - Tvium Core",
+  "main": "dist/scripts.min.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TVium/TVium.git#dev",
+    "directory": "features/core"
+  },
+  "keywords": [
+    "tvium",
+    "tvium-core"
+  ],
+  "author": "ATET",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/TVium/TVium/issues"
+  },
+  "homepage": "https://github.com/TVium/TVium/tree/dev#readme"
+}
