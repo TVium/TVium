@@ -398,7 +398,7 @@ var Consent = function (resetKeyboardEventsPrev, registerKeyboardEventsPrev) {
 };
 
 var ConsentsConfirmationOverlayComponent = function(resetKeyboardEventsPrev, registerKeyboardEventsPrev){
-    var timeDisplay = consent.getConfiguration().CONSENT_CONFIRMATION_DISPLAY_TIME;
+    var timeDisplay = core.getConfiguration().CONSENT_CONFIRMATION_DISPLAY_TIME;
 
     this.showConsentConfirmationOverlay = function (timeDisplayConfig) {
 
@@ -438,7 +438,7 @@ var ConsentsConfirmationOverlayComponent = function(resetKeyboardEventsPrev, reg
 var ConsentsDirectValidationOverlayComponent = function (resetKeyboardEventsPrev, registerKeyboardEventsPrev) {
     var self = this;
     var keyDownTimeout = null;
-    var timeDisplay = consent.getConfiguration().CONSENT_BANNER_DISPLAY_TIME;
+    var timeDisplay = core.getConfiguration().CONSENT_BANNER_DISPLAY_TIME;
     var currentPosition = 0;
     //-1 = Title up button
     // 0 = First button on the right
@@ -621,7 +621,7 @@ var ConsentsErrorComponent = function (resetKeyboardEventsPrev, registerKeyboard
 
     var self = this;
     var keyDownTimeout = null;
-    var timeDisplay = consent.getConfiguration().CONSENT_BANNER_DISPLAY_TIME;
+    var timeDisplay = core.getConfiguration().CONSENT_BANNER_DISPLAY_TIME;
 
     this.showConsentError = function (timeDisplayConfig) {
         activeContext = self;//in case of set consent error prevent register listener of this error popup to overlap on other timed/stream event triggered features (which want to have an own key listener)

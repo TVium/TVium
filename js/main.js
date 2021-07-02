@@ -40,7 +40,9 @@ window.onload = function () {
                 LANG_FOLDER: "config/languages",
                 LANGUAGE: "fr",
                 COOKIES_MONTHS_DURATION: 6,
-                MODEL_COOKIE_NAME: "appData"
+                MODEL_COOKIE_NAME: "appData",
+                CONSENT_BANNER_DISPLAY_TIME: 10000,
+                CONSENT_CONFIRMATION_DISPLAY_TIME: 5000
             });
             core.initPlatformData();
             logManager.generalLog("HbbTvVersion: " + core.getPlatform().hbbtvversion + " - Brand: " + core.getPlatform().brand + " - Model: " + core.getPlatform().model);
@@ -88,9 +90,7 @@ window.onload = function () {
                     CONSENT_DIRECT_DEFAULT_FOCUS : "-1",
                     CONSENT_PARAMETERS_DEFAULT_FOCUS: "0",
                     CONSENT_PRIVACY_DEFAULT_FOCUS: "-1",
-                    CONSENT_PARTENAIRES_DEFAULT_FOCUS: "0",
-                    CONSENT_BANNER_DISPLAY_TIME: 10000,
-                    CONSENT_CONFIRMATION_DISPLAY_TIME: 5000
+                    CONSENT_PARTENAIRES_DEFAULT_FOCUS: "0"
                 });
                 consent.init();
 

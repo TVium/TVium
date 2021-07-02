@@ -1,7 +1,7 @@
 var ConsentsDirectValidationOverlayComponent = function (resetKeyboardEventsPrev, registerKeyboardEventsPrev) {
     var self = this;
     var keyDownTimeout = null;
-    var timeDisplay = consent.getConfiguration().CONSENT_BANNER_DISPLAY_TIME;
+    var timeDisplay = core.getConfiguration().CONSENT_BANNER_DISPLAY_TIME;
     var currentPosition = 0;
     //-1 = Title up button
     // 0 = First button on the right
