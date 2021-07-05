@@ -1,0 +1,77 @@
+<!DOCTYPE html PUBLIC "-//HbbTV//1.1.1//EN" "http://www.hbbtv.org/dtd/HbbTV-1.1.1.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <title></title>
+    <meta http-equiv="Content-Type" content="application/vnd.hbbtv.xhtml+xml; charset=UTF-8"/>
+    <meta name=""/>
+
+    <!-- Stylesheets -->
+    <link type="text/css" rel="stylesheet" href="dist/css/main.css"/>
+    <link type="text/css" rel="stylesheet" href="features/consent/dist/consent.css"/>
+    <link type="text/css" rel="stylesheet" href="dist/css/player.css"/>
+
+    <!-- Anti-clickjacking script -->
+    <script type="text/javascript">
+        if (top !== self) top.location.replace(self.location.href);
+    </script>
+
+    <!-- Libs -->
+    <script src="lib/json3.min.js"></script>
+    <script src="lib/jquery.min.js"></script>
+    <script src="lib/konami.js"></script>
+
+    <!-- JS Configs -->
+    <script src="features/core/keycodes.js"></script>
+    <script src="js/constants.js"></script>
+    <script src="features/core/utilities.js"></script>
+    <script src="features/core/components/channel.js"></script>
+
+    <!-- JS Main -->
+    <script src="js/main.js"></script>
+
+    <!-- JS Core -->
+    <script src="features/core/core.js"></script>
+    <script src="features/core/managers/featuresManager.js"></script>
+    <script src="features/core/managers/logManager.js"></script>
+    <script src="features/core/managers/konamiManager.js"></script>
+    <script src="features/core/managers/serviceManager.js"></script>
+    <script src="features/core/managers/mediaSyncManager.js"></script>
+    <script src="features/core/managers/storageManager.js"></script>
+    <script src="features/core/managers/labelsManager.js"></script>
+
+    <!-- JS Features -->
+    <script src="features/consent/requests/consentRequests.js"></script>
+    <script src="features/consent/consent.js"></script>
+    <script src="features/consent/components/consentsDirectValidationOverlayComponent.js"></script>
+    <script src="features/consent/components/consentsConfirmationOverlayComponent.js"></script>
+    <script src="features/consent/components/consentsParametersOverlayComponent.js"></script>
+    <script src="features/consent/components/consentsPrivacyPolicyComponent.js"></script>
+    <script src="features/consent/components/consentsPartenairesComponent.js"></script>
+    <script src="features/consent/components/consentsErrorComponent.js"></script>
+    <script src="features/tracing/requests/traceRequests.js"></script>
+    <script src="features/tracing/trace.js"></script>
+    <script src="features/ads/advHashmap.js"></script>
+    <script src="features/ads/requests/advRequests.js"></script>
+    <script src="features/ads/adv.js"></script>
+    <script src="features/ads/components/streamEventsHandlerComponent.js"></script>
+    <script src="features/ads/components/ptsHandlerComponent.js"></script>
+
+    <!-- Minified JS -->
+    <!--<script src="dist/js/scripts.min.js"></script>
+    <script src="features/core/dist/scripts.min.js"></script>
+    <script src="features/ads/dist/scripts.min.js"></script>
+    <script src="features/consent/dist/scripts.min.js"></script>
+    <script src="features/tracing/dist/scripts.min.js"></script>-->
+</head>
+
+<body>
+<object id="video" type="video/broadcast" class="fullscreen video-broadcast"></object>
+<div class="tvium-container">
+    <div class="consent-section"></div>
+</div>
+<div id="applicationContainer" class="application-container">
+    <object type="application/oipfApplicationManager" id="appMan"></object>
+    <object type="application/hbbtvMediaSynchroniser" id="msync"></object>
+</div>
+</body>
+</html>

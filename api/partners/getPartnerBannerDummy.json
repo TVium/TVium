@@ -1,0 +1,14 @@
+{
+  "PARTNERS":
+      {
+        "Partner_1": {
+          "NAME": "Partner_name",
+          "URL_POLITIQUE": "https://www.xx.fr/politique-de-traitement-des-donnees-personnelles",
+          "CONSENTS": [
+            {
+              "CONSENTNAME": "Publicité personnalisée"
+            }
+          ]
+        }
+      }
+}

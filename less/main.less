@@ -1,0 +1,70 @@
+@import "../features/core/less/config.less";
+
+.fullscreen {
+  top: 0;
+  left: 0;
+  width: @default-screen-width;
+  height: @default-screen-height;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+body, html {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: transparent !important;
+}
+
+input, button {
+  outline: none;
+}
+
+.tvium-container {
+  font-family: @default-font-family;
+  color: @default-color;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+  background-color: transparent;
+}
+
+.application-container {
+  visibility: hidden;
+  display: none;
+  background-color: transparent;
+}
+
+::-webkit-scrollbar-button {
+  display: none;
+  height: 13px;
+  border-radius: 0px;
+  background-color: #AAA;
+}
+
+::-webkit-scrollbar-button:hover {
+  background-color: #AAA;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #000000;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #000000;
+}
+
+::-webkit-scrollbar-track {
+  background-color: #ffffff;
+}
+
+::-webkit-scrollbar-track:hover {
+  background-color: #ffffff;
+}
+
+::-webkit-scrollbar {
+  width: 13px;
+}

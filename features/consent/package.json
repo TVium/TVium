@@ -1,0 +1,27 @@
+{
+  "name": "tvium-consent",
+  "version": "1.0.0",
+  "description": "NPM package - Tvium consent",
+  "main": "dist/scripts.min.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TVium/TVium.git#dev",
+    "directory": "features/consent"
+  },
+  "keywords": [
+    "tvium",
+    "tvium-consent"
+  ],
+  "author": "ATET",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/TVium/TVium/issues"
+  },
+  "homepage": "https://github.com/TVium/TVium/tree/dev#readme",
+  "dependencies": {
+    "tvium-core": "^1.0.0"
+  }
+}

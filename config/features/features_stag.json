@@ -1,0 +1,829 @@
+{
+	  "devices": [
+		{
+		  "userAgentInfo": {
+			"brand": "LGE",
+			"model": "GLOBAL_PLAT3",
+			"others": ""
+		  },
+		  "features": {
+			"bindToCurrentChannel": false,
+			"periodicHeartbeat": true,
+			"linearAdTracking": false,
+			"PTSMethod": false,
+			"PTSCheckIntervalFineTuning": 0,
+			"ptsSpotModeSwitchInDurationFineTuning": 360
+		  }
+		},
+		{
+		  "userAgentInfo": {
+			"brand": "LGE",
+			"model": "NetCast 3.0",
+			"others": ""
+		  },
+		  "features": {
+			"bindToCurrentChannel": false,
+			"periodicHeartbeat": true,
+			"linearAdTracking": false,
+			"PTSMethod": false,
+			"PTSCheckIntervalFineTuning": 0,
+			"ptsSpotModeSwitchInDurationFineTuning": 360
+		  }
+		},
+		{
+		  "userAgentInfo": {
+			"brand": "LGE",
+			"model": "NetCast 4.0",
+			"others": ""
+		  },
+		  "features": {
+			"bindToCurrentChannel": true,
+			"periodicHeartbeat": true,
+			"linearAdTracking": false,
+			"PTSMethod": false,
+			"PTSCheckIntervalFineTuning": 0,
+			"ptsSpotModeSwitchInDurationFineTuning": 360
+		  }
+		},
+		{
+		  "userAgentInfo": {
+			"brand": "LGE",
+			"model": "WEBOS1",
+			"others": ""
+		  },
+		  "features": {
+			"bindToCurrentChannel": true,
+			"periodicHeartbeat": true,
+			"linearAdTracking": false,
+			"PTSMethod": false,
+			"PTSCheckIntervalFineTuning": 0,
+			"ptsSpotModeSwitchInDurationFineTuning": 360
+		  }
+		},
+		{
+		  "userAgentInfo": {
+			"brand": "LGE",
+			"model": "NetCast 4.5",
+			"others": ""
+		  },
+		  "features": {
+			"bindToCurrentChannel": true,
+			"periodicHeartbeat": true,
+			"linearAdTracking": false,
+			"PTSMethod": false,
+			"PTSCheckIntervalFineTuning": 0,
+			"ptsSpotModeSwitchInDurationFineTuning": 360
+		  }
+		},
+		{
+		  "userAgentInfo": {
+			"brand": "LGE",
+			"model": "32LH604V-ZB",
+			"others": ""
+		  },
+		  "features": {
+			"bindToCurrentChannel": true,
+			"periodicHeartbeat": true,
+			"linearAdTracking": false,
+			"PTSMethod": false,
+			"PTSCheckIntervalFineTuning": 0,
+			"ptsSpotModeSwitchInDurationFineTuning": 360
+		  }
+		},
+		{
+		  "userAgentInfo": {
+			"brand": "LGE",
+			"model": "43LJ594V-ZA",
+			"others": ""
+		  },
+		  "features": {
+			"bindToCurrentChannel": true,
+			"periodicHeartbeat": true,
+			"linearAdTracking": false,
+			"PTSMethod": false,
+			"PTSCheckIntervalFineTuning": 0,
+			"ptsSpotModeSwitchInDurationFineTuning": 360
+		  }
+		},
+		{
+		  "userAgentInfo": {
+			"brand": "LGE",
+			"model": "32LK6100PLB",
+			"others": ""
+		  },
+		  "features": {
+			"bindToCurrentChannel": true,
+			"periodicHeartbeat": true,
+			"linearAdTracking": false,
+			"PTSMethod": false,
+			"PTSCheckIntervalFineTuning": 0,
+			"ptsSpotModeSwitchInDurationFineTuning": 360
+		  }
+		},
+		{
+		  "userAgentInfo": {
+			"brand": "LGE",
+			"model": "43UM7390PLC",
+			"others": ""
+		  },
+		  "features": {
+			"bindToCurrentChannel": true,
+			"periodicHeartbeat": true,
+			"linearAdTracking": false,
+			"PTSMethod": false,
+			"PTSCheckIntervalFineTuning": 0,
+			"ptsSpotModeSwitchInDurationFineTuning": 360
+		  }
+		},
+		{
+		  "userAgentInfo": {
+			"brand": "LGE",
+			"model": "WEBOS4.5",
+			"others": ""
+		  },
+		  "features": {
+			"bindToCurrentChannel": true,
+			"periodicHeartbeat": true,
+			"linearAdTracking": false,
+			"PTSMethod": false,
+			"PTSCheckIntervalFineTuning": 0,
+			"ptsSpotModeSwitchInDurationFineTuning": 360
+		  }
+		},
+		{
+		  "userAgentInfo": {
+			"brand": "LGE",
+			"model": "WEBOS5.0",
+			"others": ""
+		  },
+		  "features": {
+			"bindToCurrentChannel": true,
+			"periodicHeartbeat": true,
+			"linearAdTracking": false,
+			"PTSMethod": false,
+			"PTSCheckIntervalFineTuning": 0,
+			"ptsSpotModeSwitchInDurationFineTuning": 360
+		  }
+		},
+		{
+		  "userAgentInfo": {
+			"brand": "NETGEM",
+			"model": "N7800",
+			"others": ""
+		  },
+		  "features": {
+			"bindToCurrentChannel": false,
+			"periodicHeartbeat": true,
+			"linearAdTracking": false,
+			"PTSMethod": false,
+			"PTSCheckIntervalFineTuning": 0,
+			"ptsSpotModeSwitchInDurationFineTuning": 360
+		  }
+		},
+		{
+		  "userAgentInfo": {
+			"brand": "Panasonic",
+			"model": "VIERA 2012",
+			"others": ""
+		  },
+		  "features": {
+			"bindToCurrentChannel": true,
+			"periodicHeartbeat": true,
+			"linearAdTracking": false,
+			"PTSMethod": false,
+			"PTSCheckIntervalFineTuning": 0,
+			"ptsSpotModeSwitchInDurationFineTuning": 360
+		  }
+		},
+		{
+		  "userAgentInfo": {
+			"brand": "Panasonic",
+			"model": "VIERA 2013",
+			"others": ""
+		  },
+		  "features": {
+			"bindToCurrentChannel": true,
+			"periodicHeartbeat": true,
+			"linearAdTracking": false,
+			"PTSMethod": false,
+			"PTSCheckIntervalFineTuning": 0,
+			"ptsSpotModeSwitchInDurationFineTuning": 360
+		  }
+		},
+		{
+		  "userAgentInfo": {
+			"brand": "Panasonic",
+			"model": "VIERA 2014",
+			"others": ""
+		  },
+		  "features": {
+			"bindToCurrentChannel": true,
+			"periodicHeartbeat": true,
+			"linearAdTracking": false,
+			"PTSMethod": false,
+			"PTSCheckIntervalFineTuning": 0,
+			"ptsSpotModeSwitchInDurationFineTuning": 360
+		  }
+		},
+		{
+		  "userAgentInfo": {
+			"brand": "Panasonic",
+			"model": "VIERA 2015",
+			"others": ""
+		  },
+		  "features": {
+			"bindToCurrentChannel": true,
+			"periodicHeartbeat": true,
+			"linearAdTracking": false,
+			"PTSMethod": false,
+			"PTSCheckIntervalFineTuning": 0,
+			"ptsSpotModeSwitchInDurationFineTuning": 360
+		  }
+		},
+		{
+		  "userAgentInfo": {
+			"brand": "Panasonic",
+			"model": "VIERA 2016",
+			"others": ""
+		  },
+		  "features": {
+			"bindToCurrentChannel": true,
+			"periodicHeartbeat": true,
+			"linearAdTracking": false,
+			"PTSMethod": false,
+			"PTSCheckIntervalFineTuning": 0,
+			"ptsSpotModeSwitchInDurationFineTuning": 360
+		  }
+		},
+		{
+		  "userAgentInfo": {
+			"brand": "Panasonic",
+			"model": "VIERA 2017",
+			"others": ""
+		  },
+		  "features": {
+			"bindToCurrentChannel": true,
+			"periodicHeartbeat": true,
+			"linearAdTracking": false,
+			"PTSMethod": false,
+			"PTSCheckIntervalFineTuning": 0,
+			"ptsSpotModeSwitchInDurationFineTuning": 360
+		  }
+		},
+		{
+		  "userAgentInfo": {
+			"brand": "Panasonic",
+			"model": "SmartTV2018low",
+			"others": ""
+		  },
+		  "features": {
+			"bindToCurrentChannel": true,
+			"periodicHeartbeat": true,
+			"linearAdTracking": false,
+			"PTSMethod": false,
+			"PTSCheckIntervalFineTuning": 0,
+			"ptsSpotModeSwitchInDurationFineTuning": 360
+		  }
+		},
+		{
+		  "userAgentInfo": {
+			"brand": "Panasonic",
+			"model": "SmartTV2018mid",
+			"others": ""
+		  },
+		  "features": {
+			"bindToCurrentChannel": true,
+			"periodicHeartbeat": true,
+			"linearAdTracking": false,
+			"PTSMethod": false,
+			"PTSCheckIntervalFineTuning": 0,
+			"ptsSpotModeSwitchInDurationFineTuning": 360
+		  }
+		},
+		{
+		  "userAgentInfo": {
+			"brand": "Panasonic",
+			"model": "SmartTV2019low",
+			"others": ""
+		  },
+		  "features": {
+			"bindToCurrentChannel": true,
+			"periodicHeartbeat": true,
+			"linearAdTracking": false,
+			"PTSMethod": false,
+			"PTSCheckIntervalFineTuning": 0,
+			"ptsSpotModeSwitchInDurationFineTuning": 360
+		  }
+		},
+		{
+		  "userAgentInfo": {
+			"brand": "Panasonic",
+			"model": "SmartTV2019mid",
+			"others": ""
+		  },
+		  "features": {
+			"bindToCurrentChannel": true,
+			"periodicHeartbeat": true,
+			"linearAdTracking": false,
+			"PTSMethod": false,
+			"PTSCheckIntervalFineTuning": 0,
+			"ptsSpotModeSwitchInDurationFineTuning": 360
+		  }
+		},
+		{
+		  "userAgentInfo": {
+			"brand": "Panasonic",
+			"model": "SmartTV2020mid",
+			"others": ""
+		  },
+		  "features": {
+			"bindToCurrentChannel": true,
+			"periodicHeartbeat": true,
+			"linearAdTracking": false,
+			"PTSMethod": false,
+			"PTSCheckIntervalFineTuning": 0,
+			"ptsSpotModeSwitchInDurationFineTuning": 360
+		  }
+		},
+		{
+		  "userAgentInfo": {
+			"brand": "Philips",
+			"model": "MT5591",
+			"others": ""
+		  },
+		  "features": {
+			"bindToCurrentChannel": true,
+			"periodicHeartbeat": true,
+			"linearAdTracking": false,
+			"PTSMethod": false,
+			"PTSCheckIntervalFineTuning": 0,
+			"ptsSpotModeSwitchInDurationFineTuning": 360
+		  }
+		},
+		{
+		  "userAgentInfo": {
+			"brand": "Philips",
+			"model": "MT5580",
+			"others": ""
+		  },
+		  "features": {
+			"bindToCurrentChannel": false,
+			"periodicHeartbeat": true,
+			"linearAdTracking": false,
+			"PTSMethod": false,
+			"PTSCheckIntervalFineTuning": 0,
+			"ptsSpotModeSwitchInDurationFineTuning": 360
+		  }
+		},
+		{
+		  "userAgentInfo": {
+			"brand": "Philips",
+			"model": "QM164E",
+			"others": ""
+		  },
+		  "features": {
+			"bindToCurrentChannel": true,
+			"periodicHeartbeat": true,
+			"linearAdTracking": false,
+			"PTSMethod": false,
+			"PTSCheckIntervalFineTuning": 0,
+			"ptsSpotModeSwitchInDurationFineTuning": 360
+		  }
+		},
+		{
+		  "userAgentInfo": {
+			"brand": "Philips",
+			"model": "32PFS5362/12",
+			"others": ""
+		  },
+		  "features": {
+			"bindToCurrentChannel": false,
+			"periodicHeartbeat": true,
+			"linearAdTracking": false,
+			"PTSMethod": false,
+			"PTSCheckIntervalFineTuning": 0,
+			"ptsSpotModeSwitchInDurationFineTuning": 360
+		  }
+		},
+		{
+		  "userAgentInfo": {
+			"brand": "Philips",
+			"model": "50PUS652312",
+			"others": ""
+		  },
+		  "features": {
+			"bindToCurrentChannel": true,
+			"periodicHeartbeat": true,
+			"linearAdTracking": false,
+			"PTSMethod": false,
+			"PTSCheckIntervalFineTuning": 0,
+			"ptsSpotModeSwitchInDurationFineTuning": 360
+		  }
+		},
+		{
+		  "userAgentInfo": {
+			"brand": "Philips",
+			"model": "43PUS730312",
+			"others": ""
+		  },
+		  "features": {
+			"bindToCurrentChannel": true,
+			"periodicHeartbeat": true,
+			"linearAdTracking": false,
+			"PTSMethod": false,
+			"PTSCheckIntervalFineTuning": 0,
+			"ptsSpotModeSwitchInDurationFineTuning": 360
+		  }
+		},
+		{
+		  "userAgentInfo": {
+			"brand": "Philips",
+			"model": "43PUS6504/12",
+			"others": ""
+		  },
+		  "features": {
+			"bindToCurrentChannel": true,
+			"periodicHeartbeat": true,
+			"linearAdTracking": false,
+			"PTSMethod": false,
+			"PTSCheckIntervalFineTuning": 0,
+			"ptsSpotModeSwitchInDurationFineTuning": 360
+		  }
+		},
+		{
+		  "userAgentInfo": {
+			"brand": "Samsung",
+			"model": "SmartTV2012",
+			"others": ""
+		  },
+		  "features": {
+			"bindToCurrentChannel": true,
+			"periodicHeartbeat": true,
+			"linearAdTracking": false,
+			"PTSMethod": false,
+			"PTSCheckIntervalFineTuning": 0,
+			"ptsSpotModeSwitchInDurationFineTuning": 360
+		  }
+		},
+		{
+		  "userAgentInfo": {
+			"brand": "Samsung",
+			"model": "SmartTV2013",
+			"others": ""
+		  },
+		  "features": {
+			"bindToCurrentChannel": true,
+			"periodicHeartbeat": true,
+			"linearAdTracking": false,
+			"PTSMethod": false,
+			"PTSCheckIntervalFineTuning": 0,
+			"ptsSpotModeSwitchInDurationFineTuning": 360
+		  }
+		},
+		{
+		  "userAgentInfo": {
+			"brand": "Samsung",
+			"model": "SmartTV2014",
+			"others": ""
+		  },
+		  "features": {
+			"bindToCurrentChannel": true,
+			"periodicHeartbeat": true,
+			"linearAdTracking": false,
+			"PTSMethod": false,
+			"PTSCheckIntervalFineTuning": 0,
+			"ptsSpotModeSwitchInDurationFineTuning": 360
+		  }
+		},
+		{
+		  "userAgentInfo": {
+			"brand": "Samsung",
+			"model": "SmartTV2015",
+			"others": ""
+		  },
+		  "features": {
+			"bindToCurrentChannel": true,
+			"periodicHeartbeat": true,
+			"linearAdTracking": false,
+			"PTSMethod": false,
+			"PTSCheckIntervalFineTuning": 0,
+			"ptsSpotModeSwitchInDurationFineTuning": 360
+		  }
+		},
+		{
+		  "userAgentInfo": {
+			"brand": "Samsung",
+			"model": "SmartTV2016",
+			"others": ""
+		  },
+		  "features": {
+			"bindToCurrentChannel": true,
+			"periodicHeartbeat": true,
+			"linearAdTracking": false,
+			"PTSMethod": false,
+			"PTSCheckIntervalFineTuning": 0,
+			"ptsSpotModeSwitchInDurationFineTuning": 360
+		  }
+		},
+		{
+		  "userAgentInfo": {
+			"brand": "Samsung",
+			"model": "SmartTV2017",
+			"others": ""
+		  },
+		  "features": {
+			"bindToCurrentChannel": true,
+			"periodicHeartbeat": true,
+			"linearAdTracking": false,
+			"PTSMethod": false,
+			"PTSCheckIntervalFineTuning": 0,
+			"ptsSpotModeSwitchInDurationFineTuning": 360
+		  }
+		},
+		{
+		  "userAgentInfo": {
+			"brand": "Samsung",
+			"model": "SmartTV2018",
+			"others": ""
+		  },
+		  "features": {
+			"bindToCurrentChannel": true,
+			"periodicHeartbeat": true,
+			"linearAdTracking": false,
+			"PTSMethod": false,
+			"PTSCheckIntervalFineTuning": 0,
+			"ptsSpotModeSwitchInDurationFineTuning": 360
+		  }
+		},
+		{
+		  "userAgentInfo": {
+			"brand": "Samsung",
+			"model": "SmartTV2019",
+			"others": ""
+		  },
+		  "features": {
+			"bindToCurrentChannel": true,
+			"periodicHeartbeat": true,
+			"linearAdTracking": false,
+			"PTSMethod": false,
+			"PTSCheckIntervalFineTuning": 0,
+			"ptsSpotModeSwitchInDurationFineTuning": 360
+		  }
+		},
+		{
+		  "userAgentInfo": {
+			"brand": "Samsung",
+			"model": "SmartTV2020",
+			"others": ""
+		  },
+		  "features": {
+			"bindToCurrentChannel": true,
+			"periodicHeartbeat": true,
+			"linearAdTracking": false,
+			"PTSMethod": false,
+			"PTSCheckIntervalFineTuning": 0,
+			"ptsSpotModeSwitchInDurationFineTuning": 360
+		  }
+		},
+		{
+		  "userAgentInfo": {
+			"brand": "Sony",
+			"model": "KDL24EX320",
+			"others": ""
+		  },
+		  "features": {
+			"bindToCurrentChannel": false,
+			"periodicHeartbeat": true,
+			"linearAdTracking": false,
+			"PTSMethod": false,
+			"PTSCheckIntervalFineTuning": 0,
+			"ptsSpotModeSwitchInDurationFineTuning": 360
+		  }
+		},
+		{
+		  "userAgentInfo": {
+			"brand": "Sony",
+			"model": "KDL32EX650",
+			"others": ""
+		  },
+		  "features": {
+			"bindToCurrentChannel": true,
+			"periodicHeartbeat": true,
+			"linearAdTracking": false,
+			"PTSMethod": false,
+			"PTSCheckIntervalFineTuning": 0,
+			"ptsSpotModeSwitchInDurationFineTuning": 360
+		  }
+		},
+		{
+		  "userAgentInfo": {
+			"brand": "Sony",
+			"model": "KDLRB1",
+			"others": ""
+		  },
+		  "features": {
+			"bindToCurrentChannel": true,
+			"periodicHeartbeat": true,
+			"linearAdTracking": false,
+			"PTSMethod": false,
+			"PTSCheckIntervalFineTuning": 0,
+			"ptsSpotModeSwitchInDurationFineTuning": 360
+		  }
+		},
+		{
+		  "userAgentInfo": {
+			"brand": "Sony",
+			"model": "KDL32W705B",
+			"others": ""
+		  },
+		  "features": {
+			"bindToCurrentChannel": true,
+			"periodicHeartbeat": true,
+			"linearAdTracking": false,
+			"PTSMethod": false,
+			"PTSCheckIntervalFineTuning": 0,
+			"ptsSpotModeSwitchInDurationFineTuning": 360
+		  }
+		},
+		{
+		  "userAgentInfo": {
+			"brand": "Sony",
+			"model": "KDL32W705C",
+			"others": ""
+		  },
+		  "features": {
+			"bindToCurrentChannel": true,
+			"periodicHeartbeat": true,
+			"linearAdTracking": false,
+			"PTSMethod": false,
+			"PTSCheckIntervalFineTuning": 0,
+			"ptsSpotModeSwitchInDurationFineTuning": 360
+		  }
+		},
+		{
+		  "userAgentInfo": {
+			"brand": "Sony",
+			"model": "KDL-32WD600",
+			"others": ""
+		  },
+		  "features": {
+			"bindToCurrentChannel": true,
+			"periodicHeartbeat": true,
+			"linearAdTracking": false,
+			"PTSMethod": false,
+			"PTSCheckIntervalFineTuning": 0,
+			"ptsSpotModeSwitchInDurationFineTuning": 360
+		  }
+		},
+		{
+		  "userAgentInfo": {
+			"brand": "Sony",
+			"model": "KDL-32WE610",
+			"others": ""
+		  },
+		  "features": {
+			"bindToCurrentChannel": true,
+			"periodicHeartbeat": true,
+			"linearAdTracking": false,
+			"PTSMethod": false,
+			"PTSCheckIntervalFineTuning": 0,
+			"ptsSpotModeSwitchInDurationFineTuning": 360
+		  }
+		},
+		{
+		  "userAgentInfo": {
+			"brand": "Sony",
+			"model": "KD-43XF8505",
+			"others": ""
+		  },
+		  "features": {
+			"bindToCurrentChannel": true,
+			"periodicHeartbeat": true,
+			"linearAdTracking": false,
+			"PTSMethod": false,
+			"PTSCheckIntervalFineTuning": 0,
+			"ptsSpotModeSwitchInDurationFineTuning": 360
+		  }
+		},
+		{
+		  "userAgentInfo": {
+			"brand": "Sony",
+			"model": "KD-43XG8305",
+			"others": ""
+		  },
+		  "features": {
+			"bindToCurrentChannel": true,
+			"periodicHeartbeat": true,
+			"linearAdTracking": false,
+			"PTSMethod": false,
+			"PTSCheckIntervalFineTuning": 0,
+			"ptsSpotModeSwitchInDurationFineTuning": 360
+		  }
+		},
+		{
+		  "userAgentInfo": {
+			"brand": "TCL",
+			"model": "MT5658",
+			"others": ""
+		  },
+		  "features": {
+			"bindToCurrentChannel": true,
+			"periodicHeartbeat": true,
+			"linearAdTracking": false,
+			"PTSMethod": false,
+			"PTSCheckIntervalFineTuning": 0,
+			"ptsSpotModeSwitchInDurationFineTuning": 360
+		  }
+		},
+		{
+		  "userAgentInfo": {
+			"brand": "TOSHIBA",
+			"model": "32UL863",
+			"others": ""
+		  },
+		  "features": {
+			"bindToCurrentChannel": true,
+			"periodicHeartbeat": true,
+			"linearAdTracking": false,
+			"PTSMethod": false,
+			"PTSCheckIntervalFineTuning": 0,
+			"ptsSpotModeSwitchInDurationFineTuning": 360
+		  }
+		},
+		{
+		  "userAgentInfo": {
+			"brand": "Mstar",
+			"model": "OWB",
+			"others": ""
+		  },
+		  "features": {
+			"bindToCurrentChannel": true,
+			"periodicHeartbeat": true,
+			"linearAdTracking": false,
+			"PTSMethod": false,
+			"PTSCheckIntervalFineTuning": 0,
+			"ptsSpotModeSwitchInDurationFineTuning": 360
+		  }
+		},
+		{
+		  "userAgentInfo": {
+			"brand": "Vestel",
+			"model": "MB70",
+			"others": ""
+		  },
+		  "features": {
+			"bindToCurrentChannel": true,
+			"periodicHeartbeat": true,
+			"linearAdTracking": false,
+			"PTSMethod": false,
+			"PTSCheckIntervalFineTuning": 0,
+			"ptsSpotModeSwitchInDurationFineTuning": 360
+		  }
+		},
+		{
+		  "userAgentInfo": {
+			"brand": "TOSHIBA",
+			"model": "MB120",
+			"others": ""
+		  },
+		  "features": {
+			"bindToCurrentChannel": true,
+			"periodicHeartbeat": true,
+			"linearAdTracking": false,
+			"PTSMethod": false,
+			"PTSCheckIntervalFineTuning": 0,
+			"ptsSpotModeSwitchInDurationFineTuning": 360
+		  }
+		},
+		{
+		  "userAgentInfo": {
+			"brand": "PANASONIC",
+			"model": "MB130",
+			"others": ""
+		  },
+		  "features": {
+			"bindToCurrentChannel": true,
+			"periodicHeartbeat": true,
+			"linearAdTracking": false,
+			"PTSMethod": false,
+			"PTSCheckIntervalFineTuning": 0,
+			"ptsSpotModeSwitchInDurationFineTuning": 360
+		  }
+		},
+		{
+		  "userAgentInfo": {
+			"brand": "",
+			"model": "",
+			"others": ""
+		  },
+		  "features": {
+			"bindToCurrentChannel": true,
+			"periodicHeartbeat": true,
+			"linearAdTracking": false,
+			"PTSMethod": false,
+			"PTSCheckIntervalFineTuning": 0,
+			"ptsSpotModeSwitchInDurationFineTuning": 360
+		  }
+		}
+	  ]
+	}

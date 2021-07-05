@@ -1,0 +1,70 @@
+<!DOCTYPE html PUBLIC "-//HbbTV//1.1.1//EN" "http://www.hbbtv.org/dtd/HbbTV-1.1.1.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <meta http-equiv="Content-Type" content="application/vnd.hbbtv.xhtml+xml; charset=UTF-8"/>
+    <script type="text/javascript">
+        window.onload = function () {
+            var appMan = document.getElementById("appMan");
+            app = appMan.getOwnerApplication(document);
+            app.show();
+
+            //Proposition whitelist
+            if (//LG 2016 - LiveAudienceTracking : currentTriplet =(undefined;x3) + RANDOM LOAD
+                window.navigator.userAgent.indexOf("32LH604V-ZB") > -1 ||
+                //LG 2017
+                window.navigator.userAgent.indexOf("43LJ594V-ZA") > -1 ||
+                //LG 2018
+                window.navigator.userAgent.indexOf("32LK6100PLB") > -1 ||
+                //LG 2019
+                window.navigator.userAgent.indexOf("43UM7390PLC") > -1 ||
+                // Panasonic 2012
+                window.navigator.userAgent.indexOf("VIERA 2012") > -1 ||
+                // Panasonic 2013
+                window.navigator.userAgent.indexOf("VIERA 2013") > -1 ||
+                // Panasonic 2014
+                window.navigator.userAgent.indexOf("VIERA 2014") > -1 ||
+                // Panasonic 2015
+                window.navigator.userAgent.indexOf("VIERA 2015") > -1 ||
+                // Panasonic 2016
+                window.navigator.userAgent.indexOf("VIERA 2016") > -1 ||
+                // Panasonic 2017
+                window.navigator.userAgent.indexOf("VIERA 2017") > -1 ||
+                // Panasonic 2018 low
+                window.navigator.userAgent.indexOf("SmartTV2018low") > -1 ||
+                // Panasonic 2018 mid
+                window.navigator.userAgent.indexOf("SmartTV2018mid") > -1 ||
+                // Panasonic 2019 low
+                window.navigator.userAgent.indexOf("SmartTV2019low") > -1 ||
+                // Panasonic 2019 mid
+                window.navigator.userAgent.indexOf("SmartTV2019mid") > -1 ||
+                // Panasonic 2020 mid
+                window.navigator.userAgent.indexOf("SmartTV2020mid") > -1 ||
+                // Philips 2016 (Android) - RANDOM LOAD
+                window.navigator.userAgent.indexOf("QM164E") > -1 ||
+                //VESTEL 2017 (Pana)
+                window.navigator.userAgent.indexOf("MB120") > -1 ||
+                //VESTEL 2018 - RANDOM LOAD
+                window.navigator.userAgent.indexOf("MB130") > -1
+            ) {
+                //It's OK, so we launch the minimified application
+                window.location.href = "index2.html";
+            } else if (
+                // Samsung 2017 - Whiteflash on app start
+                window.navigator.userAgent.indexOf("SmartTV2017") > -1 ||
+                // Samsung 2018 - Whiteflash on app start
+                window.navigator.userAgent.indexOf("SmartTV2018") > -1 ||
+                // Samsung 2019 - Whiteflash on app start
+                window.navigator.userAgent.indexOf("SmartTV2019") > -1
+            ) {
+                //un-minified js for white flash affected platforms
+                window.location.href = "index3.html";
+            }
+        }
+    </script>
+</head>
+<body>
+<object type="application/oipfApplicationManager" id="appMan" style="visibility: hidden;width: 0;height: 0"></object>
+</body>
+
+</html>
