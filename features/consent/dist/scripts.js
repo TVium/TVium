@@ -24,6 +24,9 @@ var Consent = function (resetKeyboardEventsPrev, registerKeyboardEventsPrev) {
         if (appDataValue != null) {
             consentModel = JSON.parse(appDataValue);
         }
+        if(configuration.DISABLE_PARTNERS){
+            $('.consent-section').addClass('no-partners');
+        }
     };
 
     this.editAllConsentAndSend = function (consentAllValue,currentOverlay) {
@@ -465,7 +468,9 @@ var ConsentsDirectValidationOverlayComponent = function (resetKeyboardEventsPrev
         $('.consent-section').load('features/consent/templates/consent__consents-direct-validation-overlay.html', function () {
 
             self.registerKeyboardEvents();
-
+            if(consent.getConfiguration().DISABLE_PARTNERS){
+                $('#partenaires').remove();
+            }
             self.setLabels();
 
             $('.consent-section__banner').show(0, function () {
@@ -572,10 +577,13 @@ var ConsentsDirectValidationOverlayComponent = function (resetKeyboardEventsPrev
 
     this.manageRightKeyEvent = function manageRightKeyEvent() {
         try {
-            if(currentPosition == maxPosition || currentPosition == -1){
-               currentPosition++;
+            if(currentPosition == maxPosition || currentPosition == -1) {
+                if ($('.tvium-container [tabindex="' + currentPosition + '"]').length > 0) {
+                    currentPosition++;
+                }
             }
-            $('.tvium-container [tabindex="'+currentPosition+'"]').focus();
+            $('.tvium-container [tabindex="' + currentPosition + '"]').focus();
+
         } catch (e) {
             logManager.error("manageRightKeyEvent()" + e.message);
         }
@@ -605,8 +613,9 @@ var ConsentsDirectValidationOverlayComponent = function (resetKeyboardEventsPrev
         $('.consent-section__banner__left__title').html(labelsManager.getLabel('CONSENT_DIRECT_VALIDATION_OVERLAY_LEFT_TITLE'));
         $('.consent-section__banner__left__message').html(labelsManager.getLabel('CONSENT_DIRECT_VALIDATION_OVERLAY_LEFT_TEXT'));
         $('#politique').html(labelsManager.getLabel('CONSENT_DIRECT_VALIDATION_OVERLAY_LEFT_TEXT_DOWN_POLITIQUE'));
-        $('#partenaires').html(labelsManager.getLabel('CONSENT_DIRECT_VALIDATION_OVERLAY_LEFT_TEXT_DOWN_PARTENAIRES'));
-
+        if($('#partenaires').length == 1) {
+            $('#partenaires').html(labelsManager.getLabel('CONSENT_DIRECT_VALIDATION_OVERLAY_LEFT_TEXT_DOWN_PARTENAIRES'));
+        }
         $('.consent-section__banner__right__title').html(labelsManager.getLabel('CONSENT_DIRECT_VALIDATION_OVERLAY_RIGHT_TITLE'));
         $('#buttonOk').val(labelsManager.getLabel('CONSENT_DIRECT_VALIDATION_OVERLAY_OK_BUTTON'));
         $('#buttonParameter').val(labelsManager.getLabel('CONSENT_DIRECT_VALIDATION_OVERLAY_PARAMETERS_BUTTON'));
@@ -729,14 +738,17 @@ var ConsentsParametersOverlayComponent = function (resetKeyboardEventsPrev, regi
         $('.consent-section').load('features/consent/templates/consent__consents-parameters-overlay.html', function () {
             try {
                 self.registerKeyboardEvents();
-
+                if(consent.getConfiguration().DISABLE_PARTNERS){
+                    $('#partenaires').remove();
+                }
                 self.setLabels();
 
                 $('#confirmButtonAll').html(labelsManager.getLabel('CONSENT_PARAMETERS_OVERLAY_CONFIRM_ALL'));
                 $('#refuserButtonAll').html(labelsManager.getLabel('CONSENT_PARAMETERS_OVERLAY_REFUSER_ALL'));
                 $('#politique').html(labelsManager.getLabel('CONSENT_DIRECT_VALIDATION_OVERLAY_LEFT_TEXT_DOWN_POLITIQUE'));
-                $('#partenaires').html(labelsManager.getLabel('CONSENT_DIRECT_VALIDATION_OVERLAY_LEFT_TEXT_DOWN_PARTENAIRES'));
-
+                if($('#partenaires').length == 1) {
+                    $('#partenaires').html(labelsManager.getLabel('CONSENT_DIRECT_VALIDATION_OVERLAY_LEFT_TEXT_DOWN_PARTENAIRES'));
+                }
                 if (self.consentModel.consents != null) {
 
                     var consentDOMItemButton = '';
@@ -881,6 +893,9 @@ var ConsentsParametersOverlayComponent = function (resetKeyboardEventsPrev, regi
 
             if($('.focused').attr('name') == 'Oui' || ($('.focused').attr('name') == 'rowbutton' && currentPosition != maxPosition)){
                 stepToMove = 1;
+                if(currentPosition+1 == maxPosition && consent.getConfiguration().DISABLE_PARTNERS){
+                    stepToMove = 0;
+                }
             }else if(currentPosition == firstPosition){
                 stepToMove = 2;
             }else{

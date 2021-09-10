@@ -1,6 +1,6 @@
 {
   "name": "tvium-core",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "NPM package - Tvium Core",
   "main": "dist/scripts.min.js",
   "scripts": {
@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/TVium/TVium.git#dev",
+    "url": "git+https://github.com/TVium/TVium.git#main",
     "directory": "features/core"
   },
   "keywords": [
@@ -20,5 +20,5 @@
   "bugs": {
     "url": "https://github.com/TVium/TVium/issues"
   },
-  "homepage": "https://github.com/TVium/TVium/tree/dev#readme"
+  "homepage": "https://github.com/TVium/TVium/tree/main#readme"
 }
