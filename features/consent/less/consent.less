@@ -28,7 +28,10 @@
         &__message_down{
             .messageDown();
             &__link--reset{
-                .linkReset();
+              .no-partners & {
+                width: 100%
+              }
+              .linkReset();
             }
             &__link--reset:hover, &__link--reset:active, &__link--reset:focus{
                 color:@default-color-focus;
@@ -258,6 +261,9 @@
             .messageDown();
             width:70%;
             &__link--reset{
+                .no-partners & {
+                  width: 100%
+                }
                 .linkReset();
                 &.focused{
                     background:none;

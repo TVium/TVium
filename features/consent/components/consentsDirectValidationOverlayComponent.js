@@ -28,7 +28,9 @@ var ConsentsDirectValidationOverlayComponent = function (resetKeyboardEventsPrev
         $('.consent-section').load('features/consent/templates/consent__consents-direct-validation-overlay.html', function () {
 
             self.registerKeyboardEvents();
-
+            if(consent.getConfiguration().DISABLE_PARTNERS){
+                $('#partenaires').remove();
+            }
             self.setLabels();
 
             $('.consent-section__banner').show(0, function () {
@@ -135,10 +137,13 @@ var ConsentsDirectValidationOverlayComponent = function (resetKeyboardEventsPrev
 
     this.manageRightKeyEvent = function manageRightKeyEvent() {
         try {
-            if(currentPosition == maxPosition || currentPosition == -1){
-               currentPosition++;
+            if(currentPosition == maxPosition || currentPosition == -1) {
+                if ($('.tvium-container [tabindex="' + currentPosition + '"]').length > 0) {
+                    currentPosition++;
+                }
             }
-            $('.tvium-container [tabindex="'+currentPosition+'"]').focus();
+            $('.tvium-container [tabindex="' + currentPosition + '"]').focus();
+
         } catch (e) {
             logManager.error("manageRightKeyEvent()" + e.message);
         }
@@ -168,8 +173,9 @@ var ConsentsDirectValidationOverlayComponent = function (resetKeyboardEventsPrev
         $('.consent-section__banner__left__title').html(labelsManager.getLabel('CONSENT_DIRECT_VALIDATION_OVERLAY_LEFT_TITLE'));
         $('.consent-section__banner__left__message').html(labelsManager.getLabel('CONSENT_DIRECT_VALIDATION_OVERLAY_LEFT_TEXT'));
         $('#politique').html(labelsManager.getLabel('CONSENT_DIRECT_VALIDATION_OVERLAY_LEFT_TEXT_DOWN_POLITIQUE'));
-        $('#partenaires').html(labelsManager.getLabel('CONSENT_DIRECT_VALIDATION_OVERLAY_LEFT_TEXT_DOWN_PARTENAIRES'));
-
+        if($('#partenaires').length == 1) {
+            $('#partenaires').html(labelsManager.getLabel('CONSENT_DIRECT_VALIDATION_OVERLAY_LEFT_TEXT_DOWN_PARTENAIRES'));
+        }
         $('.consent-section__banner__right__title').html(labelsManager.getLabel('CONSENT_DIRECT_VALIDATION_OVERLAY_RIGHT_TITLE'));
         $('#buttonOk').val(labelsManager.getLabel('CONSENT_DIRECT_VALIDATION_OVERLAY_OK_BUTTON'));
         $('#buttonParameter').val(labelsManager.getLabel('CONSENT_DIRECT_VALIDATION_OVERLAY_PARAMETERS_BUTTON'));

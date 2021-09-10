@@ -90,7 +90,8 @@ window.onload = function () {
                     CONSENT_DIRECT_DEFAULT_FOCUS : "-1",
                     CONSENT_PARAMETERS_DEFAULT_FOCUS: "0",
                     CONSENT_PRIVACY_DEFAULT_FOCUS: "-1",
-                    CONSENT_PARTENAIRES_DEFAULT_FOCUS: "0"
+                    CONSENT_PARTENAIRES_DEFAULT_FOCUS: "0",
+                    DISABLE_PARTNERS: true
                 });
                 consent.init();
 

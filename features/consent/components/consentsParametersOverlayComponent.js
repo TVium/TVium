@@ -30,14 +30,17 @@ var ConsentsParametersOverlayComponent = function (resetKeyboardEventsPrev, regi
         $('.consent-section').load('features/consent/templates/consent__consents-parameters-overlay.html', function () {
             try {
                 self.registerKeyboardEvents();
-
+                if(consent.getConfiguration().DISABLE_PARTNERS){
+                    $('#partenaires').remove();
+                }
                 self.setLabels();
 
                 $('#confirmButtonAll').html(labelsManager.getLabel('CONSENT_PARAMETERS_OVERLAY_CONFIRM_ALL'));
                 $('#refuserButtonAll').html(labelsManager.getLabel('CONSENT_PARAMETERS_OVERLAY_REFUSER_ALL'));
                 $('#politique').html(labelsManager.getLabel('CONSENT_DIRECT_VALIDATION_OVERLAY_LEFT_TEXT_DOWN_POLITIQUE'));
-                $('#partenaires').html(labelsManager.getLabel('CONSENT_DIRECT_VALIDATION_OVERLAY_LEFT_TEXT_DOWN_PARTENAIRES'));
-
+                if($('#partenaires').length == 1) {
+                    $('#partenaires').html(labelsManager.getLabel('CONSENT_DIRECT_VALIDATION_OVERLAY_LEFT_TEXT_DOWN_PARTENAIRES'));
+                }
                 if (self.consentModel.consents != null) {
 
                     var consentDOMItemButton = '';
@@ -182,6 +185,9 @@ var ConsentsParametersOverlayComponent = function (resetKeyboardEventsPrev, regi
 
             if($('.focused').attr('name') == 'Oui' || ($('.focused').attr('name') == 'rowbutton' && currentPosition != maxPosition)){
                 stepToMove = 1;
+                if(currentPosition+1 == maxPosition && consent.getConfiguration().DISABLE_PARTNERS){
+                    stepToMove = 0;
+                }
             }else if(currentPosition == firstPosition){
                 stepToMove = 2;
             }else{

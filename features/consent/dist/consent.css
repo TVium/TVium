@@ -59,6 +59,9 @@
   padding-top: 12px;
   font-size: 20px;
 }
+.no-partners .consent-section__banner__left__message_down__link--reset {
+  width: 100%;
+}
 .consent-section__banner__left__message_down__link--reset:hover,
 .consent-section__banner__left__message_down__link--reset:active,
 .consent-section__banner__left__message_down__link--reset:focus {
@@ -317,6 +320,9 @@
   text-align: center;
   padding-top: 12px;
   font-size: 20px;
+}
+.no-partners .consent-section__page__contain__message_down__link--reset {
+  width: 100%;
 }
 .consent-section__page__contain__message_down__link--reset.focused {
   background: none;

@@ -24,6 +24,9 @@ var Consent = function (resetKeyboardEventsPrev, registerKeyboardEventsPrev) {
         if (appDataValue != null) {
             consentModel = JSON.parse(appDataValue);
         }
+        if(configuration.DISABLE_PARTNERS){
+            $('.consent-section').addClass('no-partners');
+        }
     };
 
     this.editAllConsentAndSend = function (consentAllValue,currentOverlay) {
