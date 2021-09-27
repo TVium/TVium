@@ -1,14 +1,16 @@
-var StreamEventsHandlerComponent = function (onFiredAdEvent) {
+var StreamEventsHandlerComponent = function (onFiredAdEvent, onFiredBinaryEvent) {
     var targeturl = null;
 
     this.registerStreamEventsListeners = function () {
         try {
             targeturl = getUrlStreamEventObj();
-            var e1;
+            var e1, e2;
             if (targeturl != null) {
                 logManager.log('streamEventObjectURL: ' + targeturl);
                 e1 = objVideo.addStreamEventListener(targeturl, "ADEVENT", onFiredAdEvent);
                 logManager.log('ADEVENT Registered');
+                e2 = objVideo.addStreamEventListener(targeturl, "BINARY_EVENT", onFiredBinaryEvent);
+                logManager.log('BINARY_EVENT Registered');
             } else {
                 logManager.warning("registerEvents: Stream Events Listeners not registered, no Carousel definition for this channel");
             }
@@ -16,12 +18,14 @@ var StreamEventsHandlerComponent = function (onFiredAdEvent) {
             logManager.error("registerEvents: " + e);
         }
     };
-    
+
     this.unregisterStreamEventsListeners = function () {
         logManager.log('Stream event Unregistering...');
         try {
             if (onFiredAdEvent) objVideo.removeStreamEventListener(targeturl, "ADEVENT", onFiredAdEvent);
             logManager.log('ADEVENT Unregistered');
+            if (onFiredBinaryEvent) objVideo.removeStreamEventListener(targeturl, "BINARY_EVENT", onFiredBinaryEvent);
+            logManager.log('BINARY_EVENT Unregistered');
         } catch (e) {
             logManager.error('Error on Stream event Unregistered: ' + e.message);
         }
