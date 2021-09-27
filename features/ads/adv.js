@@ -5,9 +5,10 @@ var Adv = function () {
     var breakTimer;
     var dictionary = {};
     var eventDefinition = {
-        AdEvent: "ADEVENT"
+        AdEvent: "ADEVENT",
+        BinaryEvent: "BINARY_EVENT"
     };
-    this.streamEventsHandlerComponent = new StreamEventsHandlerComponent(onAdEventReceived);
+    this.streamEventsHandlerComponent = new StreamEventsHandlerComponent(onAdEventReceived, onBinaryEventReceived);
     this.ptsHandlerComponent = new PtsHandlerComponent();
 
     this.callAdServerRoundTripTime = 0;
@@ -118,6 +119,58 @@ var Adv = function () {
             }
         } catch (e) {
             logManager.error('onAdEventReceived - error: ' + e.message);
+        }
+    }
+
+    function onBinaryEventReceived(obj, isRetry) {
+        try {
+            if (obj && obj.name === eventDefinition.BinaryEvent) {
+                logManager.log('onBinaryEventReceived: ' + getPrintablePayload(obj));
+                if (obj.status === "error") {
+                    logManager.warning("Event onBinaryEventReceived on error status, re-registering Stream Events listeners.");
+                    this.streamEventsHandlerComponent.unregisterStreamEventsListeners();
+                    initStreamEventsMethod();
+                } else if (obj.status === "trigger") {
+                    logManager.log("BINARY_EVENT received");
+                    var parser = new SCTE35Parser();
+                    if(isRetry) {
+                        logManager.log("retrying...");
+                    }
+                    logManager.log("parsing with BASE64");
+                    var decodedObj = parser.parseFromBase64(obj.text);
+                    logManager.log(JSON.stringify(decodedObj));
+                    var descriptors = decodedObj.descriptors;
+                    if(descriptors && descriptors.length > 0){
+                        for(var i =0; i < descriptors.length; i++){
+                            logManager.log(descriptors[i].segmentation_type_id);
+                            if (self.getConfiguration().TRIGGERABLE_FN_ON_SCTE35_MAP && self.getConfiguration().TRIGGERABLE_FN_ON_SCTE35_MAP[descriptors[i].segmentation_type_id] && self.getConfiguration().TRIGGERABLE_FN_ON_SCTE35_MAP[descriptors[i].segmentation_type_id].FN){
+                                logManager.log("triggerable function by " + descriptors[i].segmentation_type_id + " found");
+                                var params = {};
+                                var attributesFilter = self.getConfiguration().TRIGGERABLE_FN_MAP[descriptors[i].segmentation_type_id].ATTRIBUTES;
+                                if(attributesFilter && attributesFilter.length > 0){
+                                    for(var j=0; j < attributesFilter.length; j++){
+                                        params[attributesFilter[j]] = descriptors[i][attributesFilter[j]];
+                                    }
+                                }
+                                self.getConfiguration().TRIGGERABLE_FN_MAP[descriptors[i].segmentation_type_id].FN(params, decodedObj);
+                                break;
+                            }
+                        }
+                    } else {
+                        if(!isRetry){//prevent loop
+                            onBinaryEventReceived(obj,true);
+                        }
+                    }
+                }
+            } else {
+                if (obj) {
+                    logManager.warning('onBinaryEventReceived - wrong event Name: ' + obj.name);
+                } else {
+                    logManager.warning('onBinaryEventReceived - payload not defined');
+                }
+            }
+        } catch (e) {
+            logManager.error('onBinaryEventReceived - error: ' + e.message);
         }
     }
 

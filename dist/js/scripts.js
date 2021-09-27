@@ -123,6 +123,15 @@ window.onload = function () {
                                     CHANNEL_NAME: "channel_name",
                                     XML_STREAM_EVENTS_XML_DEFINITION: "filepath/file.xml"
                                 }
+                            },
+                            TRIGGERABLE_FN_ON_SCTE35_MAP: {
+                                0x10: {//0x10 is Program start segmentation type id
+                                    FN : function (selectedAttributes, raw_json) {//selectedAttributes are the ones retrieved by scte-35 according to the below ATTRIBUTES
+                                        logManager.log("triggered function on scte-35 event");
+                                        //set here the function you want to be triggered by scte-35 Program Start (0x10)
+                                    },
+                                    ATTRIBUTES: ["pts_time"]
+                                }
                             }
                         });
                         adv.initStreamEventsMethod();
