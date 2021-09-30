@@ -53,18 +53,18 @@ To add a special feature, the streamer MUST :
 2. Declare a <div> in its special div container with an id prefixed by STREAMER_NAME
 3. Add a node for its feature in features.js to configure activation
 
-## TVium 1 is coming soon 
+## TVium Released Features
 - [x] **Whitelising** per upfront static file
 - [x] **Features Picking** per User Agent and per Cheat code
 - [x] **Consent Management** compliant with GDPR, CNIL and data partnerships 
+- [x] **Live Audience Measurement** per consenting user and in aggregate
 
-## TVium 2 is grooming
-- [ ] **Live Audience Measurement** per consenting user and in aggregate
-- [ ] **Live Ads Measurement** per spot per quartile  
+## TVium Developing Features
+- [ ] **Linear Ads Measurement** per spot per quartile compliant with DVB-TA signals and main Digital Ad Servers
 - [ ] **ContextuaL Bridge** on stream period start or end
 
 ## TVium backlog
-- [ ] **Linear Spot Overlay** aka TV Segmentée compliant with DVB-TA signals and guaranteed by HbbTV-TA Profile 2 
+- [ ] **Linear Ads Switching** aka compliant with DVB-TA signals, guaranteed by HbbTV-TA Profile 2 and main Digital Ad Servers
 - [ ] **Broadband Stream** for non broadcasted streams 
 - [ ] **Visual Templates** for layout configuration
 - [ ] **Upfront Pairing** for rich presence based usages
