@@ -170,6 +170,24 @@ var ServiceManager=function () {
 
     }
 
+    function resizeBroadcast(fullscreen) {
+        var broadcast = document.getElementById('video');
+        var broadcast_width = 960;
+        var broadcast_height = 540;
+        try {
+            //If fulluscreen = "true" broadcast is 1280x720 else video is 960x540
+            if (fullscreen) {
+                broadcast.style.width = '1280px';
+                broadcast.style.height = '720px';
+            } else {
+                broadcast.style.width = broadcast_width + 'px';
+                broadcast.style.height = broadcast_height + 'px';
+            }
+        } catch (ex) {
+            logManager.warning('Exception toggling fullscreen : ', ex);
+        }
+    }
+
     return {
         initialize:initialize,
         setChannel:setChannel,
@@ -179,7 +197,9 @@ var ServiceManager=function () {
         stopBroadcast:stopBroadcast,
         startBroadcast:startBroadcast,
         getCurrentChannel:getCurrentChannel,
-        setCurrentChannel:setCurrentChannel
+        setCurrentChannel:setCurrentChannel,
+        resizeBroadcast:resizeBroadcast
+
     };
 
 };

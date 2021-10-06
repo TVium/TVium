@@ -146,13 +146,13 @@ var Adv = function () {
                             if (self.getConfiguration().TRIGGERABLE_FN_ON_SCTE35_MAP && self.getConfiguration().TRIGGERABLE_FN_ON_SCTE35_MAP[descriptors[i].segmentation_type_id] && self.getConfiguration().TRIGGERABLE_FN_ON_SCTE35_MAP[descriptors[i].segmentation_type_id].FN){
                                 logManager.log("triggerable function by " + descriptors[i].segmentation_type_id + " found");
                                 var params = {};
-                                var attributesFilter = self.getConfiguration().TRIGGERABLE_FN_MAP[descriptors[i].segmentation_type_id].ATTRIBUTES;
+                                var attributesFilter = self.getConfiguration().TRIGGERABLE_FN_ON_SCTE35_MAP[descriptors[i].segmentation_type_id].ATTRIBUTES;
                                 if(attributesFilter && attributesFilter.length > 0){
                                     for(var j=0; j < attributesFilter.length; j++){
                                         params[attributesFilter[j]] = descriptors[i][attributesFilter[j]];
                                     }
                                 }
-                                self.getConfiguration().TRIGGERABLE_FN_MAP[descriptors[i].segmentation_type_id].FN(params, decodedObj);
+                                self.getConfiguration().TRIGGERABLE_FN_ON_SCTE35_MAP[descriptors[i].segmentation_type_id].FN(params, decodedObj);
                                 break;
                             }
                         }
@@ -699,6 +699,37 @@ var AdvHashmap = function () {
     };
 };
 
+var AdvRequests =function () {
+    var getWizadsDataRetries = 0;
+    var getWizadsDataMaxRetries = 1;
+
+    this.getWizadsData = function (url, onSuccess, onFail) {
+        var serviceName = "AdvRequests.getWizadsData()";
+        var urlManaged = url;
+        var ajaxCall;
+        logManager.log(serviceName + " CALLED - url: " + url);
+        ajaxCall = $.ajax({
+            type: "GET",
+            contentType: "application/json",
+            dataType: "json",
+            url: urlManaged,
+            timeout: adv.getConfiguration().GET_WIZADS_TIMEOUT,
+            success: function (data, textStatus, jqXHR) {
+                logManager.log(serviceName + " - Response : OK");
+                onSuccess(data);
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                logManager.error(serviceName + " - Error " + ": " + JSON.stringify(errorThrown, null, 4));
+                if (textStatus === "timeout" && getWizadsDataRetries < getWizadsDataMaxRetries) {
+                    getWizadsDataRetries++;
+                    self.getWizadsData(url, onSuccess, onFail);
+                }
+                onFail();
+            }
+        });
+
+    };
+}
 var PtsHandlerComponent = function () {
 
     this.ptsStartEventTimeCheck = function (payloadEvent, callback) {
@@ -1161,34 +1192,3 @@ var StreamEventsHandlerComponent = function (onFiredAdEvent, onFiredBinaryEvent)
         }
     }
 };
-var AdvRequests =function () {
-    var getWizadsDataRetries = 0;
-    var getWizadsDataMaxRetries = 1;
-
-    this.getWizadsData = function (url, onSuccess, onFail) {
-        var serviceName = "AdvRequests.getWizadsData()";
-        var urlManaged = url;
-        var ajaxCall;
-        logManager.log(serviceName + " CALLED - url: " + url);
-        ajaxCall = $.ajax({
-            type: "GET",
-            contentType: "application/json",
-            dataType: "json",
-            url: urlManaged,
-            timeout: adv.getConfiguration().GET_WIZADS_TIMEOUT,
-            success: function (data, textStatus, jqXHR) {
-                logManager.log(serviceName + " - Response : OK");
-                onSuccess(data);
-            },
-            error: function (jqXHR, textStatus, errorThrown) {
-                logManager.error(serviceName + " - Error " + ": " + JSON.stringify(errorThrown, null, 4));
-                if (textStatus === "timeout" && getWizadsDataRetries < getWizadsDataMaxRetries) {
-                    getWizadsDataRetries++;
-                    self.getWizadsData(url, onSuccess, onFail);
-                }
-                onFail();
-            }
-        });
-
-    };
-}

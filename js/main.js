@@ -13,6 +13,7 @@ var keyset = null;
 var trackingConsent = null;
 var yellowButtonEnabled = false;
 var adv = null;
+var banner = null;
 var activeContext = null;//used to avoid concurrenvy conflict between different features (wanting to access key listener - one of them could be a consentOverlay)
 
 window.onload = function () {
@@ -95,6 +96,13 @@ window.onload = function () {
                 });
                 consent.init();
 
+                banner = new Banner(resetRemoteKeys, setRemoteKeys);
+                banner.configure({
+                    CTS_URL: "../features/banner/assets/banner.png",
+                    BANNER_DISPLAY_TIME: 4000,
+                    APP_URL: ""
+                });
+
                 //Before call the getConsent (it's the call on the start of the app) I'm waiting for TIME_BEFORE_CONSENT_CALL seconds
                 setTimeout(function () {
                     consent.loadConsentData(function (timeDisplayConsentDirectValidationOverlay) {
@@ -124,7 +132,7 @@ window.onload = function () {
                                 0x10: {//0x10 is Program start segmentation type id
                                     FN : function (selectedAttributes, raw_json) {//selectedAttributes are the ones retrieved by scte-35 according to the below ATTRIBUTES
                                         logManager.log("triggered function on scte-35 event");
-                                        //set here the function you want to be triggered by scte-35 Program Start (0x10)
+                                        banner.startJourney();//show L shaped banner - anyway you can set here the function you want to be triggered by scte-35 Program Start (0x10)
                                     },
                                     ATTRIBUTES: ["pts_time"]
                                 }
