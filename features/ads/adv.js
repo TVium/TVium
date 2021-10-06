@@ -146,13 +146,13 @@ var Adv = function () {
                             if (self.getConfiguration().TRIGGERABLE_FN_ON_SCTE35_MAP && self.getConfiguration().TRIGGERABLE_FN_ON_SCTE35_MAP[descriptors[i].segmentation_type_id] && self.getConfiguration().TRIGGERABLE_FN_ON_SCTE35_MAP[descriptors[i].segmentation_type_id].FN){
                                 logManager.log("triggerable function by " + descriptors[i].segmentation_type_id + " found");
                                 var params = {};
-                                var attributesFilter = self.getConfiguration().TRIGGERABLE_FN_MAP[descriptors[i].segmentation_type_id].ATTRIBUTES;
+                                var attributesFilter = self.getConfiguration().TRIGGERABLE_FN_ON_SCTE35_MAP[descriptors[i].segmentation_type_id].ATTRIBUTES;
                                 if(attributesFilter && attributesFilter.length > 0){
                                     for(var j=0; j < attributesFilter.length; j++){
                                         params[attributesFilter[j]] = descriptors[i][attributesFilter[j]];
                                     }
                                 }
-                                self.getConfiguration().TRIGGERABLE_FN_MAP[descriptors[i].segmentation_type_id].FN(params, decodedObj);
+                                self.getConfiguration().TRIGGERABLE_FN_ON_SCTE35_MAP[descriptors[i].segmentation_type_id].FN(params, decodedObj);
                                 break;
                             }
                         }
