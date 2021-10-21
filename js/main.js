@@ -12,6 +12,7 @@ var featuresManager = null;
 var keyset = null;
 var trackingConsent = null;
 var yellowButtonEnabled = false;
+var streamEvent = null;
 var adv = null;
 var banner = null;
 var activeContext = null;//used to avoid concurrenvy conflict between different features (wanting to access key listener - one of them could be a consentOverlay)
@@ -108,7 +109,31 @@ window.onload = function () {
                     consent.loadConsentData(function (timeDisplayConsentDirectValidationOverlay) {
                         consent.consentsDirectValidationOverlayComponent.showConsentDirectValidationOverlay(timeDisplayConsentDirectValidationOverlay);
                     }, function (consentOverlayDisplaying) {
+                        streamEvent = new StreamEvent();
                         adv = new Adv();
+                        streamEvent.configure({
+                            STREAM_EVENT_CONFIGURATION: {
+                            "399.5.2": { //example value
+                                NAME: "name",
+                                    DVB_STREAM_EVENTS_OBJECT_NAME: "object_name",
+                                    DVB_OBJECT_CAROUSEL_COMPONENT_TAG: 100,//example value
+                                    CHANNEL_NAME: "channel_name",
+                                    XML_STREAM_EVENTS_XML_DEFINITION: "filepath/file.xml"
+                            }
+                            },
+                            TRIGGERABLE_FN_ON_SCTE35_MAP: {
+                                0x10: {//0x10 is Program start segmentation type id
+                                    FN : function (selectedAttributes, raw_json) {//selectedAttributes are the ones retrieved by scte-35 according to the below ATTRIBUTES
+                                        logManager.log("triggered function on scte-35 event");
+                                        banner.startJourney();//show L shaped banner - anyway you can set here the function you want to be triggered by scte-35 Program Start (0x10)
+                                    },
+                                    ATTRIBUTES: ["pts_time"]
+                                }
+                            },
+                            TRIGGERABLE_FN_ON_EVENT: function(){
+                                adv.onFiredAdv();
+                            }
+                        });
                         adv.configure({
                             ADSERVER_URL: "",
                             GET_WIZADS_TIMEOUT: 1000,
@@ -119,26 +144,8 @@ window.onload = function () {
                             VISIBLE_AD_TRACKING: false,
                             AD_SUBSTITUTION_METHOD: "break",//or "spot"
                             CALL_ADSERVER_FALLBACK_ON_STARTEVENT: true,
-                            STREAM_EVENT_CONFIGURATION: {
-                                "399.5.2": { //example value
-                                    NAME: "name",
-                                    DVB_STREAM_EVENTS_OBJECT_NAME: "object_name",
-                                    DVB_OBJECT_CAROUSEL_COMPONENT_TAG: 100,//example value
-                                    CHANNEL_NAME: "channel_name",
-                                    XML_STREAM_EVENTS_XML_DEFINITION: "filepath/file.xml"
-                                }
-                            },
-                            TRIGGERABLE_FN_ON_SCTE35_MAP: {
-                                0x10: {//0x10 is Program start segmentation type id
-                                    FN : function (selectedAttributes, raw_json) {//selectedAttributes are the ones retrieved by scte-35 according to the below ATTRIBUTES
-                                        logManager.log("triggered function on scte-35 event");
-                                        banner.startJourney();//show L shaped banner - anyway you can set here the function you want to be triggered by scte-35 Program Start (0x10)
-                                    },
-                                    ATTRIBUTES: ["pts_time"]
-                                }
-                            }
                         });
-                        adv.initStreamEventsMethod();
+                        streamEvent.initStreamEventsMethod();
                     });
                 }, consent.getConfiguration().TIME_BEFORE_CONSENT_CALL);
 
