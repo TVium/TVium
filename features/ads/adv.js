@@ -4,11 +4,7 @@ var Adv = function () {
     var request = new AdvRequests();
     var breakTimer;
     var dictionary = {};
-    var eventDefinition = {
-        AdEvent: "ADEVENT",
-        BinaryEvent: "BINARY_EVENT"
-    };
-    this.streamEventsHandlerComponent = new StreamEventsHandlerComponent(onAdEventReceived, onBinaryEventReceived);
+
     this.ptsHandlerComponent = new PtsHandlerComponent();
 
     this.callAdServerRoundTripTime = 0;
@@ -17,160 +13,19 @@ var Adv = function () {
 
     function configure(config) {
         configuration = config;
-    };
+    }
 
-    function getConfiguration() {
+    this.getConfiguration = function() {
         return configuration;
-    };
-
-    function initStreamEventsMethod() {
-        logManager.log('Stream Events Listening Method init...');
-        objVideo = serviceManager.getObjVideo();
-        try {
-            if (featuresManager.getFeature("streamEventDVBMethod")) {
-                logManager.log("Adv Listening Method: streamEventDVBMethod");
-                broadcastPlayStateCheck(self.streamEventsHandlerComponent.registerStreamEventsListeners);
-            } else if (featuresManager.getFeature("streamEventXMLMethod")) {
-                logManager.log("Adv Listening Method: streamEventXMLMethod");
-                broadcastPlayStateCheck(self.streamEventsHandlerComponent.registerStreamEventsListeners);
-            } else {
-                logManager.log("Adv Listening Method: none (as per features file definition)");
-            }
-        } catch (e) {
-            logManager.error("initStreamEventsMethod: " + e);
-        }
     }
 
-    function broadcastPlayStateCheck(callback) {
-        if (objVideo) {
-            if (objVideo.playState === 2) {
-                logManager.log("presenting channel ready");
-                // if video broadcast object is already in the presenting state add stream event listener
-                callback();
-            } else {
-                logManager.log("presenting channel not ready, listen playstateChange");
-                // if not, wait for the presenting state
-                objVideo.onPlayStateChange = onPlayStateChangeCallback;
-            }
+    function onFiredAdv(obj) {//obj is the stream event payload which trigger this fn
+        if (self.getConfiguration().AD_SUBSTITUTION_METHOD === "spot") {
+            startEventProcess(obj.text);
+        } else if (self.getConfiguration().AD_SUBSTITUTION_METHOD === "break") {
+            callAdServerProcess(obj.text, null);
         } else {
-            logManager.warning("The application is broadcast dependent, try to attach to broadcast");
-        }
-    }
-
-    /**
-     * Listens for state changes and errors of the video broadcast object.
-     *
-     * If it goes to the presenting state add stream event listener.
-     */
-    function onPlayStateChangeCallback(state, error) {
-        switch (state) {
-            case 0: // unrealized
-                logManager.log("state video broadcast: unrealized");
-                break;
-            case 1: // connecting
-                logManager.log("state video broadcast: connecting");
-                break;
-            case 2: // presenting
-                logManager.log("state video broadcast: presenting");
-                initStreamEventsMethod();
-                // remove listener of onPlayStateChangeCallback
-                objVideo.onPlayStateChange = function () {
-                };
-                break;
-            case 3: // stopped
-                logManager.log("state video broadcast: stopped");
-                break;
-        }
-    }
-
-    function onAdEventReceived(obj) {
-        try {
-            if (obj && obj.name === eventDefinition.AdEvent) {
-                logManager.log('onAdEventReceived: ' + getPrintablePayload(obj));
-                if (obj.status === "error") {
-                    logManager.warning("Event onAdEventReceived on error status, re-registering Stream Events listeners.");
-                    self.streamEventsHandlerComponent.unregisterStreamEventsListeners();
-                    initStreamEventsMethod();
-                } else if (obj.status === "trigger") {
-                    if (obj.text) {
-                        var payloadEvent = JSON.parse(obj.text);
-                        if (!payloadEvent.hasOwnProperty("event_type")) {
-                            //single Stream Event management
-                            if (self.getConfiguration().AD_SUBSTITUTION_METHOD === "spot") {
-                                startEventProcess(obj.text);
-                            } else if (self.getConfiguration().AD_SUBSTITUTION_METHOD === "break") {
-                                callAdServerProcess(obj.text, null);
-                            } else {
-                                logManager.warning("onAdEventReceived - No SpotMode or BreakMode set in the configuration.");
-                            }
-                        } else {
-                            logManager.error('onAdEventReceived - Stream Event ignored.');
-                        }
-                    } else {
-                        logManager.error('onAdEventReceived - empty payload!');
-                    }
-                }
-            } else {
-                if (obj) {
-                    logManager.warning('onAdEventReceived - wrong event Name: ' + obj.name);
-                } else {
-                    logManager.warning('onAdEventReceived - payload not defined');
-                }
-            }
-        } catch (e) {
-            logManager.error('onAdEventReceived - error: ' + e.message);
-        }
-    }
-
-    function onBinaryEventReceived(obj, isRetry) {
-        try {
-            if (obj && obj.name === eventDefinition.BinaryEvent) {
-                logManager.log('onBinaryEventReceived: ' + getPrintablePayload(obj));
-                if (obj.status === "error") {
-                    logManager.warning("Event onBinaryEventReceived on error status, re-registering Stream Events listeners.");
-                    this.streamEventsHandlerComponent.unregisterStreamEventsListeners();
-                    initStreamEventsMethod();
-                } else if (obj.status === "trigger") {
-                    logManager.log("BINARY_EVENT received");
-                    var parser = new SCTE35Parser();
-                    if(isRetry) {
-                        logManager.log("retrying...");
-                    }
-                    logManager.log("parsing with BASE64");
-                    var decodedObj = parser.parseFromBase64(obj.text);
-                    logManager.log(JSON.stringify(decodedObj));
-                    var descriptors = decodedObj.descriptors;
-                    if(descriptors && descriptors.length > 0){
-                        for(var i =0; i < descriptors.length; i++){
-                            logManager.log(descriptors[i].segmentation_type_id);
-                            if (self.getConfiguration().TRIGGERABLE_FN_ON_SCTE35_MAP && self.getConfiguration().TRIGGERABLE_FN_ON_SCTE35_MAP[descriptors[i].segmentation_type_id] && self.getConfiguration().TRIGGERABLE_FN_ON_SCTE35_MAP[descriptors[i].segmentation_type_id].FN){
-                                logManager.log("triggerable function by " + descriptors[i].segmentation_type_id + " found");
-                                var params = {};
-                                var attributesFilter = self.getConfiguration().TRIGGERABLE_FN_ON_SCTE35_MAP[descriptors[i].segmentation_type_id].ATTRIBUTES;
-                                if(attributesFilter && attributesFilter.length > 0){
-                                    for(var j=0; j < attributesFilter.length; j++){
-                                        params[attributesFilter[j]] = descriptors[i][attributesFilter[j]];
-                                    }
-                                }
-                                self.getConfiguration().TRIGGERABLE_FN_ON_SCTE35_MAP[descriptors[i].segmentation_type_id].FN(params, decodedObj);
-                                break;
-                            }
-                        }
-                    } else {
-                        if(!isRetry){//prevent loop
-                            onBinaryEventReceived(obj,true);
-                        }
-                    }
-                }
-            } else {
-                if (obj) {
-                    logManager.warning('onBinaryEventReceived - wrong event Name: ' + obj.name);
-                } else {
-                    logManager.warning('onBinaryEventReceived - payload not defined');
-                }
-            }
-        } catch (e) {
-            logManager.error('onBinaryEventReceived - error: ' + e.message);
+            logManager.warning("onAdEventReceived - No SpotMode or BreakMode set in the configuration.");
         }
     }
 
@@ -576,28 +431,10 @@ var Adv = function () {
         }
     }
 
-    function getPrintablePayload(obj) {
-        var text = "";
-        try {
-            var payload = JSON.stringify(obj, null, 4);
-            if (payload === "{}") {
-                text = "Status:" + obj.status + " - Text: " + obj.text;
-            } else {
-                text = payload;
-            }
-        } catch (e) {
-        }
-        return text;
-    }
-
     return {
         configure: configure,
-        getConfiguration: getConfiguration,
-        initStreamEventsMethod: initStreamEventsMethod,
-        onAdEventReceived: onAdEventReceived,
+        onFiredAdv: onFiredAdv,
         callAdServerProcess: callAdServerProcess,
-        startProcess: startEventProcess,
-        registerStreamEventsListeners: this.streamEventsHandlerComponent.registerStreamEventsListeners,
-        unregisterStreamEventsListeners: this.streamEventsHandlerComponent.unregisterStreamEventsListeners
+        startProcess: startEventProcess
     };
 };

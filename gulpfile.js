@@ -38,6 +38,14 @@ function scriptsApp() {
       .pipe(gulp.dest(targetJSDir));
 }
 
+function scriptsStreamEvent() {
+    return gulp.src(['features/streamevent/**/*.js', '!features/streamevent/dist/**', '!features/streamevent/node_modules/**']).pipe(concat('scripts.js'))
+        .pipe(gulp.dest('features/streamevent/dist'))
+        .pipe(rename('scripts.min.js'))
+        .pipe(uglify())
+        .pipe(gulp.dest('features/streamevent/dist'));
+}
+
 function scriptsBanner() {
     return gulp.src(['features/banner/**/*.js', '!features/banner/dist/**', '!features/banner/node_modules/**']).pipe(concat('scripts.js'))
         .pipe(gulp.dest('features/banner/dist'))
@@ -78,7 +86,7 @@ function scriptsCore() {
         .pipe(gulp.dest('features/core/dist'));
 }
 
-const scripts = gulp.parallel(scriptsConsent, scriptsBanner, scriptsAds, scriptsTracing, scriptsCore, scriptsApp);
+const scripts = gulp.parallel(scriptsConsent, scriptsBanner, scriptsStreamEvent, scriptsAds, scriptsTracing, scriptsCore, scriptsApp);
 
 function watch(done) {
     gulp.watch([originStylesheetDir + '/**/*.less', 'features/consent/less/**/*.less'], lessCss);
