@@ -160,6 +160,7 @@ var StreamEvent = function () {
                     var decodedObj = parser.parseFromBase64(obj.text);
                     logManager.log(JSON.stringify(decodedObj));
                     var descriptors = decodedObj.descriptors;
+                    var triggeredFn = {};
                     if(descriptors && descriptors.length > 0){
                         for(var i =0; i < descriptors.length; i++){
                             logManager.log(descriptors[i].segmentation_type_id);
@@ -172,8 +173,7 @@ var StreamEvent = function () {
                                         params[attributesFilter[j]] = descriptors[i][attributesFilter[j]];
                                     }
                                 }
-                                self.getConfiguration().TRIGGERABLE_FN_ON_SCTE35_MAP[descriptors[i].segmentation_type_id].FN(params, decodedObj);
-                                break;
+                                triggeredFn[descriptors[i].segmentation_type_id] = self.getConfiguration().TRIGGERABLE_FN_ON_SCTE35_MAP[descriptors[i].segmentation_type_id].FN(params, decodedObj);
                             }
                         }
                     } else {

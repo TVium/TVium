@@ -4,6 +4,7 @@ var Adv = function () {
     var request = new AdvRequests();
     var breakTimer;
     var dictionary = {};
+    var videoPlayers = [];
 
     this.ptsHandlerComponent = new PtsHandlerComponent();
 
@@ -15,14 +16,51 @@ var Adv = function () {
         configuration = config;
     }
 
-    this.getConfiguration = function() {
+    function getConfiguration() {
         return configuration;
     }
 
+    function startSCTEProcess(scte_attributes, scte_json) {
+        var startInterval = null;
+        var checkIfReadyToStart = function (iteration) {
+            if(iteration > 10){//avoid infinity loop
+                window.clearInterval(startInterval);
+            }
+            var loadedAdId = advHashmap.getLoadedAdv();
+            if (!loadedAdId) {
+                logManager.warning('startSCTEProcess - no dictionary loaded with ' + scte_attributes.segmentation_upid);
+            } else {//already loaded
+                var currentAdv = advHashmap.getValue(loadedAdId);
+                if (currentAdv.status !== advHashmap.lstStatus.LOADED && currentAdv.status !== advHashmap.lstStatus.STARTED) {
+                    logManager.warning('startSCTEProcess - incorrect status : ' + currentAdv.status);
+                    return;
+                }
+                advHashmap.setStatus(loadedAdId, advHashmap.lstStatus.STARTED);
+                /*if (!dictionary.spots.hasOwnProperty(payloadEvent.STARTdata.sequence)) { //Check if requested sequence is available in the Dictionary
+                    logManager.warning('startEventProcess - sequence not found: ' + payloadEvent.STARTdata.sequence);
+                    return;
+                }*/
+                scte_attributes.segmentation_upid = loadedAdId;//since there is no segmentation_upid in 0x30, inject it from previous 0x02 ad call
+                startSCTEEventProcess(scte_attributes, scte_json);
+                window.clearInterval(startInterval);
+            }
+        };
+        var waitConcurrentLoad = scte_json.segmentation_type_id_list && scte_json.segmentation_type_id_list.indexOf(0x02)> -1;
+        if(waitConcurrentLoad) {
+            var iteration = 0;
+            startInterval = setInterval(function () {
+                checkIfReadyToStart(iteration++);
+            }, 1000);
+        }else{
+            checkIfReadyToStart();
+        }
+
+    }
+
     function onFiredAdv(obj) {//obj is the stream event payload which trigger this fn
-        if (self.getConfiguration().AD_SUBSTITUTION_METHOD === "spot") {
+        if (configuration.AD_SUBSTITUTION_METHOD === "spot") {
             startEventProcess(obj.text);
-        } else if (self.getConfiguration().AD_SUBSTITUTION_METHOD === "break") {
+        } else if (configuration.AD_SUBSTITUTION_METHOD === "break") {
             callAdServerProcess(obj.text, null);
         } else {
             logManager.warning("onAdEventReceived - No SpotMode or BreakMode set in the configuration.");
@@ -58,7 +96,7 @@ var Adv = function () {
             }
             if (!advHashmap.getValue(payloadEvent.STARTdata.break_code)) {
                 //If this event's break_code is not in the dictionary yet, callAdServer is triggered.
-                if (self.getConfiguration().CALL_ADSERVER_FALLBACK_ON_STARTEVENT && self.getConfiguration().AD_SUBSTITUTION_METHOD === 'spot') {
+                if (configuration.CALL_ADSERVER_FALLBACK_ON_STARTEVENT && configuration.AD_SUBSTITUTION_METHOD === 'spot') {
                     logManager.log('startEventProcess - break_code not found in dictionary: triggering callAdServer.');
                     callAdServerProcess(objString, function () {
                         //Going back to the START tracking after the callAdServer fallback.
@@ -75,6 +113,32 @@ var Adv = function () {
         }
     }
 
+    function callVastAdServerProcess(adStaticConf, scte_attributes, scte_json) {
+        if (advHashmap.isAdvIDExists(scte_attributes.segmentation_upid)) { //Check if there's already an entry in the advHashmap
+            logManager.warning('callAdServerProcess - break code already loaded');
+            return;
+        }
+        advHashmap.initialize(scte_attributes.segmentation_upid);
+        // advID never received yet => we continue to manage the id
+        advHashmap.setStatus(scte_attributes.segmentation_upid, advHashmap.lstStatus.LOADING);
+        request.doFreewheelAdCall(adStaticConf, scte_attributes, scte_json,
+            function (xmldata) { //This call is asynchronous, later the app checks if it's data is successfully retrieved.
+                if (xmldata && xmldata.getElementsByTagNameNS("http://www.iab.net/vmap-1.0", "VMAP").length === 0) {
+                    logManager.log("onFiredSCTEAdv - VAST file is an empty object.");
+                    return;
+                }
+                createDictionaryVAST(scte_attributes.segmentation_upid, xmldata);
+                createVideoPlayers();
+                //Save dictionary on queue
+                advHashmap.setValue(scte_attributes.segmentation_upid, dictionary, advHashmap.type.STREAMEVENT);
+                advHashmap.setStatus(scte_attributes.segmentation_upid, advHashmap.lstStatus.LOADED);
+
+            }, function (error) {
+                clearAdv(scte_attributes.segmentation_upid);
+                logManager.error("doFreewheelAdCall() KO Response");
+            });
+    }
+
     function callAdServerProcess(objString, resumeStartFallbackCallback) {
         try {
             if (featuresManager.getFeature("linearAdTracking") == null || featuresManager.getFeature("linearAdTracking") !== true) {
@@ -86,7 +150,7 @@ var Adv = function () {
                 return;
             }
             var payloadEvent = JSON.parse(objString);
-            if (Object.keys(dictionary).length !== 0 && self.getConfiguration().AD_SUBSTITUTION_METHOD === 'break') {
+            if (Object.keys(dictionary).length !== 0 && configuration.AD_SUBSTITUTION_METHOD === 'break') {
                 logManager.warning("callAdServerProcess - Discarding Event: Break tracking already in progress.");
                 return;
             }
@@ -116,8 +180,8 @@ var Adv = function () {
             var breakDay = payloadEvent.LOADdata.bday || "";
             var breakduration = payloadEvent.LOADdata.break_duration;
             var platform = core.getPlatform().brand.toLowerCase().trim();
-            var response_type = self.getConfiguration().AD_SUBSTITUTION_METHOD;
-            var url = self.getConfiguration().ADSERVER_URL;
+            var response_type = configuration.AD_SUBSTITUTION_METHOD;
+            var url = configuration.ADSERVER_URL;
             url += "?dai_version=" + daiVersion + "&transaction_id=" + transactionID + "&response_type=" + response_type + "&channel=" + channel + "&break_code=" + breakCode +
                 "&break_day=" + breakDay + "&break_duration=" + breakduration + "&advertising_id=" + tvID + "&platform=" + platform + "&context=live&current_spot=0";
             var roundTripStart = Date.now();
@@ -137,7 +201,7 @@ var Adv = function () {
                         resumeStartFallbackCallback();
                     }
 
-                    if (self.getConfiguration().AD_SUBSTITUTION_METHOD === 'break') {
+                    if (configuration.AD_SUBSTITUTION_METHOD === 'break') {
                         breakTracking(payloadEvent);
                     }
                 }, function (error) {
@@ -147,6 +211,21 @@ var Adv = function () {
         } catch (e) {
             logManager.error('callAdServerProcess - error: ' + e.message);
         }
+    }
+
+    function startSCTEEventProcess(scte_attributes, scte_json) {
+        self.ptsHandlerComponent.ptsStartEventTimeCheck(scte_json.splice_event.pts_time, null, function () {
+            if (featuresManager.getFeature("linearAdTracking") && featuresManager.getFeature("linearAdTracking") === true) {
+                scheduleSpotTracking(scte_attributes.segment_num, scte_attributes.segmentation_upid);
+            }
+            var isAdSwitchBuffered = videoPlayers[scte_attributes.segment_num] && videoPlayers[scte_attributes.segment_num].canPlay();
+            if(isAdSwitchBuffered) {
+                videoPlayers[scte_attributes.segment_num].play();
+                logManager.log('videoPlayers[' + scte_attributes.segment_num + '] started playing.');
+            } else{
+                logManager.log('videoPlayers[' + scte_attributes.segment_num + '] play aborted: canPlay check failed');
+            }
+        }); //the LOAD event is triggered as soon as it is received, and then Ad Starts are triggered using their PTS
     }
 
     function startEventProcessPostValidation(objString) {
@@ -166,10 +245,10 @@ var Adv = function () {
             logManager.warning('startEventProcess - spot duration in Stream Event payload (' + payloadEvent.STARTdata.duration + ') not matching the VAST duration for this spot (' + dictionary.spots[payloadEvent.STARTdata.sequence].duration + ')');
             return;
         }
-        switch (self.getConfiguration().AD_SUBSTITUTION_METHOD) { //Replacement mode switch
+        switch (configuration.AD_SUBSTITUTION_METHOD) { //Replacement mode switch
             case "spot":
                 if (featuresManager.getFeature("PTSMethod")) {
-                    self.ptsHandlerComponent.ptsStartEventTimeCheck(payloadEvent, startEventCoreProcess); //In spot mode the LOAD event is triggered as soon as it is received, and then Ad Starts are triggered using their PTS
+                    self.ptsHandlerComponent.ptsStartEventTimeCheck(payloadEvent.STARTdata.pts, payloadEvent, startEventCoreProcess); //In spot mode the LOAD event is triggered as soon as it is received, and then Ad Starts are triggered using their PTS
                 } else {
                     logManager.warning('startEventProcess - no PTS or Delay method for this client in the feature file.');
                 }
@@ -180,6 +259,35 @@ var Adv = function () {
             default:
                 logManager.warning('startEventProcess - no "break" or "spot" mode enabled.');
                 break;
+        }
+    }
+
+    function createDictionaryVAST(segmentation_upid, xml) {
+        try {
+            /*jshint ignore:start*/
+            dictionary = {};
+            logManager.log("createDictionaryVAST() - Creating dictionary");
+            var adBreak = xml.getElementsByTagNameNS("http://www.iab.net/vmap-1.0", "VMAP")[0].getElementsByTagNameNS("http://www.iab.net/vmap-1.0", "AdBreak");
+            if(adBreak.length == 0){
+                logManager.log("createDictionaryVAST() - no Ad Break found in VAST file.");
+            }else{
+                var vast = adBreak[0].getElementsByTagNameNS("http://www.iab.net/vmap-1.0", "AdSource")[0].getElementsByTagNameNS("http://www.iab.net/vmap-1.0", "VASTAdData")[0].getElementsByTagName("VAST")[0];
+                var arrayAds = vast.getElementsByTagName("Ad");
+                if (arrayAds.length > 0) {
+                    dictionary.id = segmentation_upid;
+                    logManager.log("createDictionaryVAST() - dictionary.id: " + dictionary.id);
+                    dictionary.spots = [];
+                    for (var i = 0; i < arrayAds.length; i++) {
+                        dictionary.spots[parseInt(arrayAds[i].getAttribute("sequence"))] = createTrackingItemsForDictionaryVAST(arrayAds[i]);
+                        logManager.log('createDictionaryVAST() - dictionary.spots[' + (parseInt(arrayAds[i].getAttribute("sequence"))) + '] tracking items loaded');
+                    }
+                } else {
+                    logManager.log("createDictionaryVAST() - no Ads found in VAST file.");
+                }
+            }
+            /*jshint ignore:end*/
+        } catch (e) {
+            logManager.error("createDictionaryVAST: " + e);
         }
     }
 
@@ -203,6 +311,70 @@ var Adv = function () {
             /*jshint ignore:end*/
         } catch (e) {
             logManager.error("createDictionary: " + e);
+        }
+    }
+
+    function createVideoPlayers() {
+        if (dictionary.spots == null) {
+            return;
+        }
+        /*
+        //un-comment if consent check is mandatory
+        if (consent.getModel() == null || consent.getModelConsents().TARGETED_ADVERTISING.consentStatus !== true) {
+            logManager.warning('createVideoPlayers - user consent not given to TARGETED ADVERTISING, players loading skipped');
+            return;
+        }*/
+        logManager.log("createVideoPlayers - linearAdSwitch " + featuresManager.getFeature("linearAdSwitch"));
+        if (featuresManager.getFeature("linearAdSwitch") == null || featuresManager.getFeature("linearAdSwitch") === false) {
+            return;
+        }
+        for (var i = 0; i < dictionary.spots.length; i++) {
+            if (dictionary.spots[i] != null && dictionary.spots[i].media_file_type === 'addressed') {
+                logManager.log("dictionary spot number " + i + " has a valid url");
+                videoPlayers[i] = new PlayerADS(function () {
+                    //onStop Callbacks
+                }, '_' + i);
+                videoPlayers[i].setUrl(dictionary.spots[i].media_file_url, true);
+            }
+        }
+    }
+
+    function createTrackingItemsForDictionaryVAST(currentAD) {
+        try {
+            var item = {};
+            var durationHms = currentAD.getElementsByTagName("InLine")[0].getElementsByTagName("Creatives")[0].getElementsByTagName("Creative")[0].getElementsByTagName("Linear")[0].getElementsByTagName("Duration")[0];
+            var durationArray = durationHms.textContent.split(':');
+            item["duration"] = (+durationArray[0]) * 60 * 60 + (+durationArray[1]) * 60 + (+durationArray[2]) * 1000;
+            item["tracking"] = {};
+            var trackingNodes = currentAD.getElementsByTagName("InLine")[0].getElementsByTagName("Creatives")[0].getElementsByTagName("Creative")[0].getElementsByTagName("Linear")[0].getElementsByTagName("TrackingEvents")[0].getElementsByTagName("Tracking");
+            item.tracking["impression"] = currentAD.getElementsByTagName("InLine")[0].getElementsByTagName("Impression")[0].textContent.trim();
+            for (var i = 0; i < trackingNodes.length; i++) {
+                switch (trackingNodes[i].getAttribute("event")) {
+                    case "firstQuartile":
+                        item.tracking["firstQuartile"] = trackingNodes[i].textContent.trim();
+                        break;
+                    case "midpoint":
+                        item.tracking["midpoint"] = trackingNodes[i].textContent.trim();
+                        break;
+                    case "thirdQuartile":
+                        item.tracking["thirdQuartile"] = trackingNodes[i].textContent.trim();
+                        break;
+                    case "complete":
+                        item.tracking["complete"] = trackingNodes[i].textContent.trim();
+                        break;
+                }
+            }
+            var mediaFileUrl = currentAD.getElementsByTagName("InLine")[0].getElementsByTagName("Creatives")[0].getElementsByTagName("Creative")[0].getElementsByTagName("Linear")[0].getElementsByTagName("MediaFiles")[0].getElementsByTagName("MediaFile")[0].textContent.trim();
+            /*jshint ignore:start*/
+            item["media_file_url"] = mediaFileUrl;
+            item["media_file_type"] = "broadcasted";
+            /*jshint ignore:end*/
+            if (mediaFileUrl.indexOf(".mp4") !== -1 || mediaFileUrl.indexOf(".mpd") !== -1) {
+                item["media_file_type"] = "addressed";
+            }
+            return item;
+        } catch (e) {
+            logManager.error("createTrackingItemsForDictionary: " + e);
         }
     }
 
@@ -290,7 +462,7 @@ var Adv = function () {
             removeSpotFromDictionary(payloadEvent.STARTdata.break_code, payloadEvent.STARTdata.sequence);
         } else { // check if linearAdTracking is true - mandatory to perform tracking
             if (featuresManager.getFeature("linearAdTracking") && featuresManager.getFeature("linearAdTracking") === true) {
-                scheduleSpotTracking(payloadEvent);
+                scheduleSpotTracking( payloadEvent.STARTdata.sequence, payloadEvent.STARTdata.break_code);
             }
         }
     }
@@ -312,7 +484,7 @@ var Adv = function () {
             };
             if (dictionary.spots[sequenceCounter + 1] != null) {
                 //Recursive timeout to schedule the tracking of the all spots in the dictionary
-                window.setTimeout(breakTimerCallback, dictionary.spots[sequenceCounter].duration + self.getConfiguration().BLACK_FRAMES_DURATION_AFTER_SPOT);
+                window.setTimeout(breakTimerCallback, dictionary.spots[sequenceCounter].duration + configuration.BLACK_FRAMES_DURATION_AFTER_SPOT);
             }
             startEventProcess(JSON.stringify(startPayload));
 
@@ -322,34 +494,34 @@ var Adv = function () {
         //Using PTS in order to trigger the first START. Subsequent ones are chained based on their durations.
         if (featuresManager.getFeature("PTSMethod")) {
             logManager.warning('breakTracking - Waiting first START PTS time in order to start tracking queue.');
-            self.ptsHandlerComponent.ptsStartEventTimeCheck(payloadEvent, breakTimerCallback);
+            self.ptsHandlerComponent.ptsStartEventTimeCheck(payloadEvent.STARTdata.pts, payloadEvent, breakTimerCallback);
         } else {
             logManager.warning('breakTracking - no PTS or Delay method for this client in the feature file. Queuing starts immediately.');
             breakTimerCallback();
         }
     }
 
-    function scheduleSpotTracking(payloadEvent) {
+    function scheduleSpotTracking(sequence, break_code) {
         try {
-            if (dictionary != null && Object.keys(dictionary).length > 0 && payloadEvent.STARTdata.sequence != null && dictionary.id === payloadEvent.STARTdata.break_code) {
+            if (dictionary != null && Object.keys(dictionary).length > 0 && sequence != null && dictionary.id === break_code) {
                 /*jshint ignore:start*/
-                var timeInterval = dictionary.spots[payloadEvent.STARTdata.sequence].duration / 4;
+                var timeInterval = dictionary.spots[sequence].duration / 4;
                 var quartileCounter = 0;
-                injectTrackingPixel(dictionary.spots[payloadEvent.STARTdata.sequence].tracking["impression"], "impression", payloadEvent.STARTdata.sequence);
+                injectTrackingPixel(dictionary.spots[sequence].tracking["impression"], "impression", sequence);
                 breakTimer = window.setInterval(function () {
                     quartileCounter++;
                     switch (quartileCounter) {
                         case 1:
-                            injectTrackingPixel(dictionary.spots[payloadEvent.STARTdata.sequence].tracking["firstQuartile"], "firstQuartile", payloadEvent.STARTdata.sequence);
+                            injectTrackingPixel(dictionary.spots[sequence].tracking["firstQuartile"], "firstQuartile", sequence);
                             break;
                         case 2:
-                            injectTrackingPixel(dictionary.spots[payloadEvent.STARTdata.sequence].tracking["midpoint"], "midpoint", payloadEvent.STARTdata.sequence);
+                            injectTrackingPixel(dictionary.spots[sequence].tracking["midpoint"], "midpoint", sequence);
                             break;
                         case 3:
-                            injectTrackingPixel(dictionary.spots[payloadEvent.STARTdata.sequence].tracking["thirdQuartile"], "thirdQuartile", payloadEvent.STARTdata.sequence);
+                            injectTrackingPixel(dictionary.spots[sequence].tracking["thirdQuartile"], "thirdQuartile", sequence);
                             break;
                         case 4:
-                            endProcedure(payloadEvent);
+                            endProcedure(sequence, break_code);
                             break;
                     }
                 }, timeInterval);
@@ -359,7 +531,7 @@ var Adv = function () {
             }
         } catch (e) {
             logManager.error("scheduleSpotTracking: " + e);
-            removeSpotFromDictionary(payloadEvent.STARTdata.break_code, payloadEvent.STARTdata.sequence);
+            removeSpotFromDictionary(break_code, sequence);
         }
     }
 
@@ -367,7 +539,7 @@ var Adv = function () {
         if(trace){
             trace.injectTrackingPixel(url);
         }
-        if (self.getConfiguration().VISIBLE_AD_TRACKING) {// ENABLE FOR DEBUG ONLY
+        if (configuration.VISIBLE_AD_TRACKING) {// ENABLE FOR DEBUG ONLY
             switch (name) {
                 case 'impression':
                 case 'complete':
@@ -392,14 +564,14 @@ var Adv = function () {
         }, 3000);
     }
 
-    function endProcedure(payloadEvent) {
+    function endProcedure(sequence, break_code) {
         /*jshint ignore:start*/
-        injectTrackingPixel(dictionary.spots[payloadEvent.STARTdata.sequence].tracking["complete"], "complete", payloadEvent.STARTdata.sequence);
+        injectTrackingPixel(dictionary.spots[sequence].tracking["complete"], "complete", sequence);
         /*jshint ignore:end*/
         if (breakTimer) {
             window.clearInterval(breakTimer);
         }
-        removeSpotFromDictionary(payloadEvent.STARTdata.break_code, payloadEvent.STARTdata.sequence);
+        removeSpotFromDictionary(break_code, sequence);
         logManager.log("Adv pixel tracking schedulation ended.");
     }
 
@@ -433,8 +605,11 @@ var Adv = function () {
 
     return {
         configure: configure,
+        getConfiguration: getConfiguration,
         onFiredAdv: onFiredAdv,
         callAdServerProcess: callAdServerProcess,
-        startProcess: startEventProcess
+        callVastAdServerProcess: callVastAdServerProcess,
+        startProcess: startEventProcess,
+        startSCTEProcess: startSCTEProcess
     };
 };

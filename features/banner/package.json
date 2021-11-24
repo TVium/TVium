@@ -1,6 +1,6 @@
 {
   "name": "tvium-banner",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "NPM package - Tvium banner",
   "main": "dist/scripts.min.js",
   "scripts": {
@@ -21,6 +21,7 @@
   },
   "homepage": "https://github.com/TVium/TVium/tree/main#readme",
   "dependencies": {
-    "tvium-ads": "^1.2.0"
+    "tvium-core": "^1.1.0",
+    "tvium-streamevent": "^1.0.0"
   }
 }

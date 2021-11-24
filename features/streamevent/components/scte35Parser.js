@@ -50,6 +50,7 @@ function SCTE35Parser() {
         var table_id = this.read(8);
         if (table_id == 0xfc) { // table_id – This is an 8-bit field. Its value shall be 0xFC for SpliceInfo.
             var spliceInfo = this.spliceInfo;
+            spliceInfo.segmentation_type_id_list = [];//custom field - contains list of each descriptor segmentation type id
             spliceInfo.table_id = table_id;
             spliceInfo.section_syntax_indicator = this.read(1);
             spliceInfo.private_indicator = this.read(1);
@@ -138,6 +139,7 @@ function SCTE35Parser() {
                             this.parse_segmentation_upid(descriptor);
 
                             descriptor.segmentation_type_id = this.read(8);
+                            spliceInfo.segmentation_type_id_list.push(descriptor.segmentation_type_id);//custom list to resume how many and which descriptor has been found
                             switch (descriptor.segmentation_type_id) {//logging segmentation type
                                 case 0x00:
                                    logManager.log("Type = Not Indicated\n");
@@ -305,8 +307,20 @@ function SCTE35Parser() {
                 break;
             case 0x08:
                 break;
-            case 0xC:
-                descriptor.segmentation_upid = this.read(descriptor.segmentation_upid_length);
+            case 0xC://value when segmentation_type_id is 0x02
+                descriptor.identifier_format = this.read(32);
+                //segmentation_upid_length is the length of both data in bytes, so need to be converted to bits doing * 8
+                descriptor.segmentation_upid = this.read(descriptor.segmentation_upid_length*8 - 32);//performance can be improved doing <<3 (bit shifting) instead of *8
+                break;
+            case 0x0F://15
+                var upidLengthInBits = descriptor.segmentation_upid_length*8;
+
+                var stringUpid= "";
+                for(var i=0; i < descriptor.segmentation_upid_length; i++){
+                    var singleByteInUpid = this.read(8);
+                    stringUpid += String.fromCharCode(singleByteInUpid);
+                }
+                descriptor.segmentation_upid = stringUpid;
                 break;
             default: //!= 0x00
                 break;

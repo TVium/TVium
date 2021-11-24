@@ -1,0 +1,51 @@
+@import "../features/core/less/config.less";
+
+@padding-top: 5px;
+@padding-left: 50px;
+@padding-bottom: 50px;
+@padding-right: 50px;
+
+.log-container {
+  padding-top: @padding-top;
+  padding-bottom: @padding-bottom;
+  width: @default-screen-width;
+  height: @default-screen-height - @padding-top - @padding-bottom;
+  overflow-x: hidden;
+  overflow-y: hidden;
+  font-family: Verdana, Tahoma, sans-serif;
+  font-size: 18px;
+  background-color: rgba(0, 0, 0, 0.4);
+  display: none;
+  position: absolute;
+  z-index: 999;
+}
+
+p {
+  padding-left: @padding-left;
+  padding-right: @padding-right;
+}
+
+.colorLog() {
+  word-break: break-all;
+  margin: 0px;
+}
+
+.colorLogWithEvidence {
+  .colorLog();
+  color: #ffffff;
+}
+
+.colorLogLight {
+  .colorLog();
+  color: #999999;
+}
+
+.colorLogWarning {
+  .colorLog();
+  color: #f5e532;
+}
+
+.colorLogError {
+  .colorLog();
+  color: #f55f49;
+}

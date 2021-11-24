@@ -132,10 +132,37 @@ window.onload = function () {
                                         banner.startJourney();//show L shaped banner - anyway you can set here the function you want to be triggered by scte-35 Program Start (0x10)
                                     },
                                     ATTRIBUTES: ["pts_time"]
+                                },
+                                0x02: {
+                                    FN: function (selectedAttributes, raw_json) {
+                                        var adStaticConf = {
+                                            ADSERVER_FREEWHEEL_NET_DOMAIN : "7e28b",
+                                            ADSERVER_FREEWHEEL_FW_NET_ID : "516747",
+                                            ADSERVER_FREEWHEEL_FW_MODE : "live",
+                                            ADSERVER_FREEWHEEL_FW_PLAYER_PROFILE : "516747:alpha_JL_XML",
+                                            ADSERVER_FREEWHEEL_FW_CAID : "jl_videoasset1",
+                                            ADSERVER_FREEWHEEL_FW_CSID : "alpha_jl_sitesection_iptv_1",
+                                            ADSERVER_FREEWHEEL_FW_RESP : "vmap1",
+                                            ADSERVER_FREEWHEEL_FW_METR : "7",
+                                            ADSERVER_FREEWHEEL_FW_FLAG : "+emcr+qtcb+slcb+scpv+exvt",
+                                            ADSERVER_FREEWHEEL_FW_ACID : "alpha2",
+                                            ADSERVER_FREEWHEEL_FW_TPCL : "MIDROLL",
+                                            ADSERVER_FREEWHEEL_FW_PTGT : "a"
+                                        }
+                                        //it s possible to trigger ad server call only if consent is true adding an IF
+                                        adv.callVastAdServerProcess(adStaticConf, selectedAttributes, raw_json);
+                                    },
+                                    ATTRIBUTES: ["segmentation_upid", "segmentation_duration"]
+                                },
+                                0x30: {
+                                    FN: function (selectedAttributes, raw_json) {
+                                        adv.startSCTEProcess(selectedAttributes, raw_json);
+                                    },
+                                    ATTRIBUTES: ["segmentation_upid", "segmentation_duration", "segment_num"]
                                 }
                             },
-                            TRIGGERABLE_FN_ON_EVENT: function(){
-                                adv.onFiredAdv();
+                            TRIGGERABLE_FN_ON_EVENT: function(obj){
+                                adv.onFiredAdv(obj);
                             }
                         });
                         adv.configure({
@@ -160,6 +187,12 @@ window.onload = function () {
 
         konamiManager = new KonamiManager();
         konamiManager.loadKonamis();
+        var logLoadTimer = window.setInterval(function () {// debugging logs
+            if (core && core.getConfiguration() != null && core.getConfiguration().ENABLE_LOGS) {
+                logManager.showLogOverlay();
+                window.clearInterval(logLoadTimer);
+            }
+        }, 1000);
 
         setRemoteKeys();
         try {
@@ -175,7 +208,7 @@ window.onload = function () {
     function setRemoteKeys() {
 
         try {
-            var keyToLock =  keyset.YELLOW/* + keyset.BLUE + keyset.RED + keyset.GREEN*/;
+            var keyToLock =  keyset.YELLOW + keyset.BLUE + keyset.RED + keyset.GREEN;
             keyset.setValue(keyToLock);
         } catch (e) {
             logManager.generalError("General Error: " + e.message);

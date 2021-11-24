@@ -63,18 +63,20 @@ var TraceRequests =function () {
             });
             logManager.log(serviceName + " - payload heartbeat: " + jsonData);
             var urlManaged=trace.getConfiguration().HEARTBEAT_URL;
-            $.ajax({
-                type: "POST",
-                url: urlManaged,
-                data:jsonData,
-                timeout: trace.getConfiguration().HEARTBEAT_TIME_INTERVAL,
-                success: function(data){
-                    logManager.log(serviceName + " - Response: " + JSON.stringify(data));
-                },
-                error: function(error){
-                    logManager.error(serviceName + " - Error:" + JSON.stringify(error));
-                }
-            });
+            if(urlManaged && urlManaged !== "") {
+                $.ajax({
+                    type: "POST",
+                    url: urlManaged,
+                    data: jsonData,
+                    timeout: trace.getConfiguration().HEARTBEAT_TIME_INTERVAL,
+                    success: function (data) {
+                        logManager.log(serviceName + " - Response: " + JSON.stringify(data));
+                    },
+                    error: function (error) {
+                        logManager.error(serviceName + " - Error:" + JSON.stringify(error));
+                    }
+                });
+            }
         }else{
             logManager.error(serviceName + " - currentChannel is not set");
         }

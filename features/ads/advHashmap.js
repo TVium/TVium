@@ -3,7 +3,7 @@ var AdvHashmap = function () {
         status: null,
         dictionary: null
     };
-    var advIDStarted = null;
+    var advIDLoaded = null;
     var lstStatus = {
         LOADING: "LOADING",
         LOADED: "LOADED",
@@ -23,7 +23,7 @@ var AdvHashmap = function () {
 
     function clearLst() {
         lstAdv = {};
-        advIDStarted = null;
+        advIDLoaded = null;
     }
 
     function initialize(advID) {
@@ -61,10 +61,10 @@ var AdvHashmap = function () {
             /*jshint ignore:start*/
             lstAdv[advID]["status"] = status;
             /*jshint ignore:end*/
-            if (status == lstStatus.STARTING) {
-                advIDStarted = advID;
+            if (status == lstStatus.LOADED) {
+                advIDLoaded = advID;
             } else if (status == lstStatus.STOP) {
-                advIDStarted = null;
+                advIDLoaded = null;
                 logManager.log('Status: ' + status);
             }
         } else {
@@ -76,8 +76,12 @@ var AdvHashmap = function () {
         return Object.keys(lstAdv).length == 0 || Object.keys(lstAdv).length == 0;
     }
 
-    function isAdvAlreadyStarted() {
-        return advIDStarted != null;
+    function isAdvAlreadyLoaded() {
+        return advIDLoaded != null;
+    }
+
+    function getLoadedAdv() {
+        return advIDLoaded;
     }
 
     return {
@@ -87,10 +91,11 @@ var AdvHashmap = function () {
         getValue: getValue,
         setStatus: setStatus,
         isAdvIDExists: isAdvIDExists,
-        isAdvAlreadyStarted: isAdvAlreadyStarted,
+        isAdvAlreadyLoaded: isAdvAlreadyLoaded,
         lstStatus: lstStatus,
         type: type,
         clearLst: clearLst,
-        lstAdvIsEmpty: lstAdvIsEmpty
+        lstAdvIsEmpty: lstAdvIsEmpty,
+        getLoadedAdv: getLoadedAdv
     };
 };

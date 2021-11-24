@@ -1,0 +1,38 @@
+.log-container {
+  padding-top: 5px;
+  padding-bottom: 50px;
+  width: 1280px;
+  height: 665px;
+  overflow-x: hidden;
+  overflow-y: hidden;
+  font-family: Verdana, Tahoma, sans-serif;
+  font-size: 18px;
+  background-color: rgba(0, 0, 0, 0.4);
+  display: none;
+  position: absolute;
+  z-index: 999;
+}
+p {
+  padding-left: 50px;
+  padding-right: 50px;
+}
+.colorLogWithEvidence {
+  word-break: break-all;
+  margin: 0px;
+  color: #ffffff;
+}
+.colorLogLight {
+  word-break: break-all;
+  margin: 0px;
+  color: #999999;
+}
+.colorLogWarning {
+  word-break: break-all;
+  margin: 0px;
+  color: #f5e532;
+}
+.colorLogError {
+  word-break: break-all;
+  margin: 0px;
+  color: #f55f49;
+}
