@@ -1,6 +1,6 @@
 {
   "name": "tvium-ads",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "NPM package - Tvium Ads",
   "main": "dist/scripts.min.js",
   "scripts": {
@@ -22,6 +22,7 @@
   },
   "homepage": "https://github.com/TVium/TVium/tree/main#readme",
   "dependencies": {
-    "tvium-core": "^1.1.0"
+    "tvium-core": "^1.1.0",
+    "tvium-streamevent": "^1.0.0"
   }
 }

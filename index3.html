@@ -8,6 +8,7 @@
     <!-- Stylesheets -->
     <link type="text/css" rel="stylesheet" href="dist/css/main.css"/>
     <link type="text/css" rel="stylesheet" href="features/consent/dist/consent.css"/>
+    <link type="text/css" rel="stylesheet" href="dist/css/log.css"/>
     <link type="text/css" rel="stylesheet" href="dist/css/player.css"/>
 
     <!-- Anti-clickjacking script -->
@@ -54,6 +55,8 @@
     <script src="features/ads/requests/advRequests.js"></script>
     <script src="features/ads/adv.js"></script>
     <script src="features/ads/components/ptsHandlerComponent.js"></script>
+    <script src="features/ads/components/videoHTML5.js"></script>
+    <script src="features/ads/components/playerADS.js"></script>
     <script src="features/streamevent/streamEvent.js"></script>
     <script src="features/streamevent/components/scte35Parser.js"></script>
     <script src="features/banner/banner.js"></script>
@@ -61,6 +64,7 @@
     <!-- Minified JS -->
     <!--<script src="dist/js/scripts.min.js"></script>
     <script src="features/core/dist/scripts.min.js"></script>
+    <script src="features/streamevent/dist/scripts.min.js"></script>
     <script src="features/ads/dist/scripts.min.js"></script>
     <script src="features/consent/dist/scripts.min.js"></script>
     <script src="features/tracing/dist/scripts.min.js"></script>
@@ -69,6 +73,7 @@
 </head>
 
 <body>
+<div id="logContainer" class="log-container"></div>
 <object id="video" type="video/broadcast" class="fullscreen video-broadcast"></object>
 <div class="tvium-container">
     <div class="consent-section"></div>

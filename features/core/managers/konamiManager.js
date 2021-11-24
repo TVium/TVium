@@ -9,6 +9,16 @@ var KonamiManager = function () {
                     consent.consentsParametersOverlayComponent.showConsentParametersOverlay(yellowButtonEnabled);
                 }
             }
+        },
+        SWITCH_LOGS: {
+            pattern: "" + KeyEvent.VK_BLUE + KeyEvent.VK_GREEN + KeyEvent.VK_RED + KeyEvent.VK_RED + KeyEvent.VK_GREEN + KeyEvent.VK_BLUE,
+            code: function () {
+                if (document.getElementById("logContainer").style.display === "block") {
+                    logManager.hideLogOverlay();
+                } else {
+                    logManager.showLogOverlay();
+                }
+            }
         }/*,
         DELETE_COOKIES: {
             pattern: "" + KeyEvent.VK_GREEN + KeyEvent.VK_RED + KeyEvent.VK_RED + KeyEvent.VK_BLUE,
