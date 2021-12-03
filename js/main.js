@@ -140,10 +140,18 @@ window.onload = function () {
                                             ADSERVER_FREEWHEEL_FW_CSID : "alpha_jl_sitesection_iptv_1",
                                             ADSERVER_FREEWHEEL_FW_RESP : "vmap1",
                                             ADSERVER_FREEWHEEL_FW_METR : "7",
+                                            ADSERVER_FREEWHEEL_FW_VRDU : selectedAttributes.segmentation_duration || "",
                                             ADSERVER_FREEWHEEL_FW_FLAG : "+emcr+qtcb+slcb+scpv+exvt",
+                                            ADSERVER_FREEWHEEL_FW_HYLDA : selectedAttributes.segmentation_duration,
                                             ADSERVER_FREEWHEEL_FW_ACID : "alpha2",
+                                            ADSERVER_FREEWHEEL_FW_AIID : selectedAttributes.segmentation_upid,
+                                            ADSERVER_FREEWHEEL_FW_ABID : selectedAttributes.segmentation_upid,
+                                            ADSERVER_FREEWHEEL_FW_VCID2 : consent ? consent.getModel().tvId: "",
+                                            ADSERVER_FREEWHEEL_FW_SLID : selectedAttributes.segmentation_upid,
                                             ADSERVER_FREEWHEEL_FW_TPCL : "MIDROLL",
-                                            ADSERVER_FREEWHEEL_FW_PTGT : "a"
+                                            ADSERVER_FREEWHEEL_FW_PTGT : "a",
+                                            ADSERVER_FREEWHEEL_FW_MAXD : selectedAttributes.segmentation_duration || "",
+                                            ADSERVER_FREEWHEEL_FW_MIND : selectedAttributes.segmentation_duration || ""
                                         }
                                         //it s possible to trigger ad server call only if consent is true adding an IF
                                         adv.callVastAdServerProcess(adStaticConf, selectedAttributes, raw_json);

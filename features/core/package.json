@@ -1,6 +1,6 @@
 {
   "name": "tvium-core",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "NPM package - Tvium Core",
   "main": "dist/scripts.min.js",
   "scripts": {
