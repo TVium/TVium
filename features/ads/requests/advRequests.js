@@ -30,21 +30,17 @@ var AdvRequests =function () {
     };
 
     this.doFreewheelAdCall = function (staticConfiguration, attributes, scte_json, onSuccess, onFail) {
-        if(attributes.segmentation_duration == undefined){
-            attributes.segmentation_duration = "";
-        }
         var serviceName = "AdvRequests.doFreewheelAdCall()";
-        var tvID = consent ? consent.getModel().tvId : "";
         var urlManaged = "https://" + staticConfiguration.ADSERVER_FREEWHEEL_NET_DOMAIN  + ".v.fwmrm.net/ad/g/1?nw=" + staticConfiguration.ADSERVER_FREEWHEEL_FW_NET_ID +
         "&mode=" + staticConfiguration.ADSERVER_FREEWHEEL_FW_MODE + "&prof=" + staticConfiguration.ADSERVER_FREEWHEEL_FW_PLAYER_PROFILE + "&caid=" + staticConfiguration.ADSERVER_FREEWHEEL_FW_CAID +
         "&csid=" + staticConfiguration.ADSERVER_FREEWHEEL_FW_CSID + "&resp=" + staticConfiguration.ADSERVER_FREEWHEEL_FW_RESP + "&metr=" + staticConfiguration.ADSERVER_FREEWHEEL_FW_METR +
         "&" +
-            "vrdu=" + attributes.segmentation_duration +"&flag=" + staticConfiguration.ADSERVER_FREEWHEEL_FW_FLAG + ";_fw_hylda=" +
-            "acid=" + staticConfiguration.acid + "%26" +
-            "aiid=" + attributes.segmentation_upid + "%26" +
-            "abid%3Dbreak://" + attributes.segmentation_upid + "&_fw_vcid2=" + tvID + "&tvium=yes;" +
-            "slid=" + attributes.segmentation_upid + "&tpcl=" + staticConfiguration.ADSERVER_FREEWHEEL_FW_TPCL + "&ptgt=" + staticConfiguration.ADSERVER_FREEWHEEL_FW_TPCL.ADSERVER_FREEWHEEL_FW_PTGT  + "&" +
-            "maxd=" + attributes.segmentation_duration +"&mind="+ attributes.segmentation_duration;
+            "vrdu=" + staticConfiguration.ADSERVER_FREEWHEEL_FW_VRDU +"&flag=" + staticConfiguration.ADSERVER_FREEWHEEL_FW_FLAG + ";_fw_hylda=" +
+            "acid=" + staticConfiguration.ADSERVER_FREEWHEEL_FW_ACID + "%26" +
+            "aiid=" + staticConfiguration.ADSERVER_FREEWHEEL_FW_AIID + "%26" +
+            "abid%3D" + staticConfiguration.ADSERVER_FREEWHEEL_FW_ABID + "&_fw_vcid2=" + staticConfiguration.ADSERVER_FREEWHEEL_FW_VCID2 + "&tvium=yes;" +
+            "slid=" + staticConfiguration.ADSERVER_FREEWHEEL_FW_SLID + "&tpcl=" + staticConfiguration.ADSERVER_FREEWHEEL_FW_TPCL + "&ptgt=" + staticConfiguration.ADSERVER_FREEWHEEL_FW_PTGT  + "&" +
+            "maxd=" + staticConfiguration.ADSERVER_FREEWHEEL_FW_MAXD +"&mind="+ staticConfiguration.ADSERVER_FREEWHEEL_FW_MIND;
 
         var ajaxCall;
         logManager.log(serviceName + " CALLED - url: " + urlManaged);
