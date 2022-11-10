@@ -58,13 +58,14 @@ To add a special feature, the streamer MUST :
 - [x] **Features Picking** per User Agent and per Cheat code
 - [x] **Consent Management** compliant with GDPR, CNIL and data partnerships 
 - [x] **Live Audience Measurement** per consenting user and in aggregate
-- [x] **Linear Ads Measurement** per spot per quartile compliant with DVB-TA signals and main Digital Ad Servers
+- [x] **Linear Ad Tracking** per spot per quartile compliant with DVB-TA signals and main Digital Ad Servers
 - [x] **ContextuaL Bridge** on stream period start or end
 
 ## TVium Developing Features
-- [ ] **Linear Ads Switching** aka compliant with DVB-TA signals, guaranteed by HbbTV-TA Profile 2 and main Digital Ad Servers
+- [ ] **Linear Ad Replacement** aka compliant with DVB-TA signals, guaranteed by HbbTV-TA Profile 2 and main Digital Ad Servers
 
 ## TVium backlog
+- [ ] **AsynClick** for users to click on ads to get a SMS for later purchases
 - [ ] **Broadband Stream** for non broadcasted streams 
 - [ ] **Visual Templates** for layout configuration
 - [ ] **Upfront Pairing** for rich presence based usages
